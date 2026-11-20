@@ -359,7 +359,13 @@ const schema = [
   }
   .details a,
   .details span {
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+    font-size: clamp(0.85rem, 0.55rem + 1.6vw, 1rem);
+  }
+  @media (max-width: 480px) {
+    .side-card {
+      padding: 1.25rem;
+    }
   }
   .details li {
     display: flex;

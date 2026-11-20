@@ -35,7 +35,7 @@ const tel = company.phoneHref;
         <h2>Get in touch</h2>
         <ul>
           {company.phone && <li><a class="tabular" href={`tel:${tel}`}>{company.phone}</a></li>}
-          {company.email && <li><a href={`mailto:${company.email}`}>{company.email}</a></li>}
+          {company.email && <li><a class="ftr__email" href={`mailto:${company.email}`}>{company.email}</a></li>}
           {company.address && <li>{company.address}</li>}
           <li><a href="/contact">Enquiry form</a></li>
         </ul>
@@ -77,9 +77,14 @@ const tel = company.phoneHref;
     display: grid;
     gap: 2.5rem;
   }
-  @media (min-width: 800px) {
+  @media (min-width: 640px) {
     .ftr__top {
-      grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1100px) {
+    .ftr__top {
+      grid-template-columns: 1.5fr 1fr 1fr 1.6fr;
     }
   }
   .ftr__brand p {
@@ -93,8 +98,8 @@ const tel = company.phoneHref;
     text-transform: uppercase;
     margin-bottom: 1rem;
   }
-  .ftr li {
-    overflow-wrap: anywhere;
+  .ftr__email {
+    white-space: nowrap;
   }
   .ftr ul {
     list-style: none;
