@@ -1,5 +1,5 @@
 // Company details in one place. Anything left empty is simply not shown on the site.
-// TO CONFIRM before launch: domain, company number.
+// TO CONFIRM: company number.
 
 /** The live domain (used for canonical links, the sitemap and structured data). */
 export const SITE_URL = 'https://www.britsconstructionprojects.co.uk';
@@ -23,7 +23,7 @@ export const company = {
 };
 
 /**
- * Where the enquiry form sends (FormSubmit: free, no account; emails each enquiry to the address below).
+ * Where the enquiry form sends (FormSubmit: free, no account; emails each enquiry to company.email).
  * Empty: the form opens the visitor's email app instead, addressed to company.email.
  */
-export const FORM_ENDPOINT = 'https://formsubmit.co/ajax/bazilkhanuk@gmail.com';
+export const FORM_ENDPOINT = `https://formsubmit.co/ajax/${company.email}`;
