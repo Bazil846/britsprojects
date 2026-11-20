@@ -48,11 +48,14 @@ const schema = [
       </a>
       <a class="btn btn--outline" href="/contact?topic=project-management">Discuss Project Management</a>
     </div>
-    <div slot="aside" class="aside-quote">
+    <div slot="aside" class="aside-stack">
+    <img class="aside-photo" src="/photos/build-progress-10.webp" alt="Site manager in hi-vis at a house extension under construction" loading="eager" decoding="async" />
+    <div class="aside-quote">
       <p>
         Building your dream home is a major investment. You deserve to understand how the work is progressing, whether the structure follows
         the design and whether each payment reflects the work completed.
       </p>
+    </div>
     </div>
   </PageHero>
 
@@ -110,6 +113,16 @@ const schema = [
 </Base>
 
 <style>
+  .aside-stack {
+    display: grid;
+    gap: 1rem;
+  }
+  .aside-photo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+  }
   .aside-quote {
     padding: 1.75rem 1.75rem 1.75rem 1.5rem;
     border-left: 3px solid var(--copper);

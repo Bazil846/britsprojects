@@ -3,7 +3,7 @@ import Logo from './Logo.astro';
 import { company } from '../site';
 
 const year = new Date().getFullYear();
-const tel = company.phone.replace(/\s/g, '');
+const tel = company.phoneHref;
 ---
 
 <footer class="ftr">
@@ -92,6 +92,9 @@ const tel = company.phone.replace(/\s/g, '');
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 1rem;
+  }
+  .ftr li {
+    overflow-wrap: anywhere;
   }
   .ftr ul {
     list-style: none;

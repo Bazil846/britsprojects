@@ -1,0 +1,77 @@
+---
+import { accreditations } from '../content';
+interface Props {
+  tone?: 'canvas' | 'stone';
+}
+const { tone = 'canvas' } = Astro.props;
+---
+
+<section class:list={['acc', tone === 'stone' && 'acc--stone']} aria-labelledby="acc-heading">
+  <div class="container acc__inner">
+    <h2 id="acc-heading" class="acc__title">Accreditations &amp; memberships</h2>
+    <ul class="acc__logos">
+      {
+        accreditations.map((a) => (
+          <li>
+            <img src={a.src} alt={`${a.name} logo`} loading="lazy" decoding="async" />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .acc {
+    padding: clamp(2rem, 1.5rem + 2vw, 3rem) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .acc--stone {
+    background: var(--stone);
+  }
+  .acc__inner {
+    display: grid;
+    gap: 1.25rem;
+    align-items: center;
+  }
+  @media (min-width: 960px) {
+    .acc__inner {
+      grid-template-columns: 12rem 1fr;
+      gap: 2.5rem;
+    }
+  }
+  .acc__title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .acc__logos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  @media (min-width: 700px) {
+    .acc__logos {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  .acc__logos li {
+    display: grid;
+    place-items: center;
+    height: 4.5rem;
+    padding: 0.6rem 0.9rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-input);
+  }
+  .acc__logos img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+</style>

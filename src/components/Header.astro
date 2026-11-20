@@ -10,7 +10,7 @@ const nav = [
   { href: '/contact', label: 'Contact' },
 ];
 const here = Astro.url.pathname.replace(/\.html$/, '');
-const tel = company.phone.replace(/\s/g, '');
+const tel = company.phoneHref;
 ---
 
 <header class="hdr" data-header>

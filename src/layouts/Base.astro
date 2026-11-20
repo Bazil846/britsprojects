@@ -25,9 +25,9 @@ const business = {
   description:
     'Residential structural building work and independent project management for extensions, loft conversions, internal alterations and new homes.',
   logo: `${SITE_URL}/logo.svg`,
-  ...(company.phone && { telephone: company.phone }),
+  ...(company.phoneHref && { telephone: company.phoneHref }),
   ...(company.email && { email: company.email }),
-  ...(company.address && { address: { '@type': 'PostalAddress', streetAddress: company.address, addressCountry: 'GB' } }),
+  address: { '@type': 'PostalAddress', streetAddress: '66 Yeading Avenue', addressLocality: 'Harrow', postalCode: 'HA2 9RN', addressCountry: 'GB' },
   areaServed: [{ '@type': 'City', name: 'London' }, { '@type': 'AdministrativeArea', name: 'Home Counties' }],
   knowsAbout: [
     'Structural building work',

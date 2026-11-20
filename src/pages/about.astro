@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Accreditations from '../components/Accreditations.astro';
 import { whyChoose, focus, documents } from '../content';
 import { SITE_URL, company } from '../site';
 
@@ -114,6 +115,8 @@ const schema = [
       </ul>
     </div>
   </section>
+
+  <Accreditations tone="stone" />
 
   <section class="section" aria-labelledby="family-heading">
     <div class="container sister">

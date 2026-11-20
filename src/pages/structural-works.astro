@@ -79,12 +79,15 @@ const schema = [
         {
           structuralCore.map((s) => (
             <article class="ptype" id={s.id}>
-              <span class="ptype__icon">
-                <Icon name={s.icon} size={30} />
-              </span>
-              <div>
-                <h3 class="h3">{s.title}</h3>
-                <p>{s.text}</p>
+              <img class="ptype__img" src={s.photo} alt={s.alt} loading="lazy" decoding="async" />
+              <div class="ptype__body">
+                <span class="ptype__icon">
+                  <Icon name={s.icon} size={26} />
+                </span>
+                <div>
+                  <h3 class="h3">{s.title}</h3>
+                  <p>{s.text}</p>
+                </div>
               </div>
             </article>
           ))
@@ -106,6 +109,13 @@ const schema = [
         {
           structuralTrades.map((t, i) => (
             <li id={t.id}>
+              {'photo' in t ? (
+                <img class="trades__img" src={t.photo} alt={t.alt} loading="lazy" decoding="async" />
+              ) : (
+                <span class="trades__img trades__img--icon">
+                  <Icon name={t.icon} size={48} />
+                </span>
+              )}
               <span class="trades__n tabular">{String(i + 1).padStart(2, '0')}</span>
               <Icon name={t.icon} size={26} class="trades__icon" />
               <h3 class="h3">{t.title}</h3>
@@ -155,13 +165,21 @@ const schema = [
     font-weight: 600;
   }
   .ptype {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    scroll-margin-top: 6rem;
+  }
+  .ptype__img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .ptype__body {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 1.25rem;
     padding: clamp(1.5rem, 1.2rem + 1vw, 2rem);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-card);
-    scroll-margin-top: 6rem;
   }
   .ptype p {
     margin-top: 0.5rem;
@@ -192,7 +210,25 @@ const schema = [
       grid-template-columns: repeat(3, 1fr);
     }
   }
+  .trades__img {
+    display: block;
+    width: calc(100% + 3.5rem);
+    max-width: none;
+    margin: -1.75rem -1.75rem 1.25rem;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .trades__img--icon {
+    display: grid;
+    place-items: center;
+    background: var(--steel-tint);
+    color: var(--steel);
+  }
+  .trades__n {
+    z-index: 1;
+  }
   .trades li {
+    overflow: hidden;
     position: relative;
     padding: 1.75rem;
     background: var(--canvas);
@@ -202,10 +238,14 @@ const schema = [
   }
   .trades__n {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(8, 32, 47, 0.8);
     font-weight: 700;
-    color: var(--line-strong);
+    font-size: 0.85rem;
+    color: #fff;
   }
   .trades :global(.trades__icon) {
     color: var(--copper);

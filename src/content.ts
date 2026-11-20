@@ -2,25 +2,25 @@
 
 export const structuralCore = [
   {
-    id: 'extensions',
+    id: 'extensions', photo: '/photos/build-progress-14.webp', alt: 'Extension under construction with new brick and blockwork walls and scaffolding',
     icon: 'extension',
     title: 'Extensions',
     text: 'Structural construction for single and double-storey extensions, including demolition, groundworks, foundations, drainage, walls, floors, steelwork and roofing.',
   },
   {
-    id: 'loft-conversions',
+    id: 'loft-conversions', photo: '/photos/loft-construction-4.webp', alt: 'Loft conversion structure with new steel beams and timber framing',
     icon: 'loft',
     title: 'Loft Conversions',
     text: 'Structural alterations, floor strengthening, steel installation, dormer construction and roof modifications to create the framework for your new living space.',
   },
   {
-    id: 'internal-alterations',
+    id: 'internal-alterations', photo: '/photos/build-progress-4.webp', alt: 'Steel beam installed over a new opening in blockwork',
     icon: 'wall',
     title: 'Internal Structural Alterations',
     text: 'Load-bearing wall removal, new structural openings, temporary support and installation of specified beams, columns and frames.',
   },
   {
-    id: 'new-builds',
+    id: 'new-builds', photo: '/photos/scaffolded-build-2.webp', alt: 'Multi-storey residential build under scaffolding',
     icon: 'newbuild',
     title: 'New Build Structures',
     text: 'Coordinated structural packages covering groundworks, foundations, drainage, structural walls, floors, steelwork and roof construction.',
@@ -30,13 +30,13 @@ export const structuralCore = [
 /** The trades in a structural package, in build order. */
 export const structuralTrades = [
   {
-    id: 'demolition',
+    id: 'demolition', photo: '/photos/groundworks-4.webp', alt: 'Excavated ground being prepared beside a house before building work',
     icon: 'demolition',
     title: 'Demolition & Site Preparation',
     text: 'Demolition, strip-out, site clearance and excavation to prepare your property for the planned works.',
   },
   {
-    id: 'foundations',
+    id: 'foundations', photo: '/photos/groundworks-1.webp', alt: 'Foundation trench with steel reinforcement and formwork',
     icon: 'foundation',
     title: 'Foundations & Piling',
     text: 'Excavation and concrete foundation construction, with specialist piling arrangements where required by the structural design.',
@@ -48,37 +48,37 @@ export const structuralTrades = [
     text: 'Underground drainage installation and alterations, including pipework, inspection chambers, diversions and connections to suit your project.',
   },
   {
-    id: 'masonry',
+    id: 'masonry', photo: '/photos/build-progress-9.webp', alt: 'New brickwork and blockwork walls rising on an extension',
     icon: 'brick',
     title: 'Brickwork & Blockwork',
     text: 'Construction of external walls, internal load-bearing walls and supporting masonry for extensions, alterations and new homes.',
   },
   {
-    id: 'steelwork',
+    id: 'steelwork', photo: '/photos/loft-construction-2.webp', alt: 'Red-painted structural steel frame inside a roof under construction',
     icon: 'steel',
     title: 'Structural Steelwork',
     text: 'Installation of specified steel beams, columns and frames to support new openings, additional floors and changes to your home’s layout.',
   },
   {
-    id: 'concrete-floors',
+    id: 'concrete-floors', photo: '/photos/concrete-1.webp', alt: 'Concrete being poured over insulation for a ground floor slab',
     icon: 'slab',
     title: 'Solid Concrete Ground Floors',
     text: 'Ground floor construction, including sub-base preparation, compacted hardcore, damp-proof membranes, insulation and concrete slabs to the specified floor build-up.',
   },
   {
-    id: 'beam-block',
+    id: 'beam-block', photo: '/photos/build-progress-17.webp', alt: 'Concrete floor beams laid across supporting masonry for a beam and block floor',
     icon: 'beamblock',
     title: 'Beam & Block Floors',
     text: 'Installation of suspended beam and block flooring, including supporting masonry, concrete beams, infill blocks, ventilation provisions and insulation.',
   },
   {
-    id: 'screeding',
+    id: 'screeding', photo: '/photos/ufh-3.webp', alt: 'Floor screed being laid over underfloor heating pipes',
     icon: 'screed',
     title: 'Floor Screeding',
     text: 'Screeding to provide a level surface ready for floor finishes, including installation over underfloor heating systems where specified.',
   },
   {
-    id: 'roofing',
+    id: 'roofing', photo: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed',
     icon: 'roof',
     title: 'Roofing Structures',
     text: 'Roof construction and structural roof alterations for extensions, loft conversions and new residential buildings.',
@@ -221,4 +221,22 @@ export const documents = [
   'Planning permission and its conditions',
   'Party wall agreement or award, if there is one',
   'Your builder’s programme and payment schedule (for project management)',
+];
+
+/** Real site photos for the homepage strip (from Brits group sites). */
+export const sitePhotos = [
+  { src: '/photos/groundworks-3.webp', alt: 'Foundation trenches with reinforcement cages and formwork on a residential site', caption: 'Foundations' },
+  { src: '/photos/loft-construction-2.webp', alt: 'Red-painted structural steel frame inside a roof under construction', caption: 'Structural steelwork' },
+  { src: '/photos/concrete-1.webp', alt: 'Concrete being poured over insulation for a ground floor slab', caption: 'Concrete ground floor' },
+  { src: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed', caption: 'Roof structure' },
+];
+
+/** Accreditations and memberships shown on the site (logos in public/logos). */
+export const accreditations = [
+  { name: 'CHAS', src: '/logos/chas-logo.svg' },
+  { name: 'LABC', src: '/logos/labc-logo.jpg' },
+  { name: 'NABC', src: '/logos/nabc-logo.jpg' },
+  { name: 'CIOB', src: '/logos/ciob-logo.svg' },
+  { name: 'CIAT', src: '/logos/ciat-logo.png' },
+  { name: 'NIG insurance', src: '/logos/nig-logo.png' },
 ];

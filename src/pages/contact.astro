@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
 import { FORM_ACCESS_KEY, SITE_URL, company } from '../site';
 
-const tel = company.phone.replace(/\s/g, '');
+const tel = company.phoneHref;
 const schema = [
   {
     '@context': 'https://schema.org',
@@ -235,6 +235,9 @@ const schema = [
     gap: 2rem;
     align-items: start;
   }
+  .contact > * {
+    min-width: 0;
+  }
   @media (min-width: 1000px) {
     .contact {
       grid-template-columns: 1.6fr 1fr;
@@ -353,6 +356,10 @@ const schema = [
     padding: 0;
     display: grid;
     gap: 0.75rem;
+  }
+  .details a,
+  .details span {
+    overflow-wrap: anywhere;
   }
   .details li {
     display: flex;

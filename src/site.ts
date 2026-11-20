@@ -1,5 +1,5 @@
 // Company details in one place. Anything left empty is simply not shown on the site.
-// TO CONFIRM before launch: domain, phone, email, address, company number, form key.
+// TO CONFIRM before launch: domain, company number, form key.
 
 /** The live domain (used for canonical links, the sitemap and structured data). */
 export const SITE_URL = 'https://www.britsconstructionprojects.co.uk';
@@ -9,11 +9,13 @@ export const company = {
   shortName: 'Brits Construction Projects',
   tagline: 'Strong structures. Careful management. Confidence at every stage.',
   /** Shown in the header and footer when set, e.g. '020 0000 0000'. */
-  phone: '',
+  phone: '07477 024376',
+  /** The same number in international form, for tel: links. */
+  phoneHref: '+447477024376',
   /** Enquiries and drawings go here, e.g. 'projects@britsconstructionprojects.co.uk'. */
-  email: '',
+  email: 'info@britsconstructionprojects.co.uk',
   /** One line, e.g. '66 Yeading Avenue, Harrow HA2 9RN'. */
-  address: '',
+  address: '66 Yeading Avenue, Harrow HA2 9RN',
   /** Companies House number, shown in the footer when set. */
   companyNumber: '',
   /** Sister company: linked in the footer and on the About page. */
