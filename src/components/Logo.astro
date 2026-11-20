@@ -1,0 +1,67 @@
+---
+// Brits Construction Projects mark: the parent brand's house outline with a steel I-beam
+// section inside it (structure), in steel navy and copper. Wordmark matches the parent's serif
+// "BRITS", with "CONSTRUCTION PROJECTS" set in Manrope.
+interface Props {
+  tone?: 'default' | 'onDark';
+  class?: string;
+  /** Mark only, no wordmark. */
+  markOnly?: boolean;
+}
+const { tone = 'default', class: className = '', markOnly = false } = Astro.props;
+const navy = tone === 'onDark' ? '#ffffff' : '#0d2f45';
+const copper = tone === 'onDark' ? '#e59a63' : '#b0531c';
+const sub = tone === 'onDark' ? 'rgba(255,255,255,0.78)' : '#3d4a52';
+---
+
+<span class:list={['logo', className]}>
+  <svg class="logo__mark" viewBox="0 0 120 108" aria-hidden="true" focusable="false">
+    <!-- roof and walls: the parent brand's house outline -->
+    <path d="M6 54 60 12l54 42-6.5 8L60 25 12.5 62Z" fill={navy}></path>
+    <path d="M20 58h9v44h-9zM91 58h9v44h-9z" fill={navy}></path>
+    <!-- steel I-beam section -->
+    <path d="M40 54h40v8H40zM56 62h8v24h-8zM40 86h40v8H40z" fill={copper}></path>
+  </svg>
+  {
+    !markOnly && (
+      <span class="logo__words">
+        <span class="logo__brits" style={`color:${navy}`}>BRITS</span>
+        <span class="logo__sub" style={`color:${sub}`}>Construction Projects</span>
+      </span>
+    )
+  }
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    line-height: 1;
+  }
+  .logo__mark {
+    width: 3rem;
+    height: auto;
+    flex: none;
+  }
+  .logo__words {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .logo__brits {
+    font-family: var(--font-mark);
+    font-weight: 600;
+    font-size: 1.95rem;
+    letter-spacing: 0.06em;
+    line-height: 0.8;
+  }
+  .logo__sub {
+    font-family: var(--font);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+</style>

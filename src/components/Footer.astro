@@ -1,0 +1,120 @@
+---
+import Logo from './Logo.astro';
+import { company } from '../site';
+
+const year = new Date().getFullYear();
+const tel = company.phone.replace(/\s/g, '');
+---
+
+<footer class="ftr">
+  <div class="container">
+    <div class="ftr__top">
+      <div class="ftr__brand">
+        <Logo tone="onDark" />
+        <p>{company.tagline}</p>
+      </div>
+      <nav aria-label="Services">
+        <h2>Services</h2>
+        <ul>
+          <li><a href="/structural-works">Structural works</a></li>
+          <li><a href="/project-management">Project management</a></li>
+          <li><a href="/structural-works#extensions">Extensions</a></li>
+          <li><a href="/structural-works#loft-conversions">Loft conversions</a></li>
+          <li><a href="/structural-works#internal-alterations">Internal alterations</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/about">Why choose us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/contact#drawings">Send your drawings</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Get in touch</h2>
+        <ul>
+          {company.phone && <li><a class="tabular" href={`tel:${tel}`}>{company.phone}</a></li>}
+          {company.email && <li><a href={`mailto:${company.email}`}>{company.email}</a></li>}
+          {company.address && <li>{company.address}</li>}
+          <li><a href="/contact">Enquiry form</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ftr__sister">
+      <p>
+        A sister company of <a href={company.sister.url} rel="noopener">{company.sister.name}</a>, builders of extensions, loft
+        conversions, new homes and renovations.
+      </p>
+    </div>
+
+    <div class="ftr__legal">
+      <p>
+        © {year}
+        {company.name}{company.companyNumber && <span>. Registered in England & Wales, company no. {company.companyNumber}</span>}.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ftr {
+    background: var(--navy-deep);
+    color: #b9c7cf;
+    padding: clamp(3.5rem, 3rem + 2vw, 5rem) 0 2rem;
+    font-size: 0.975rem;
+  }
+  .ftr a {
+    color: #e3ebef;
+    text-decoration: none;
+  }
+  .ftr a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .ftr__top {
+    display: grid;
+    gap: 2.5rem;
+  }
+  @media (min-width: 800px) {
+    .ftr__top {
+      grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+    }
+  }
+  .ftr__brand p {
+    margin-top: 1.25rem;
+    max-width: 22rem;
+  }
+  .ftr h2 {
+    color: #fff;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .ftr ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .ftr__sister {
+    margin-top: 3rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-card);
+  }
+  .ftr__sister a {
+    color: var(--copper-light);
+    font-weight: 600;
+  }
+  .ftr__legal {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.875rem;
+    color: #8fa1ab;
+  }
+</style>

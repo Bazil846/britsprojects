@@ -1,0 +1,5 @@
+# Brits Construction Projects: all crawlers, including AI search and assistant crawlers, are welcome.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.britsconstructionprojects.co.uk/sitemap-index.xml

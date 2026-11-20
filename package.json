@@ -1,0 +1,16 @@
+{
+  "name": "brits-construction-projects",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource-variable/manrope": "^5.2.8",
+    "@fontsource/cormorant-garamond": "^5.2.10",
+    "astro": "^5.18.2"
+  }
+}

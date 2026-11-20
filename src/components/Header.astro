@@ -1,0 +1,238 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { company } from '../site';
+
+const nav = [
+  { href: '/structural-works', label: 'Structural works' },
+  { href: '/project-management', label: 'Project management' },
+  { href: '/about', label: 'Why us' },
+  { href: '/contact', label: 'Contact' },
+];
+const here = Astro.url.pathname.replace(/\.html$/, '');
+const tel = company.phone.replace(/\s/g, '');
+---
+
+<header class="hdr" data-header>
+  <div class="container hdr__inner">
+    <a href="/" class="hdr__logo" aria-label={`${company.name}, home`}>
+      <Logo />
+    </a>
+
+    <nav class="hdr__nav" aria-label="Main">
+      <ul>
+        {
+          nav.map((n) => (
+            <li>
+              <a href={n.href} aria-current={here === n.href ? 'page' : undefined}>
+                {n.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="hdr__actions">
+      {
+        company.phone && (
+          <a class="hdr__phone" href={`tel:${tel}`}>
+            <Icon name="phone" size={18} />
+            <span class="tabular">{company.phone}</span>
+          </a>
+        )
+      }
+      <a class="btn btn--primary hdr__cta" href="/contact">
+        Discuss your project
+        <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+      </a>
+      <button class="hdr__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+        <span class="sr-only">Open menu</span>
+        <Icon name="menu" size={24} class="i-open" />
+        <Icon name="close" size={24} class="i-close" />
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="mnav" hidden>
+    <nav class="container" aria-label="Mobile">
+      <ul>
+        {
+          nav.map((n) => (
+            <li>
+              <a href={n.href} aria-current={here === n.href ? 'page' : undefined}>
+                {n.label}
+                <Icon name="arrow" size={20} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mnav__cta">
+        <a class="btn btn--primary" href="/contact">
+          Discuss your project
+          <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+        </a>
+        {
+          company.phone && (
+            <a class="btn btn--outline" href={`tel:${tel}`}>
+              Call {company.phone}
+            </a>
+          )
+        }
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.getElementById('mobile-menu');
+  const setOpen = (open: boolean) => {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.querySelector('.sr-only')!.textContent = open ? 'Close menu' : 'Open menu';
+    menu.hidden = !open;
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+<style>
+  .hdr {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+  .hdr.is-scrolled {
+    border-color: var(--line);
+    box-shadow: 0 6px 24px -18px rgba(8, 32, 47, 0.45);
+  }
+  .hdr__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 4.75rem;
+  }
+  .hdr__logo {
+    text-decoration: none;
+    flex: none;
+  }
+  .hdr__nav ul {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .hdr__nav a {
+    display: block;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.975rem;
+  }
+  .hdr__nav a:hover {
+    background: var(--stone);
+  }
+  .hdr__nav a[aria-current='page'] {
+    color: var(--copper);
+    font-weight: 600;
+  }
+  .hdr__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hdr__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .hdr__toggle {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink);
+    place-items: center;
+    cursor: pointer;
+  }
+  .hdr__toggle .i-close,
+  .hdr__toggle[aria-expanded='true'] .i-open {
+    display: none;
+  }
+  .hdr__toggle[aria-expanded='true'] .i-close {
+    display: block;
+  }
+  .mnav {
+    border-top: 1px solid var(--line);
+    background: #fff;
+    height: calc(100dvh - 4.75rem);
+    overflow-y: auto;
+  }
+  .mnav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+  .mnav li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3.5rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .mnav__cta {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.5rem 0 2rem;
+  }
+  @media (max-width: 1100px) {
+    .hdr__phone {
+      display: none;
+    }
+  }
+  @media (max-width: 960px) {
+    .hdr__nav,
+    .hdr__cta {
+      display: none;
+    }
+    .hdr__toggle {
+      display: grid;
+    }
+  }
+  @media (min-width: 961px) {
+    .mnav {
+      display: none !important;
+    }
+  }
+</style>

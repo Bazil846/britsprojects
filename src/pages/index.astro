@@ -1,0 +1,518 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SectionDrawing from '../components/SectionDrawing.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { structuralCore, oversight, whyChoose, focus } from '../content';
+import { SITE_URL, company } from '../site';
+
+const highlights = oversight.filter((o) => ['drawings', 'payments', 'party-wall', 'programme'].includes(o.id));
+const steps = [
+  { title: 'Send your drawings', text: 'Share your architectural drawings, structural engineer’s design and specification, or tell us where your project is up to.' },
+  { title: 'We review and discuss', text: 'We look at the design and talk through what you need: structural works, project management, or both.' },
+  { title: 'Clear scope and quotation', text: 'You receive a written scope that sets out what is included, so you know exactly what you are agreeing to.' },
+  { title: 'Build and oversight begin', text: 'From the first excavation to the final structural inspection, with clear updates at every stage.' },
+];
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: company.name,
+    url: SITE_URL,
+  },
+];
+---
+
+<Base
+  title="Brits Construction Projects | Structural Work & Project Management"
+  description="Residential structural building work and independent project management for extensions, loft conversions, internal alterations and new homes across London and the Home Counties."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="eyebrow">Residential structural work &amp; project management</p>
+        <h1 class="display">A Stronger Home. <span class="hero__accent">A Better-Managed Build.</span></h1>
+        <p class="lead hero__lead">Residential structural work and project management—expertise you can build on.</p>
+        <p class="hero__intro">
+          Planning an extension, loft conversion, internal alteration or new home? Brits Construction Projects Ltd brings together practical
+          construction expertise and professional project oversight to help turn your plans into a solid, carefully built home.
+        </p>
+        <div class="btn-row hero__ctas">
+          <a class="btn btn--primary" href="/contact">
+            Discuss Your Project
+            <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+          </a>
+          <a class="btn btn--outline" href="/contact#drawings">
+            <Icon name="drawing" size={20} /> Send Us Your Drawings
+          </a>
+        </div>
+      </div>
+      <SectionDrawing class="hero__drawing" />
+    </div>
+
+    <div class="container">
+      <div class="focus">
+        <p class="focus__intro">From the first excavation to the final structural inspection, our focus is clear:</p>
+        <ul class="focus__list">
+          {
+            focus.map((f) => (
+              <li>
+                <Icon name="check" size={18} />
+                {f}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two services -->
+  <section class="section section--stone" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Two ways to support your build</p>
+          <h2 id="services-heading" class="h2">Two core services</h2>
+          <p class="lead">
+            Carrying out your structural building work, and managing your project on your behalf when you appoint another builder.
+          </p>
+        </div>
+      </div>
+      <div class="duo">
+        <article class="duo__card duo__card--navy">
+          <span class="duo__num tabular">01</span>
+          <p class="duo__kicker">Structural Work Specialists</p>
+          <h3 class="h2">We build your structure</h3>
+          <p>
+            Structural building packages for residential extensions, loft conversions, internal alterations and new builds, working to the
+            architectural drawings, structural engineer’s design and agreed specifications.
+          </p>
+          <ul class="checklist">
+            <li>Demolition, groundworks and foundations</li>
+            <li>Drainage, masonry and structural steelwork</li>
+            <li>Floors, screeding and roof structures</li>
+          </ul>
+          <a class="link-arrow" href="/structural-works">Structural works <Icon name="arrow" size={18} /></a>
+        </article>
+        <article class="duo__card">
+          <span class="duo__num tabular">02</span>
+          <p class="duo__kicker">Project Management &amp; Independent Site Oversight</p>
+          <h3 class="h2">We oversee your builder</h3>
+          <p>
+            Already appointed a builder? Have an experienced construction team looking after your interests: we ask the technical questions,
+            review key stages and raise concerns with your builder.
+          </p>
+          <ul class="checklist">
+            <li>Work checked against the drawings</li>
+            <li>Progress reviewed before you pay</li>
+            <li>Programme, budget and quality managed</li>
+          </ul>
+          <a class="link-arrow" href="/project-management">Project management <Icon name="arrow" size={18} /></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Structural -->
+  <section class="section" aria-labelledby="structural-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Structural Work Specialists</p>
+          <h2 id="structural-heading" class="h2">Strong Foundations for Your Dream Home</h2>
+          <p class="lead">
+            The strength of your home depends on the work beneath the surface. Foundations, steel connections, supporting walls and roof
+            structures all deserve careful attention.
+          </p>
+        </div>
+        <a class="link-arrow" href="/structural-works">All structural works <Icon name="arrow" size={18} /></a>
+      </div>
+      <div class="grid grid--2 core">
+        {
+          structuralCore.map((s) => (
+            <a class="core__card" href={`/structural-works#${s.id}`}>
+              <span class="core__icon">
+                <Icon name={s.icon} size={28} />
+              </span>
+              <h3 class="h3">{s.title}</h3>
+              <p>{s.text}</p>
+              <span class="link-arrow">
+                Read more <Icon name="arrow" size={18} />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Oversight -->
+  <section class="section section--paper oversight" aria-labelledby="oversight-heading">
+    <div class="container oversight__grid">
+      <div class="oversight__intro">
+        <p class="eyebrow">Project Management &amp; Independent Site Oversight</p>
+        <h2 id="oversight-heading" class="h2">Your Builder. Our Oversight. Your Peace of Mind.</h2>
+        <p class="lead">
+          Building your dream home is a major investment. You deserve to understand how the work is progressing, whether the structure follows
+          the design and whether each payment reflects the work completed.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/contact?topic=project-review">
+            Book a Project Review
+            <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+          </a>
+          <a class="btn btn--outline" href="/project-management">How it works</a>
+        </div>
+      </div>
+      <ol class="oversight__list">
+        {
+          highlights.map((h, i) => (
+            <li>
+              <span class="oversight__n tabular">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="h3">{h.title}</h3>
+                <p>{h.text[0]}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Why choose -->
+  <section class="section" aria-labelledby="why-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Why us</p>
+          <h2 id="why-heading" class="h2">Why Choose Brits Construction Projects Ltd?</h2>
+        </div>
+      </div>
+      <ul class="why">
+        {
+          whyChoose.map((w) => (
+            <li>
+              <Icon name={w.icon} size={26} class="why__icon" />
+              <h3 class="h3">{w.title}</h3>
+              <p>{w.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- How it starts -->
+  <section class="section section--stone" aria-labelledby="steps-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Getting started</p>
+          <h2 id="steps-heading" class="h2">How a project starts with us</h2>
+        </div>
+        <a class="link-arrow" href="/contact#drawings">Send your drawings <Icon name="arrow" size={18} /></a>
+      </div>
+      <ol class="steps">
+        {
+          steps.map((s, i) => (
+            <li>
+              <span class="steps__n tabular">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="h3">{s.title}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .hero {
+    padding: clamp(2.5rem, 2rem + 3vw, 5rem) 0 clamp(3rem, 2rem + 3vw, 5rem);
+    background:
+      radial-gradient(circle at 85% 20%, rgba(47, 93, 122, 0.08), transparent 45%),
+      linear-gradient(var(--canvas), var(--stone));
+  }
+  .hero__grid {
+    display: grid;
+    gap: clamp(2.5rem, 2rem + 2vw, 4rem);
+    align-items: center;
+  }
+  @media (min-width: 1000px) {
+    .hero__grid {
+      grid-template-columns: 1.05fr 1fr;
+    }
+  }
+  .hero h1 {
+    margin-top: 1.25rem;
+  }
+  .hero__accent {
+    color: var(--steel);
+  }
+  .hero__lead {
+    margin-top: 1.5rem;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .hero__intro {
+    margin-top: 1rem;
+    max-width: 38rem;
+  }
+  .hero__ctas {
+    margin-top: 2rem;
+  }
+  .focus {
+    margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+  }
+  .focus__intro {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .focus__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .focus__list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .focus__list :global(svg) {
+    color: var(--copper);
+  }
+
+  .duo {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 900px) {
+    .duo {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .duo__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+    border-radius: var(--radius-media);
+    background: var(--canvas);
+    border: 1px solid var(--line);
+  }
+  .duo__card--navy {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #c9d5dc;
+  }
+  .duo__card--navy h3 {
+    color: #fff;
+  }
+  .duo__card--navy .link-arrow {
+    color: var(--copper-light);
+  }
+  .duo__card--navy .checklist li::before {
+    border-color: var(--copper-light);
+  }
+  .duo__card--navy .checklist li {
+    color: #e3ebef;
+  }
+  .duo__num {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.75rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .duo__card--navy .duo__num {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .duo__kicker {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--copper);
+    padding-right: 2.5rem;
+  }
+  .duo__card--navy .duo__kicker {
+    color: var(--copper-light);
+  }
+  .duo__card .link-arrow {
+    margin-top: auto;
+  }
+  .duo__card:not(.duo__card--navy) .checklist li {
+    color: var(--ink);
+  }
+
+  .core__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    color: var(--body);
+    text-decoration: none;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+  .core__card:hover {
+    border-color: var(--steel);
+    box-shadow: 0 10px 30px -22px rgba(8, 32, 47, 0.5);
+    color: var(--body);
+  }
+  .core__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 12px;
+    background: var(--steel-tint);
+    color: var(--navy);
+  }
+  .core__card .link-arrow {
+    margin-top: auto;
+  }
+
+  .oversight__grid {
+    display: grid;
+    gap: 3rem;
+  }
+  @media (min-width: 1000px) {
+    .oversight__grid {
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
+    }
+    .oversight__intro {
+      position: sticky;
+      top: 7rem;
+      align-self: start;
+    }
+  }
+  .oversight__intro h2 {
+    margin-top: 1rem;
+  }
+  .oversight__intro .lead {
+    margin-top: 1.25rem;
+  }
+  .oversight__intro .btn-row {
+    margin-top: 2rem;
+  }
+  .oversight__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+  }
+  .oversight__list li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--line-strong);
+  }
+  .oversight__list li:last-child {
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .oversight__list p {
+    margin-top: 0.6rem;
+  }
+  .oversight__n {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--copper);
+    line-height: 1.3;
+  }
+
+  .why {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 700px) {
+    .why {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1000px) {
+    .why {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .why li {
+    padding: 2rem 1.75rem 2rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .why h3 {
+    margin-top: 1rem;
+  }
+  .why p {
+    margin-top: 0.5rem;
+  }
+  .why :global(.why__icon) {
+    color: var(--copper);
+  }
+
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 700px) {
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1000px) {
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .steps li {
+    border-top: 2px solid var(--navy);
+    padding-top: 1.25rem;
+  }
+  .steps__n {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--line-strong);
+    letter-spacing: -0.03em;
+  }
+  .steps h3 {
+    margin-top: 1rem;
+  }
+  .steps p {
+    margin-top: 0.5rem;
+  }
+</style>

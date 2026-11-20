@@ -1,0 +1,236 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { structuralCore, structuralTrades } from '../content';
+import { SITE_URL, company } from '../site';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Residential structural building work',
+    serviceType: 'Structural building work',
+    provider: { '@id': `${SITE_URL}/#business` },
+    areaServed: 'London and the Home Counties',
+    url: `${SITE_URL}/structural-works`,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Structural works',
+      itemListElement: [...structuralCore, ...structuralTrades].map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.title, description: s.text },
+      })),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Structural works', item: `${SITE_URL}/structural-works` },
+    ],
+  },
+];
+---
+
+<Base
+  title="Structural Building Work | Brits Construction Projects"
+  description="Structural building packages for extensions, loft conversions, internal alterations and new builds: foundations, drainage, masonry, steelwork, floors and roof structures."
+  schema={schema}
+>
+  <PageHero
+    crumb="Structural works"
+    eyebrow="Structural Work Specialists"
+    title="Strong Foundations for Your Dream Home"
+    lead="The strength of your home depends on the work beneath the surface. Foundations, steel connections, supporting walls and roof structures all deserve careful attention."
+  >
+    <div slot="actions" class="btn-row">
+      <a class="btn btn--primary" href="/contact?topic=structural">
+        Request a Structural Works Quotation
+        <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+      </a>
+      <a class="btn btn--outline" href="/contact#drawings"><Icon name="drawing" size={20} /> Send your drawings</a>
+    </div>
+    <div slot="aside" class="aside-card">
+      <p>
+        We undertake structural building packages for residential extensions, loft conversions, internal alterations and new builds, working
+        to the architectural drawings, structural engineer’s design and agreed specifications.
+      </p>
+      <ul class="checklist">
+        <li>Architectural drawings</li>
+        <li>Structural engineer’s design</li>
+        <li>Agreed specifications</li>
+      </ul>
+    </div>
+  </PageHero>
+
+  <section class="section" aria-labelledby="projects-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Project types</p>
+          <h2 id="projects-heading" class="h2">Structural packages for every kind of home project</h2>
+        </div>
+      </div>
+      <div class="grid grid--2">
+        {
+          structuralCore.map((s) => (
+            <article class="ptype" id={s.id}>
+              <span class="ptype__icon">
+                <Icon name={s.icon} size={30} />
+              </span>
+              <div>
+                <h3 class="h3">{s.title}</h3>
+                <p>{s.text}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--stone" aria-labelledby="trades-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">What we build</p>
+          <h2 id="trades-heading" class="h2">From the ground up, in build order</h2>
+          <p class="lead">Every stage of the structure, carried out by one team to the engineer’s design.</p>
+        </div>
+      </div>
+      <ol class="trades">
+        {
+          structuralTrades.map((t, i) => (
+            <li id={t.id}>
+              <span class="trades__n tabular">{String(i + 1).padStart(2, '0')}</span>
+              <Icon name={t.icon} size={26} class="trades__icon" />
+              <h3 class="h3">{t.title}</h3>
+              <p>{t.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="pm-link-heading">
+    <div class="container pm-link">
+      <div>
+        <p class="eyebrow">Already have a builder?</p>
+        <h2 id="pm-link-heading" class="h2">We can oversee their work instead</h2>
+        <p class="lead">
+          If another builder is carrying out your project, {company.shortName} can manage and monitor it on your behalf, checking the work against
+          the drawings and reviewing progress before you pay.
+        </p>
+      </div>
+      <a class="btn btn--outline" href="/project-management">Project management</a>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Request a Structural Works Quotation"
+    text="Send us your architectural drawings and structural engineer’s design, and we will prepare a clear scope and quotation for the structural package."
+    primary={{ href: '/contact?topic=structural', label: 'Request a Quotation' }}
+    secondary={{ href: '/contact#drawings', label: 'Send Us Your Drawings' }}
+  />
+</Base>
+
+<style>
+  .aside-card {
+    padding: 1.75rem;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    display: grid;
+    gap: 1.25rem;
+  }
+  .aside-card .checklist li {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .ptype {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    padding: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    scroll-margin-top: 6rem;
+  }
+  .ptype p {
+    margin-top: 0.5rem;
+  }
+  .ptype__icon {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 12px;
+    background: var(--navy);
+    color: #fff;
+  }
+  .trades {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .trades {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1050px) {
+    .trades {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .trades li {
+    position: relative;
+    padding: 1.75rem;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    scroll-margin-top: 6rem;
+  }
+  .trades__n {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-weight: 700;
+    color: var(--line-strong);
+  }
+  .trades :global(.trades__icon) {
+    color: var(--copper);
+  }
+  .trades h3 {
+    margin-top: 1rem;
+  }
+  .trades p {
+    margin-top: 0.5rem;
+  }
+  .pm-link {
+    display: grid;
+    gap: 2rem;
+    align-items: end;
+    padding: clamp(2rem, 1.5rem + 2vw, 3rem);
+    border-radius: var(--radius-media);
+    background: var(--steel-tint);
+  }
+  @media (min-width: 900px) {
+    .pm-link {
+      grid-template-columns: 1fr auto;
+    }
+  }
+  .pm-link h2 {
+    margin-top: 1rem;
+  }
+  .pm-link .lead {
+    margin-top: 1rem;
+    max-width: 44rem;
+  }
+</style>

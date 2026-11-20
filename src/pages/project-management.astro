@@ -1,0 +1,192 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { oversight, oversightNote } from '../content';
+import { SITE_URL } from '../site';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Construction project management and independent site oversight',
+    serviceType: 'Construction project management',
+    provider: { '@id': `${SITE_URL}/#business` },
+    areaServed: 'London and the Home Counties',
+    url: `${SITE_URL}/project-management`,
+    description:
+      'Independent oversight of your appointed builder: work checked against the drawings, planning and party wall requirements monitored, progress reviewed before stage payments, and the professional team coordinated.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Project management', item: `${SITE_URL}/project-management` },
+    ],
+  },
+];
+---
+
+<Base
+  title="Project Management & Site Oversight | Brits Construction Projects"
+  description="Already appointed a builder? We check the work against the drawings, monitor planning and party wall requirements, and review progress before you pay."
+  schema={schema}
+>
+  <PageHero
+    crumb="Project management"
+    eyebrow="Project Management & Independent Site Oversight"
+    title="Your Builder. Our Oversight. Your Peace of Mind."
+    lead="Already appointed a builder? Have an experienced construction team looking after your interests."
+  >
+    <div slot="actions" class="btn-row">
+      <a class="btn btn--primary" href="/contact?topic=project-review">
+        Book a Project Review
+        <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+      </a>
+      <a class="btn btn--outline" href="/contact?topic=project-management">Discuss Project Management</a>
+    </div>
+    <div slot="aside" class="aside-quote">
+      <p>
+        Building your dream home is a major investment. You deserve to understand how the work is progressing, whether the structure follows
+        the design and whether each payment reflects the work completed.
+      </p>
+    </div>
+  </PageHero>
+
+  <section class="section" aria-labelledby="intro-heading">
+    <div class="container intro">
+      <h2 id="intro-heading" class="h2">We ask the technical questions, so you can make informed decisions</h2>
+      <p class="lead">
+        At Brits Construction Projects Ltd, we can manage and monitor your project on your behalf. We ask the technical questions, review key
+        stages and raise concerns with your builder, helping you make informed decisions throughout the build.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--stone" aria-labelledby="what-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">What we do</p>
+          <h2 id="what-heading" class="h2">How we look after your interests</h2>
+        </div>
+      </div>
+      <ol class="ov">
+        {
+          oversight.map((o, i) => (
+            <li id={o.id}>
+              <div class="ov__head">
+                <span class="ov__icon">
+                  <Icon name={o.icon} size={26} />
+                </span>
+                <span class="ov__n tabular">{String(i + 1).padStart(2, '0')}</span>
+              </div>
+              <h3 class="h3">{o.title}</h3>
+              {o.text.map((t) => (
+                <p>{t}</p>
+              ))}
+            </li>
+          ))
+        }
+      </ol>
+      <p class="note">
+        <Icon name="shield" size={22} />
+        <span>{oversightNote}</span>
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Book a Project Review"
+    text="Tell us about your project and your builder. We will talk through the stages you would like reviewed and how our oversight would work alongside your team."
+    primary={{ href: '/contact?topic=project-review', label: 'Book a Project Review' }}
+    secondary={{ href: '/contact?topic=project-management', label: 'Discuss Project Management' }}
+  />
+</Base>
+
+<style>
+  .aside-quote {
+    padding: 1.75rem 1.75rem 1.75rem 1.5rem;
+    border-left: 3px solid var(--copper);
+    background: var(--canvas);
+    border-radius: 0 var(--radius-card) var(--radius-card) 0;
+    color: var(--ink);
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  .intro {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 1000px) {
+    .intro {
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+  }
+  .ov {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 760px) {
+    .ov {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1100px) {
+    .ov {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .ov li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.75rem;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    scroll-margin-top: 6rem;
+  }
+  .ov__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+  }
+  .ov__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    background: var(--copper-tint);
+    color: var(--copper-dark);
+  }
+  .ov__n {
+    font-weight: 700;
+    color: var(--line-strong);
+  }
+  .note {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-card);
+    background: var(--steel-tint);
+    color: var(--ink);
+    font-size: 0.975rem;
+  }
+  .note :global(svg) {
+    flex: none;
+    color: var(--steel);
+    margin-top: 0.1rem;
+  }
+</style>

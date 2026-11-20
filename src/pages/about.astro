@@ -1,0 +1,183 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { whyChoose, focus } from '../content';
+import { SITE_URL, company } from '../site';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Why choose us', item: `${SITE_URL}/about` },
+    ],
+  },
+];
+---
+
+<Base
+  title="Why Choose Brits Construction Projects Ltd"
+  description="Structural construction expertise, two ways to support your build, a coordinated professional team and careful cost oversight for the home you are investing in."
+  schema={schema}
+>
+  <PageHero
+    crumb="Why choose us"
+    eyebrow="Why us"
+    title="Why Choose Brits Construction Projects Ltd?"
+    lead="Practical construction expertise and professional project oversight, focused on the elements that give your home its strength."
+  />
+
+  <section class="section" aria-labelledby="why-heading">
+    <div class="container">
+      <h2 id="why-heading" class="sr-only">Six reasons</h2>
+      <ul class="why">
+        {
+          whyChoose.map((w, i) => (
+            <li>
+              <span class="why__n tabular">{String(i + 1).padStart(2, '0')}</span>
+              <Icon name={w.icon} size={28} class="why__icon" />
+              <h3 class="h3">{w.title}</h3>
+              <p>{w.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--stone" aria-labelledby="focus-heading">
+    <div class="container two">
+      <div>
+        <p class="eyebrow">Our focus</p>
+        <h2 id="focus-heading" class="h2">From the first excavation to the final structural inspection</h2>
+      </div>
+      <ul class="focus">
+        {
+          focus.map((f) => (
+            <li>
+              <Icon name="check" size={20} />
+              {f}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="family-heading">
+    <div class="container sister">
+      <div>
+        <p class="eyebrow">Part of the Brits family</p>
+        <h2 id="family-heading" class="h2">A sister company of {company.sister.name}</h2>
+        <p class="lead">
+          {company.shortName} concentrates on structural building work and project oversight. For complete building projects, from extensions
+          and loft conversions to new homes and renovations, our sister company {company.sister.name} builds the whole project.
+        </p>
+      </div>
+      <a class="btn btn--outline" href={company.sister.url} rel="noopener">Visit {company.sister.name}</a>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .why {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .why {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1050px) {
+    .why {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .why li {
+    position: relative;
+    padding: 2rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+  }
+  .why__n {
+    position: absolute;
+    top: 1.75rem;
+    right: 1.75rem;
+    font-weight: 700;
+    color: var(--line-strong);
+  }
+  .why :global(.why__icon) {
+    color: var(--copper);
+  }
+  .why h3 {
+    margin-top: 1.25rem;
+  }
+  .why p {
+    margin-top: 0.5rem;
+  }
+  .two {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .two {
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+    }
+  }
+  .two h2 {
+    margin-top: 1rem;
+  }
+  .focus {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .focus li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 1.1rem;
+  }
+  .focus :global(svg) {
+    color: var(--copper);
+  }
+  .sister {
+    display: grid;
+    gap: 2rem;
+    align-items: end;
+    padding: clamp(2rem, 1.5rem + 2vw, 3rem);
+    border-radius: var(--radius-media);
+    background: var(--steel-tint);
+  }
+  @media (min-width: 900px) {
+    .sister {
+      grid-template-columns: 1fr auto;
+    }
+  }
+  .sister h2 {
+    margin-top: 1rem;
+  }
+  .sister .lead {
+    margin-top: 1rem;
+    max-width: 46rem;
+  }
+</style>
