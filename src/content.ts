@@ -162,3 +162,63 @@ export const whyChoose = [
 
 /** The four promises from the brief's introduction. */
 export const focus = ['Sound construction', 'Controlled costs', 'Reliable progress', 'Quality workmanship'];
+
+export const structuralFaqs = [
+  {
+    q: 'Can you work from my architect’s drawings and engineer’s design?',
+    a: 'Yes. We build to the architectural drawings, the structural engineer’s design and the agreed specification. If something on site does not match the design, we raise it with your designers before the work goes further.',
+  },
+  {
+    q: 'Do I need a structural engineer?',
+    a: 'Most structural work, such as removing a load-bearing wall, forming a new opening, installing steel beams, building extension foundations or strengthening a loft floor, needs an engineer’s design and calculations, and Building Control will ask to see them. If you do not have an engineer yet, our professional team includes structural engineers.',
+  },
+  {
+    q: 'What is included in a structural package?',
+    a: 'It depends on the project. A package can include demolition, excavation, foundations, drainage, brickwork and blockwork, steelwork, floors, screeding and the roof structure. Your quotation lists exactly what is included, so you know where our work ends and the finishing trades begin.',
+  },
+  {
+    q: 'How do Building Control inspections fit in?',
+    a: 'Building Control inspects key stages such as foundations, drainage and steelwork. We plan the work around those inspections and coordinate with the inspector so each stage is ready to be seen before it is covered up.',
+  },
+  {
+    q: 'Can the same team finish the rest of my project?',
+    a: 'Our focus is the structure. If you would like one team to take on the whole build, from structure through to finishes, our sister company Brits Construction Services builds complete projects.',
+  },
+];
+
+export const oversightFaqs = [
+  {
+    q: 'What does independent oversight involve?',
+    a: 'We act on your side during the build. We check accessible work against the drawings and the engineer’s design at agreed stages, monitor planning conditions and party wall requirements, review progress before you make stage payments, coordinate the professional team and keep you updated on progress, costs and decisions.',
+  },
+  {
+    q: 'Does your oversight replace Building Control or my builder’s responsibilities?',
+    a: 'No. Your builder stays responsible for the work, and Building Control, your designers and any appointed surveyors keep their own inspections and approvals. Our oversight supports them and helps you make informed decisions.',
+  },
+  {
+    q: 'My build has already started. Can you still help?',
+    a: 'Yes. We can review the work that is accessible when we start, check it against the drawings and set up stage reviews from that point. Work that has already been covered cannot always be seen, so the earlier we are involved, the more we can check.',
+  },
+  {
+    q: 'How often do you visit the site?',
+    a: 'Site visits and reviews are agreed to suit your project, usually around the key structural stages and before each stage payment.',
+  },
+  {
+    q: 'How is project management priced?',
+    a: 'It depends on the size of the project and how many stage reviews you need. We give you a written quotation once we have seen the drawings, the programme and the payment schedule.',
+  },
+  {
+    q: 'Will you deal with my builder directly?',
+    a: 'Yes. We ask the technical questions, raise concerns with your builder and coordinate with your professional team, while the decisions stay with you.',
+  },
+];
+
+/** What to send us, for the About and contact pages. */
+export const documents = [
+  'Architectural drawings',
+  'Structural engineer’s design and calculations',
+  'Specification',
+  'Planning permission and its conditions',
+  'Party wall agreement or award, if there is one',
+  'Your builder’s programme and payment schedule (for project management)',
+];

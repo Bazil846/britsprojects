@@ -6,7 +6,6 @@ import CtaBand from '../components/CtaBand.astro';
 import { structuralCore, oversight, whyChoose, focus } from '../content';
 import { SITE_URL, company } from '../site';
 
-const highlights = oversight.filter((o) => ['drawings', 'payments', 'party-wall', 'programme'].includes(o.id));
 const steps = [
   { title: 'Send your drawings', text: 'Share your architectural drawings, structural engineer’s design and specification, or tell us where your project is up to.' },
   { title: 'We review and discuss', text: 'We look at the design and talk through what you need: structural works, project management, or both.' },
@@ -167,19 +166,22 @@ const schema = [
           <a class="btn btn--outline" href="/project-management">How it works</a>
         </div>
       </div>
-      <ol class="oversight__list">
-        {
-          highlights.map((h, i) => (
-            <li>
-              <span class="oversight__n tabular">{String(i + 1).padStart(2, '0')}</span>
-              <div>
-                <h3 class="h3">{h.title}</h3>
-                <p>{h.text[0]}</p>
-              </div>
-            </li>
-          ))
-        }
-      </ol>
+      <div>
+        <p class="oversight__kicker">At Brits Construction Projects Ltd, we can manage and monitor your project on your behalf:</p>
+        <ul class="oversight__list">
+          {
+            oversight.map((h) => (
+              <li>
+                <a href={`/project-management#${h.id}`}>
+                  <Icon name={h.icon} size={22} class="oversight__icon" />
+                  <span>{h.title}</span>
+                  <Icon name="arrow" size={18} class="oversight__arrow" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -422,30 +424,44 @@ const schema = [
   .oversight__intro .btn-row {
     margin-top: 2rem;
   }
+  .oversight__kicker {
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
   .oversight__list {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-  }
-  .oversight__list li {
-    display: grid;
-    grid-template-columns: 3rem 1fr;
-    gap: 1rem;
-    padding: 1.75rem 0;
     border-top: 1px solid var(--line-strong);
   }
-  .oversight__list li:last-child {
+  .oversight__list li {
     border-bottom: 1px solid var(--line-strong);
   }
-  .oversight__list p {
-    margin-top: 0.6rem;
+  .oversight__list a {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.15rem 0.25rem;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
   }
-  .oversight__n {
-    font-size: 1.35rem;
-    font-weight: 700;
+  .oversight__list a:hover {
     color: var(--copper);
-    line-height: 1.3;
+  }
+  .oversight__list :global(.oversight__icon) {
+    color: var(--copper);
+  }
+  .oversight__list :global(.oversight__arrow) {
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+  .oversight__list a:hover :global(.oversight__arrow) {
+    transform: translateX(3px);
+    color: var(--copper);
   }
 
   .why {

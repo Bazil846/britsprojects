@@ -3,7 +3,8 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { structuralCore, structuralTrades } from '../content';
+import Faq from '../components/Faq.astro';
+import { structuralCore, structuralTrades, structuralFaqs } from '../content';
 import { SITE_URL, company } from '../site';
 
 const schema = [
@@ -129,6 +130,8 @@ const schema = [
       <a class="btn btn--outline" href="/project-management">Project management</a>
     </div>
   </section>
+
+  <Faq id="sw-faq-heading" title="Structural works questions" items={structuralFaqs} tone="stone" />
 
   <CtaBand
     title="Request a Structural Works Quotation"
