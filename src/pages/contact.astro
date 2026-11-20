@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
-import { FORM_ACCESS_KEY, SITE_URL, company } from '../site';
+import { FORM_ENDPOINT, SITE_URL, company } from '../site';
 
 const tel = company.phoneHref;
 const schema = [
@@ -32,9 +32,10 @@ const schema = [
     <div class="container contact">
       <div class="contact__form card">
         <h2 id="form-heading" class="h3">Project enquiry</h2>
-        <form id="enquiry" class="form" novalidate data-key={FORM_ACCESS_KEY} data-email={company.email}>
-          <input type="hidden" name="subject" value={`New enquiry: ${company.shortName} website`} />
-          <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <form id="enquiry" class="form" novalidate data-endpoint={FORM_ENDPOINT} data-email={company.email}>
+          <input type="hidden" name="_subject" value={`New enquiry: ${company.shortName} website`} />
+          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
           <fieldset class="form__choice">
             <legend class="field-label">How can we help? <span aria-hidden="true">*</span></legend>
@@ -194,11 +195,11 @@ const schema = [
       return;
     }
     const data = new FormData(form);
-    const key = form.dataset.key;
+    const endpoint = form.dataset.endpoint;
     const email = form.dataset.email;
     const button = form.querySelector<HTMLButtonElement>('.form__submit');
 
-    if (!key) {
+    if (!endpoint) {
       if (email) {
         const lines = ['service', 'name', 'phone', 'email', 'postcode', 'project_type', 'stage', 'message']
           .map((k) => `${k.replace('_', ' ')}: ${data.get(k) ?? ''}`)
@@ -210,12 +211,11 @@ const schema = [
       return;
     }
 
-    data.append('access_key', key);
     if (button) button.disabled = true;
     try {
-      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+      const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
       const json = await res.json();
-      if (!json.success) throw new Error(json.message);
+      if (!res.ok || String(json.success) !== 'true') throw new Error(json.message);
       form.hidden = true;
       if (done) {
         done.hidden = false;
