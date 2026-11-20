@@ -144,6 +144,7 @@ const tel = company.phoneHref;
   }
   .hdr__nav a {
     display: block;
+    white-space: nowrap;
     padding: 0.55rem 0.85rem;
     border-radius: 999px;
     color: var(--ink);
@@ -159,6 +160,7 @@ const tel = company.phoneHref;
     font-weight: 600;
   }
   .hdr__actions {
+    flex: none;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -167,6 +169,8 @@ const tel = company.phoneHref;
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
+    white-space: nowrap;
+    flex: none;
     color: var(--ink);
     font-weight: 600;
     text-decoration: none;
@@ -216,7 +220,7 @@ const tel = company.phoneHref;
     gap: 0.75rem;
     padding: 1.5rem 0 2rem;
   }
-  @media (max-width: 1100px) {
+  @media (max-width: 1240px) {
     .hdr__phone {
       display: none;
     }
