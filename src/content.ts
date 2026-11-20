@@ -42,7 +42,7 @@ export const structuralTrades = [
     text: 'Excavation and concrete foundation construction, with specialist piling arrangements where required by the structural design.',
   },
   {
-    id: 'drainage',
+    id: 'drainage', photo: '/photos/drainage-1.webp', alt: 'Underground drainage pipe being laid beside new extension footings and blockwork', position: '100% 70%',
     icon: 'drainage',
     title: 'Drainage Works',
     text: 'Underground drainage installation and alterations, including pipework, inspection chambers, diversions and connections to suit your project.',
@@ -66,7 +66,7 @@ export const structuralTrades = [
     text: 'Ground floor construction, including sub-base preparation, compacted hardcore, damp-proof membranes, insulation and concrete slabs to the specified floor build-up.',
   },
   {
-    id: 'beam-block', photo: '/photos/build-progress-17.webp', alt: 'Concrete floor beams laid across supporting masonry for a beam and block floor',
+    id: 'beam-block', photo: '/photos/beam-block-floor.jpg', alt: 'Precast concrete floor beams laid across new masonry walls for a beam and block floor', credit: { text: 'Photo: Oast House Archive, CC BY-SA 2.0', url: 'https://www.geograph.org.uk/photo/4523943' },
     icon: 'beamblock',
     title: 'Beam & Block Floors',
     text: 'Installation of suspended beam and block flooring, including supporting masonry, concrete beams, infill blocks, ventilation provisions and insulation.',

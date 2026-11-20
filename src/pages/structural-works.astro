@@ -110,7 +110,7 @@ const schema = [
           structuralTrades.map((t, i) => (
             <li id={t.id}>
               {'photo' in t ? (
-                <img class="trades__img" src={t.photo} alt={t.alt} loading="lazy" decoding="async" />
+                <img class="trades__img" src={t.photo} alt={t.alt} loading="lazy" decoding="async" style={'position' in t ? `object-position:${t.position}` : undefined} />
               ) : (
                 <span class="trades__img trades__img--icon">
                   <Icon name={t.icon} size={48} />
@@ -120,6 +120,11 @@ const schema = [
               <Icon name={t.icon} size={26} class="trades__icon" />
               <h3 class="h3">{t.title}</h3>
               <p>{t.text}</p>
+              {'credit' in t && (
+                <p class="trades__credit">
+                  <a href={t.credit.url} rel="noopener">{t.credit.text}</a>
+                </p>
+              )}
             </li>
           ))
         }
@@ -226,6 +231,13 @@ const schema = [
   }
   .trades__n {
     z-index: 1;
+  }
+  .trades__credit {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+  }
+  .trades__credit a {
+    color: var(--muted);
   }
   .trades li {
     overflow: hidden;
