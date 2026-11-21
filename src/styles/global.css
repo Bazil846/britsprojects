@@ -4,7 +4,7 @@
 /*
  * Brits Construction Projects — design tokens.
  * Shares the parent brand's type (Manrope), spacing, ink and navy-anchored layout, so the two
- * sites read as one family. Its own pair: steel navy for structure, copper for action
+ * sites read as one family. Its own pair: steel navy for structure, structural amber for action
  * (Brits Construction Services uses teal and red).
  */
 :root {
@@ -20,10 +20,15 @@
   --navy-deep: #08202f;
   --steel: #2f5d7a; /* links, rules, drawing lines */
   --steel-tint: #eaf0f4;
-  --copper: #b0531c; /* action only: white text 5.3:1 */
-  --copper-dark: #8f4215;
-  --copper-tint: #f7ebe2;
-  --copper-light: #e59a63; /* copper on navy */
+  /* Structural amber. --amber fills buttons (with ink text); --copper is the readable text shade on light
+     backgrounds (5.2:1 on white); --copper-light is amber for text and icons on navy. */
+  --amber: #e9a321;
+  --amber-hover: #f4b23c;
+  --on-amber: #0b1820;
+  --copper: #9a5f08;
+  --copper-dark: #7a4a04;
+  --copper-tint: #fbf0d9;
+  --copper-light: #f2b13a;
   --focus: #2f5d7a;
 
   --radius-media: 22px;
@@ -234,12 +239,13 @@ p {
     border-color 0.2s;
 }
 .btn--primary {
-  background: var(--copper);
-  color: #fff;
+  background: var(--amber);
+  color: var(--on-amber);
+  font-weight: 700;
 }
 .btn--primary:hover {
-  background: var(--copper-dark);
-  color: #fff;
+  background: var(--amber-hover);
+  color: var(--on-amber);
 }
 .btn__chip {
   display: inline-grid;
@@ -247,8 +253,8 @@ p {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 999px;
-  background: #fff;
-  color: var(--copper);
+  background: var(--navy);
+  color: var(--copper-light);
   transition: transform 0.2s;
 }
 .btn:hover .btn__chip {
