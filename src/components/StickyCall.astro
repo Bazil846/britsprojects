@@ -1,0 +1,74 @@
+---
+// Phone-width bottom bar: call or enquire, shown once the visitor scrolls past the hero.
+import Icon from './Icon.astro';
+import { company } from '../site';
+---
+
+<div class="sc" data-sticky-call aria-hidden="true">
+  <a class="sc__call" href={`tel:${company.phoneHref}`} tabindex="-1">
+    <Icon name="phone" size={20} /> Call us
+  </a>
+  <a class="sc__quote" href="/contact" tabindex="-1">
+    Get a quote <Icon name="arrow" size={20} />
+  </a>
+</div>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-sticky-call]');
+  if (bar) {
+    const links = bar.querySelectorAll('a');
+    const update = () => {
+      const show = scrollY > 520 && !document.querySelector('[data-header] [aria-expanded="true"]');
+      bar.classList.toggle('is-on', show);
+      bar.setAttribute('aria-hidden', String(!show));
+      links.forEach((a) => (show ? a.removeAttribute('tabindex') : a.setAttribute('tabindex', '-1')));
+    };
+    update();
+    addEventListener('scroll', update, { passive: true });
+  }
+</script>
+
+<style>
+  .sc {
+    position: fixed;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    z-index: 40;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 999px;
+    background: rgba(8, 32, 47, 0.96);
+    box-shadow: var(--shadow-overlay);
+    transform: translateY(160%);
+    transition: transform 0.3s ease;
+  }
+  .sc.is-on {
+    transform: none;
+  }
+  @media (min-width: 900px) {
+    .sc {
+      display: none;
+    }
+  }
+  .sc a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .sc__call {
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .sc__quote {
+    background: var(--copper);
+    color: #fff;
+  }
+</style>

@@ -9,6 +9,10 @@ Two core services:
 ## Pages
 - [Home](https://www.britsconstructionprojects.co.uk/)
 - [Structural works](https://www.britsconstructionprojects.co.uk/structural-works)
+  - [Extensions](https://www.britsconstructionprojects.co.uk/structural-works/extensions)
+  - [Loft conversions](https://www.britsconstructionprojects.co.uk/structural-works/loft-conversions)
+  - [Internal structural alterations](https://www.britsconstructionprojects.co.uk/structural-works/internal-alterations)
+  - [New build structures](https://www.britsconstructionprojects.co.uk/structural-works/new-builds)
 - [Project management](https://www.britsconstructionprojects.co.uk/project-management)
 - [Why choose us](https://www.britsconstructionprojects.co.uk/about)
 - [Contact and send drawings](https://www.britsconstructionprojects.co.uk/contact)

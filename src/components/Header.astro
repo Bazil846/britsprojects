@@ -2,15 +2,11 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import { company } from '../site';
+import { projectTypes, structuralTrades, oversight } from '../content';
 
-const nav = [
-  { href: '/structural-works', label: 'Structural works' },
-  { href: '/project-management', label: 'Project management' },
-  { href: '/about', label: 'Why us' },
-  { href: '/contact', label: 'Contact' },
-];
 const here = Astro.url.pathname.replace(/\.html$/, '');
 const tel = company.phoneHref;
+const isIn = (base: string) => here === base || here.startsWith(base + '/');
 ---
 
 <header class="hdr" data-header>
@@ -21,29 +17,96 @@ const tel = company.phoneHref;
 
     <nav class="hdr__nav" aria-label="Main">
       <ul>
-        {
-          nav.map((n) => (
-            <li>
-              <a href={n.href} aria-current={here === n.href ? 'page' : undefined}>
-                {n.label}
+        <li class="has-mega" data-mega>
+          <a href="/structural-works" aria-current={isIn('/structural-works') ? 'page' : undefined}>Structural works</a>
+          <button type="button" class="hdr__more" aria-expanded="false" aria-controls="mega-structural">
+            <span class="sr-only">Show structural works pages</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="mega" id="mega-structural">
+            <div class="container mega__grid">
+              <div>
+                <p class="mega__label">Project types</p>
+                <ul class="mega__types">
+                  {projectTypes.map((p) => (
+                    <li>
+                      <a href={`/structural-works/${p.id}`}>
+                        <img src={p.hero} alt="" loading="lazy" decoding="async" />
+                        <span>
+                          <strong>{p.nav}</strong>
+                          <small>{p.pill}</small>
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p class="mega__label">What we build</p>
+                <ul class="mega__list">
+                  {structuralTrades.map((t) => (
+                    <li>
+                      <a href={`/structural-works#${t.id}`}>
+                        <Icon name={t.icon} size={18} />
+                        {t.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <a class="mega__card" href="/contact?topic=structural">
+                <img src="/photos/build-progress-17.webp" alt="" loading="lazy" decoding="async" />
+                <span class="mega__card-text">
+                  <strong>Send us your drawings</strong>
+                  <span>Request a structural works quotation</span>
+                </span>
               </a>
-            </li>
-          ))
-        }
+            </div>
+          </div>
+        </li>
+        <li class="has-mega" data-mega>
+          <a href="/project-management" aria-current={isIn('/project-management') ? 'page' : undefined}>Project management</a>
+          <button type="button" class="hdr__more" aria-expanded="false" aria-controls="mega-pm">
+            <span class="sr-only">Show project management topics</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="mega" id="mega-pm">
+            <div class="container mega__grid mega__grid--pm">
+              <div>
+                <p class="mega__label">How we look after your interests</p>
+                <ul class="mega__list mega__list--2">
+                  {oversight.map((o) => (
+                    <li>
+                      <a href={`/project-management#${o.id}`}>
+                        <Icon name={o.icon} size={18} />
+                        {o.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <a class="mega__card" href="/contact?topic=project-review">
+                <img src="/photos/build-progress-10.webp" alt="" loading="lazy" decoding="async" />
+                <span class="mega__card-text">
+                  <strong>Already have a builder?</strong>
+                  <span>Book a project review</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li><a href="/about" aria-current={here === '/about' ? 'page' : undefined}>Why us</a></li>
+        <li><a href="/contact" aria-current={here === '/contact' ? 'page' : undefined}>Contact</a></li>
       </ul>
     </nav>
 
     <div class="hdr__actions">
-      {
-        company.phone && (
-          <a class="hdr__phone" href={`tel:${tel}`}>
-            <Icon name="phone" size={18} />
-            <span class="tabular">{company.phone}</span>
-          </a>
-        )
-      }
+      <a class="hdr__phone" href={`tel:${tel}`}>
+        <Icon name="phone" size={18} />
+        <span class="tabular">{company.phone}</span>
+      </a>
       <a class="btn btn--primary hdr__cta" href="/contact">
-        Discuss your project
+        Get a quote
         <span class="btn__chip"><Icon name="arrow" size={18} /></span>
       </a>
       <button class="hdr__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
@@ -57,29 +120,33 @@ const tel = company.phoneHref;
   <div id="mobile-menu" class="mnav" hidden>
     <nav class="container" aria-label="Mobile">
       <ul>
-        {
-          nav.map((n) => (
-            <li>
-              <a href={n.href} aria-current={here === n.href ? 'page' : undefined}>
-                {n.label}
-                <Icon name="arrow" size={20} />
-              </a>
-            </li>
-          ))
-        }
+        <li>
+          <details open={isIn('/structural-works')}>
+            <summary>Structural works <Icon name="arrow" size={20} /></summary>
+            <ul class="mnav__sub">
+              <li><a href="/structural-works">Structural works overview</a></li>
+              {projectTypes.map((p) => <li><a href={`/structural-works/${p.id}`}>{p.nav}</a></li>)}
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open={isIn('/project-management')}>
+            <summary>Project management <Icon name="arrow" size={20} /></summary>
+            <ul class="mnav__sub">
+              <li><a href="/project-management">Project management overview</a></li>
+              {oversight.slice(0, 4).map((o) => <li><a href={`/project-management#${o.id}`}>{o.title}</a></li>)}
+            </ul>
+          </details>
+        </li>
+        <li><a class="mnav__top" href="/about">Why us <Icon name="arrow" size={20} /></a></li>
+        <li><a class="mnav__top" href="/contact">Contact <Icon name="arrow" size={20} /></a></li>
       </ul>
       <div class="mnav__cta">
         <a class="btn btn--primary" href="/contact">
-          Discuss your project
+          Get a quote
           <span class="btn__chip"><Icon name="arrow" size={18} /></span>
         </a>
-        {
-          company.phone && (
-            <a class="btn btn--outline" href={`tel:${tel}`}>
-              Call {company.phone}
-            </a>
-          )
-        }
+        <a class="btn btn--outline" href={`tel:${tel}`}>Call {company.phone}</a>
       </div>
     </nav>
   </div>
@@ -97,8 +164,44 @@ const tel = company.phoneHref;
     document.body.style.overflow = open ? 'hidden' : '';
   };
   toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+
+  // Mega menus: open on hover or keyboard focus (CSS), and by the chevron button for touch.
+  const megas = document.querySelectorAll<HTMLElement>('[data-mega]');
+  const closeMegas = (except?: HTMLElement) =>
+    megas.forEach((m) => {
+      if (m === except) return;
+      m.classList.remove('is-open');
+      m.querySelector('.hdr__more')?.setAttribute('aria-expanded', 'false');
+    });
+  megas.forEach((m) => {
+    const btn = m.querySelector<HTMLButtonElement>('.hdr__more');
+    btn?.addEventListener('click', () => {
+      const open = !m.classList.contains('is-open');
+      closeMegas(m);
+      m.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    m.addEventListener('mouseleave', () => {
+      m.classList.remove('is-open');
+      btn?.setAttribute('aria-expanded', 'false');
+      m.classList.add('is-closing');
+      setTimeout(() => m.classList.remove('is-closing'), 10);
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!(e.target as Element).closest('[data-mega]')) closeMegas();
+  });
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+    if (e.key !== 'Escape') return;
+    const openMega = document.querySelector<HTMLElement>('[data-mega].is-open, [data-mega]:focus-within');
+    if (openMega) {
+      closeMegas();
+      openMega.classList.add('is-dismissed');
+      openMega.querySelector<HTMLElement>('a')?.focus();
+      openMega.addEventListener('focusout', () => openMega.classList.remove('is-dismissed'), { once: true });
+    }
+    if (toggle?.getAttribute('aria-expanded') === 'true') {
       setOpen(false);
       toggle.focus();
     }
@@ -125,6 +228,7 @@ const tel = company.phoneHref;
     box-shadow: 0 6px 24px -18px rgba(8, 32, 47, 0.45);
   }
   .hdr__inner {
+    position: static;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -135,14 +239,14 @@ const tel = company.phoneHref;
     text-decoration: none;
     flex: none;
   }
-  .hdr__nav ul {
+  .hdr__nav > ul {
     display: flex;
     gap: 0.25rem;
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  .hdr__nav a {
+  .hdr__nav > ul > li > a {
     display: block;
     white-space: nowrap;
     padding: 0.55rem 0.85rem;
@@ -256,5 +360,226 @@ const tel = company.phoneHref;
     .mnav {
       display: none !important;
     }
+  }
+
+  /* Mega menus */
+  .hdr {
+    --hdr-h: 4.75rem;
+  }
+  .has-mega {
+    display: flex;
+    align-items: center;
+  }
+  .has-mega > a {
+    padding-right: 0.3rem !important;
+  }
+  .hdr__more {
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 0.35rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .hdr__more svg {
+    transition: transform 0.2s;
+  }
+  .has-mega:hover .hdr__more svg,
+  .has-mega.is-open .hdr__more svg {
+    transform: rotate(180deg);
+  }
+  .mega {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 2rem 0 2.25rem;
+    background: #fff;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 30px 50px -30px rgba(8, 32, 47, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition:
+      opacity 0.18s,
+      transform 0.18s,
+      visibility 0s linear 0.18s;
+  }
+  .has-mega::after {
+    /* Hover bridge between the link and the panel. */
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 0;
+  }
+  .has-mega:hover .mega,
+  .has-mega:focus-within .mega,
+  .has-mega.is-open .mega {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.18s,
+      transform 0.18s;
+  }
+  .has-mega.is-dismissed .mega,
+  .has-mega.is-closing .mega {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .mega__grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 0.8fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .mega__grid--pm {
+    grid-template-columns: 2fr 0.8fr;
+  }
+  .mega__label {
+    margin-bottom: 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .mega ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .mega__types {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .hdr__nav .mega a {
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: var(--radius-input);
+    white-space: normal;
+  }
+  .hdr__nav .mega__types a {
+    display: flex;
+    gap: 0.85rem;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  .mega__types img {
+    width: 4.25rem;
+    height: 3.5rem;
+    flex: none;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .mega__types span {
+    display: grid;
+    line-height: 1.35;
+  }
+  .mega__types strong {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .mega__types small {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .mega__list--2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;
+  }
+  .hdr__nav .mega__list a {
+    display: flex;
+    gap: 0.65rem;
+    align-items: center;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+  .mega__list :global(svg) {
+    flex: none;
+    color: var(--copper);
+  }
+  .hdr__nav a.mega__card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    border-radius: var(--radius-card);
+    min-height: 15rem;
+    height: 100%;
+    color: #fff;
+  }
+  .mega__card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .mega__card:hover img {
+    transform: scale(1.03);
+  }
+  .mega__card-text {
+    position: absolute;
+    inset: auto 0 0 0;
+    display: grid;
+    gap: 0.2rem;
+    padding: 3rem 1.25rem 1.25rem;
+    background: linear-gradient(to top, rgba(8, 32, 47, 0.95), transparent);
+    line-height: 1.35;
+  }
+  .mega__card-text strong {
+    font-size: 1.1rem;
+  }
+  .mega__card-text span {
+    color: var(--copper-light);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  /* Mobile sub menus */
+  .mnav details summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3.5rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+  .mnav details summary::-webkit-details-marker {
+    display: none;
+  }
+  .mnav details summary :global(svg) {
+    transform: rotate(90deg);
+    transition: transform 0.2s;
+  }
+  .mnav details[open] summary :global(svg) {
+    transform: rotate(-90deg);
+  }
+  .mnav .mnav__sub {
+    padding: 0.25rem 0 0.75rem 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .mnav .mnav__sub a {
+    min-height: 2.75rem;
+    border: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--body);
   }
 </style>

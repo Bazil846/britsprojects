@@ -1,11 +1,30 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
+import PhotoHero from '../components/PhotoHero.astro';
+import EnquiryBand from '../components/EnquiryBand.astro';
+import Comparison from '../components/Comparison.astro';
 import Icon from '../components/Icon.astro';
-import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
 import { oversight, oversightNote, oversightFaqs } from '../content';
 import { SITE_URL } from '../site';
+
+const timing = [
+  {
+    when: 'Before work starts',
+    title: 'Set the project up well',
+    text: 'We review the drawings, the engineer’s design, your builder’s programme and payment schedule, and agree the stages we will check.',
+  },
+  {
+    when: 'During the build',
+    title: 'Stage by stage reviews',
+    text: 'We visit at the key structural stages and before each payment, raise concerns with your builder and keep you updated.',
+  },
+  {
+    when: 'Already under way',
+    title: 'Step in at any point',
+    text: 'We review the work that can still be seen, check it against the drawings and set up reviews for the rest of the build.',
+  },
+];
 
 const schema = [
   {
@@ -35,37 +54,53 @@ const schema = [
   description="Already appointed a builder? We check the work against the drawings, monitor planning and party wall requirements, and review progress before you pay."
   schema={schema}
 >
-  <PageHero
-    crumb="Project management"
-    eyebrow="Project Management & Independent Site Oversight"
-    title="Your Builder. Our Oversight. Your Peace of Mind."
-    lead="Already appointed a builder? Have an experienced construction team looking after your interests."
+  <PhotoHero
+    crumbs={[{ href: '/', label: 'Home' }, { label: 'Project management' }]}
+    image="/photos/build-progress-10.webp"
+    alt="Site manager in hi-vis reviewing a house extension under construction"
+    position="50% 45%"
+    pill="Project management & independent site oversight"
+    title="Your Builder. Our Oversight."
+    accent="Your Peace of Mind."
+    lead="Already appointed a builder? Have an experienced construction team looking after your interests, from the first trench to the final inspection."
+    caption="Stage review on a live extension"
   >
     <div slot="actions" class="btn-row">
-      <a class="btn btn--primary" href="/contact?topic=project-review">
-        Book a Project Review
+      <a class="btn btn--primary" href="#enquire">
+        Book a project review
         <span class="btn__chip"><Icon name="arrow" size={18} /></span>
       </a>
-      <a class="btn btn--outline" href="/contact?topic=project-management">Discuss Project Management</a>
+      <a class="btn btn--outline" href="/contact?topic=project-management">Discuss project management</a>
     </div>
-    <div slot="aside" class="aside-stack">
-    <img class="aside-photo" src="/photos/build-progress-10.webp" alt="Site manager in hi-vis at a house extension under construction" loading="eager" decoding="async" />
-    <div class="aside-quote">
-      <p>
-        Building your dream home is a major investment. You deserve to understand how the work is progressing, whether the structure follows
-        the design and whether each payment reflects the work completed.
-      </p>
+  </PhotoHero>
+
+  <nav class="subnav" aria-label="On this page">
+    <div class="container">
+      <ul>
+        <li><a href="#what-heading">What we do</a></li>
+        <li><a href="#when-heading">When to bring us in</a></li>
+        <li><a href="#cmp-heading">Why have oversight</a></li>
+        <li><a href="#pm-faq-heading">Questions</a></li>
+      </ul>
     </div>
-    </div>
-  </PageHero>
+  </nav>
 
   <section class="section" aria-labelledby="intro-heading">
     <div class="container intro">
-      <h2 id="intro-heading" class="h2">We ask the technical questions, so you can make informed decisions</h2>
-      <p class="lead">
-        At Brits Construction Projects Ltd, we can manage and monitor your project on your behalf. We ask the technical questions, review key
-        stages and raise concerns with your builder, helping you make informed decisions throughout the build.
-      </p>
+      <div>
+        <p class="eyebrow">On your side</p>
+        <h2 id="intro-heading" class="h2">We ask the technical questions, so you can make informed decisions</h2>
+      </div>
+      <div>
+        <p class="lead">
+          At Brits Construction Projects Ltd, we can manage and monitor your project on your behalf. We ask the technical questions, review key
+          stages and raise concerns with your builder, helping you make informed decisions throughout the build.
+        </p>
+        <p class="intro__quote">
+          Building your dream home is a major investment. You deserve to understand how the work is progressing, whether the structure
+          follows the design and whether each payment reflects the work completed.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -102,35 +137,123 @@ const schema = [
     </div>
   </section>
 
+  <section class="section" aria-labelledby="when-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Timing</p>
+          <h2 id="when-heading" class="h2">When to bring us in</h2>
+          <p class="lead">The earlier we are involved, the more we can check. But it is never too late to have someone on your side.</p>
+        </div>
+      </div>
+      <ol class="when">
+        {
+          timing.map((t, i) => (
+            <li>
+              <span class="when__n tabular">{String(i + 1).padStart(2, '0')}</span>
+              <p class="when__k">{t.when}</p>
+              <h3 class="h3">{t.title}</h3>
+              <p>{t.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <Comparison quote={false} photo="/photos/build-progress-15.webp" alt="House under scaffolding with site hoarding during a build" />
+
   <Faq id="pm-faq-heading" title="Project management questions" items={oversightFaqs} />
 
-  <CtaBand
-    title="Book a Project Review"
+  <EnquiryBand
+    title="Book a project review"
     text="Tell us about your project and your builder. We will talk through the stages you would like reviewed and how our oversight would work alongside your team."
-    primary={{ href: '/contact?topic=project-review', label: 'Book a Project Review' }}
-    secondary={{ href: '/contact?topic=project-management', label: 'Discuss Project Management' }}
+    topic="Project review"
+    formId="pm-enquiry"
   />
 </Base>
 
 <style>
-  .aside-stack {
-    display: grid;
-    gap: 1rem;
+  .subnav {
+    position: sticky;
+    top: 4.75rem;
+    z-index: 30;
+    margin-top: 1.25rem;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
   }
-  .aside-photo {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-radius: var(--radius-card);
+  .subnav ul {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.6rem 0;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
-  .aside-quote {
-    padding: 1.75rem 1.75rem 1.75rem 1.5rem;
+  .subnav a {
+    display: block;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 0.925rem;
+    text-decoration: none;
+  }
+  .subnav a:hover {
+    background: var(--stone);
+  }
+  .intro h2 {
+    margin-top: 1rem;
+  }
+  .intro__quote {
+    margin-top: 1.75rem;
+    padding-left: 1.25rem;
     border-left: 3px solid var(--copper);
-    background: var(--canvas);
-    border-radius: 0 var(--radius-card) var(--radius-card) 0;
     color: var(--ink);
     font-size: 1.1rem;
     line-height: 1.6;
+  }
+  .when {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 900px) {
+    .when {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .when li {
+    position: relative;
+    padding: 2rem 1.75rem 1.75rem;
+    border-radius: var(--radius-card);
+    background: var(--navy);
+    color: #d5dfe5;
+  }
+  .when__n {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.75rem;
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .when__k {
+    color: var(--copper-light);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .when h3 {
+    margin: 0.75rem 0 0.5rem;
+    color: #fff;
   }
   .intro {
     display: grid;
@@ -184,7 +307,7 @@ const schema = [
     background: var(--canvas);
     border: 1px solid var(--line);
     border-radius: var(--radius-card);
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 9rem;
   }
   .ov__head {
     display: flex;

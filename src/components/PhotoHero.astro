@@ -1,0 +1,194 @@
+---
+// Full photo hero in the parent site's style: a rounded photo panel, navy gradient from the
+// bottom, a location pill, white display heading, actions and a caption naming what is shown.
+interface Props {
+  image: string;
+  alt: string;
+  position?: string;
+  pill: string;
+  title: string;
+  /** Second line of the heading, shown in copper. */
+  accent?: string;
+  lead: string;
+  caption?: string;
+  crumbs?: { href?: string; label: string }[];
+  size?: 'home' | 'page';
+}
+const { image, alt, position = '50% 50%', pill, title, accent, lead, caption, crumbs, size = 'page' } = Astro.props;
+---
+
+<section class:list={['ph', `ph--${size}`]}>
+  <div class="container">
+    {
+      crumbs && (
+        <nav aria-label="Breadcrumb" class="ph__crumbs">
+          <ol>
+            {crumbs.map((c) => (
+              <li aria-current={c.href ? undefined : 'page'}>{c.href ? <a href={c.href}>{c.label}</a> : c.label}</li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+    <div class="ph__panel">
+      <img class="ph__img" src={image} alt={alt} style={`object-position:${position}`} fetchpriority="high" decoding="async" />
+      <div class="ph__shade" aria-hidden="true"></div>
+      {caption && <p class="ph__caption">{caption}</p>}
+      <div class="ph__content">
+        <p class="ph__pill">
+          <span class="ph__dot" aria-hidden="true"></span>
+          {pill}
+        </p>
+        <h1 class="ph__title">
+          {title}
+          {accent && <span>{accent}</span>}
+        </h1>
+        <p class="ph__lead">{lead}</p>
+        <div class="ph__actions"><slot name="actions" /></div>
+        <slot name="extra" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ph {
+    padding: clamp(0.75rem, 0.5rem + 1vw, 1.25rem) 0 0;
+  }
+  .ph__crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .ph__crumbs li + li::before {
+    content: '/';
+    margin-right: 0.5rem;
+    color: var(--line-strong);
+  }
+  .ph__crumbs a {
+    color: var(--muted);
+  }
+  .ph__panel {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    background: var(--navy-deep);
+    min-height: 34rem;
+  }
+  .ph--home .ph__panel {
+    min-height: min(46rem, calc(100svh - 6rem));
+  }
+  @media (max-width: 700px) {
+    .ph__panel,
+    .ph--home .ph__panel {
+      min-height: 0;
+      padding-top: 15rem;
+    }
+  }
+  .ph__img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ph__shade {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(to top, rgba(8, 32, 47, 0.96) 0%, rgba(8, 32, 47, 0.82) 38%, rgba(8, 32, 47, 0.25) 75%, rgba(8, 32, 47, 0.1) 100%),
+      linear-gradient(to right, rgba(8, 32, 47, 0.55), transparent 65%);
+  }
+  .ph__caption {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    max-width: calc(100% - 2.5rem);
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(8, 32, 47, 0.7);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+  .ph__content {
+    width: 100%;
+    max-width: 52rem;
+    padding: clamp(1.5rem, 1rem + 3vw, 4rem);
+  }
+  .ph__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .ph__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--copper-light);
+    flex: none;
+  }
+  .ph__title {
+    margin-top: 1.4rem;
+    color: #fff;
+    font-size: clamp(2.3rem, 1.2rem + 3.6vw, 4.6rem);
+    line-height: 1.03;
+    letter-spacing: -0.035em;
+  }
+  .ph--page .ph__title {
+    font-size: clamp(2.15rem, 1.2rem + 3vw, 4rem);
+  }
+  .ph__title span {
+    display: block;
+    color: var(--copper-light);
+  }
+  .ph__lead {
+    margin-top: 1.4rem;
+    max-width: 40rem;
+    color: #dbe4ea;
+    font-size: clamp(1.08rem, 1rem + 0.35vw, 1.3rem);
+    line-height: 1.6;
+  }
+  .ph__actions:not(:empty) {
+    margin-top: 2rem;
+  }
+  .ph__actions :global(.btn--outline) {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .ph__actions :global(.btn--outline:hover) {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  @media (max-width: 480px) {
+    .ph__actions :global(.btn) {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .ph__actions :global(.btn--outline) {
+      justify-content: center;
+    }
+    .ph__caption {
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+  }
+</style>

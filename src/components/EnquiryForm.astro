@@ -1,0 +1,264 @@
+---
+// The project enquiry form, shared by the contact page and the enquiry band.
+// Posts to FormSubmit (delivered to the info@ inbox); falls back to mailto if no endpoint.
+import Icon from './Icon.astro';
+import { FORM_ENDPOINT, company } from '../site';
+
+interface Props {
+  id?: string;
+  /** Pre-selected service when the page has an obvious one. */
+  topic?: 'Structural works' | 'Project management' | 'Project review';
+  compact?: boolean;
+}
+const { id = 'enquiry', topic, compact = false } = Astro.props;
+const services = ['Structural works', 'Project management', 'Project review', 'Site visit', 'Not sure yet'];
+---
+
+<div class="eq" data-enquiry-wrap>
+  <form id={id} class="eq__form" novalidate data-enquiry data-endpoint={FORM_ENDPOINT} data-email={company.email}>
+    <input type="hidden" name="_subject" value={`New enquiry: ${company.shortName} website`} />
+    <input type="hidden" name="_template" value="table" />
+    <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+    <fieldset class="eq__choice">
+      <legend class="field-label">How can we help? <span aria-hidden="true">*</span></legend>
+      <div class="eq__chips">
+        {
+          services.map((s, i) => (
+            <label>
+              <input type="radio" name="service" value={s} required={i === 0} checked={s === topic} />
+              <span>{s}</span>
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <div class="eq__row">
+      <div>
+        <label class="field-label" for={`${id}-name`}>Your name <span aria-hidden="true">*</span></label>
+        <input class="field" id={`${id}-name`} name="name" autocomplete="name" required />
+      </div>
+      <div>
+        <label class="field-label" for={`${id}-phone`}>Phone</label>
+        <input class="field" id={`${id}-phone`} name="phone" type="tel" autocomplete="tel" />
+      </div>
+    </div>
+    <div class="eq__row">
+      <div>
+        <label class="field-label" for={`${id}-email`}>Email <span aria-hidden="true">*</span></label>
+        <input class="field" id={`${id}-email`} name="email" type="email" autocomplete="email" required />
+      </div>
+      <div>
+        <label class="field-label" for={`${id}-postcode`}>Project postcode</label>
+        <input class="field" id={`${id}-postcode`} name="postcode" autocomplete="postal-code" />
+      </div>
+    </div>
+    {
+      !compact && (
+        <div class="eq__row">
+          <div>
+            <label class="field-label" for={`${id}-type`}>Project type</label>
+            <select class="field" id={`${id}-type`} name="project_type">
+              <option value="">Choose one</option>
+              <option>Extension</option>
+              <option>Loft conversion</option>
+              <option>Internal structural alteration</option>
+              <option>New build</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for={`${id}-stage`}>Where is the project up to?</label>
+            <select class="field" id={`${id}-stage`} name="stage">
+              <option value="">Choose one</option>
+              <option>Drawings and engineer’s design ready</option>
+              <option>Drawings in progress</option>
+              <option>Builder appointed, work starting soon</option>
+              <option>Work already under way</option>
+              <option>Early planning</option>
+            </select>
+          </div>
+        </div>
+      )
+    }
+    <div>
+      <label class="field-label" for={`${id}-message`}>About your project <span aria-hidden="true">*</span></label>
+      <textarea class="field" id={`${id}-message`} name="message" required placeholder="What are you planning, and what would you like us to do?"></textarea>
+    </div>
+
+    <p class="eq__error" role="alert" hidden></p>
+    <div class="eq__submit-row">
+      <button class="btn btn--primary eq__submit" type="submit">
+        Send enquiry
+        <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+      </button>
+      <p class="eq__small">We use your details only to reply to your enquiry.</p>
+    </div>
+  </form>
+  <div class="eq__done" role="status" hidden tabindex="-1">
+    <Icon name="check" size={32} />
+    <h3 class="h3">Thank you, your enquiry has been sent</h3>
+    <p>We will be in touch to discuss your project. If you have drawings, have them ready to share when we reply.</p>
+  </div>
+</div>
+
+<script>
+  // Pre-select the service from links such as /contact?topic=project-review
+  const topics: Record<string, string> = {
+    structural: 'Structural works',
+    'project-management': 'Project management',
+    'project-review': 'Project review',
+    'site-visit': 'Site visit',
+  };
+  const topic = new URLSearchParams(location.search).get('topic');
+
+  document.querySelectorAll<HTMLFormElement>('form[data-enquiry]').forEach((form) => {
+    const wrap = form.closest<HTMLElement>('[data-enquiry-wrap]');
+    const done = wrap?.querySelector<HTMLElement>('.eq__done');
+    const error = form.querySelector<HTMLElement>('.eq__error');
+
+    if (topic && topics[topic]) {
+      const radio = form.querySelector<HTMLInputElement>(`input[name="service"][value="${topics[topic]}"]`);
+      if (radio) radio.checked = true;
+    }
+
+    const showError = (msg: string) => {
+      if (!error) return;
+      error.textContent = msg;
+      error.hidden = false;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (error) error.hidden = true;
+      if (!form.checkValidity()) {
+        showError('Please fill in the required fields: how we can help, your name, email and a few words about your project.');
+        form.querySelector<HTMLElement>(':invalid')?.focus();
+        return;
+      }
+      const data = new FormData(form);
+      const { endpoint, email } = form.dataset;
+      const button = form.querySelector<HTMLButtonElement>('.eq__submit');
+
+      if (!endpoint) {
+        if (email) {
+          const lines = ['service', 'name', 'phone', 'email', 'postcode', 'project_type', 'stage', 'message']
+            .map((k) => `${k.replace('_', ' ')}: ${data.get(k) ?? ''}`)
+            .join('\n');
+          location.href = `mailto:${email}?subject=${encodeURIComponent('Project enquiry')}&body=${encodeURIComponent(lines)}`;
+        } else {
+          showError('Sorry, the enquiry form is not connected yet. Please try again later.');
+        }
+        return;
+      }
+
+      if (button) button.disabled = true;
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        const json = await res.json();
+        if (!res.ok || String(json.success) !== 'true') throw new Error(json.message);
+        form.hidden = true;
+        if (done) {
+          done.hidden = false;
+          done.focus();
+        }
+      } catch {
+        showError('Sorry, something went wrong sending your enquiry. Please try again in a moment, or call us.');
+      } finally {
+        if (button) button.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .eq__form {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .eq__row {
+    display: grid;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .eq__row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .eq__choice {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  .eq__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .eq__chips label {
+    position: relative;
+  }
+  .eq__chips input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+  }
+  .eq__chips span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1.1rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--body);
+    cursor: pointer;
+    background: #fff;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+  }
+  .eq__chips input:checked + span {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+  }
+  .eq__chips input:focus-visible + span {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+  .eq__error {
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-input);
+    background: #fbeceb;
+    color: #8a1f17;
+    font-weight: 600;
+  }
+  .eq__submit-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+  .eq__submit:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+  .eq__small {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+  .eq__done {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem 0 0.5rem;
+    color: var(--body);
+  }
+  .eq__done :global(svg) {
+    color: var(--copper);
+  }
+</style>

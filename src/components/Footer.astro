@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import { company } from '../site';
+import { projectTypes } from '../content';
 
 const year = new Date().getFullYear();
 const tel = company.phoneHref;
@@ -14,18 +15,17 @@ const tel = company.phoneHref;
         <p>{company.tagline}</p>
       </div>
       <nav aria-label="Services">
-        <h2>Services</h2>
+        <h2>Structural works</h2>
         <ul>
-          <li><a href="/structural-works">Structural works</a></li>
-          <li><a href="/project-management">Project management</a></li>
-          <li><a href="/structural-works#extensions">Extensions</a></li>
-          <li><a href="/structural-works#loft-conversions">Loft conversions</a></li>
-          <li><a href="/structural-works#internal-alterations">Internal alterations</a></li>
+          <li><a href="/structural-works">Overview</a></li>
+          {projectTypes.map((p) => <li><a href={`/structural-works/${p.id}`}>{p.nav}</a></li>)}
         </ul>
       </nav>
       <nav aria-label="Company">
         <h2>Company</h2>
         <ul>
+          <li><a href="/project-management">Project management</a></li>
+          <li><a href="/contact?topic=project-review">Book a project review</a></li>
           <li><a href="/about">Why choose us</a></li>
           <li><a href="/contact">Contact</a></li>
           <li><a href="/contact#drawings">Send your drawings</a></li>
@@ -61,6 +61,7 @@ const tel = company.phoneHref;
 <style>
   .ftr {
     background: var(--navy-deep);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: #b9c7cf;
     padding: clamp(3.5rem, 3rem + 2vw, 5rem) 0 2rem;
     font-size: 0.975rem;
@@ -130,5 +131,10 @@ const tel = company.phoneHref;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.875rem;
     color: #8fa1ab;
+  }
+  @media (max-width: 899px) {
+    .ftr {
+      padding-bottom: 6.5rem;
+    }
   }
 </style>

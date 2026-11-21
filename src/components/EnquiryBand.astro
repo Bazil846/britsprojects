@@ -1,0 +1,136 @@
+---
+// Closing band on every main page: why get in touch, direct contact, and the enquiry form.
+import Icon from './Icon.astro';
+import EnquiryForm from './EnquiryForm.astro';
+import { company } from '../site';
+
+interface Props {
+  title: string;
+  text: string;
+  topic?: 'Structural works' | 'Project management' | 'Project review';
+  formId?: string;
+}
+const { title, text, topic, formId = 'band-enquiry' } = Astro.props;
+---
+
+<section class="eb" id="enquire" aria-labelledby="eb-heading">
+  <div class="container eb__grid">
+    <div class="eb__intro">
+      <p class="eyebrow">Get in touch</p>
+      <h2 id="eb-heading" class="h2">{title}</h2>
+      <p class="lead">{text}</p>
+      <ul class="eb__contact">
+        <li>
+          <span class="eb__icon"><Icon name="phone" size={20} /></span>
+          <span>
+            <span class="eb__label">Call us</span>
+            <a class="tabular" href={`tel:${company.phoneHref}`}>{company.phone}</a>
+          </span>
+        </li>
+        <li>
+          <span class="eb__icon"><Icon name="mail" size={20} /></span>
+          <span>
+            <span class="eb__label">Email your drawings</span>
+            <a class="eb__email" href={`mailto:${company.email}`}>{company.email}</a>
+          </span>
+        </li>
+        <li>
+          <span class="eb__icon"><Icon name="pin" size={20} /></span>
+          <span>
+            <span class="eb__label">Office</span>
+            <span>{company.address}</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="eb__card">
+      <EnquiryForm id={formId} topic={topic} compact />
+    </div>
+  </div>
+</section>
+
+<style>
+  .eb {
+    padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+    background: var(--navy-deep);
+    color: #c9d5dc;
+    scroll-margin-top: 4rem;
+  }
+  .eb__grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .eb__grid > * {
+    min-width: 0;
+  }
+  @media (min-width: 1000px) {
+    .eb__grid {
+      grid-template-columns: 1fr 1.25fr;
+      gap: 4.5rem;
+    }
+  }
+  .eb .eyebrow {
+    color: var(--copper-light);
+  }
+  .eb h2 {
+    margin-top: 1rem;
+    color: #fff;
+  }
+  .eb .lead {
+    margin-top: 1.25rem;
+    color: #c9d5dc;
+  }
+  .eb__contact {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 2rem 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    display: grid;
+    gap: 1.25rem;
+  }
+  .eb__contact li {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .eb__contact li > span:last-child {
+    display: grid;
+    min-width: 0;
+  }
+  .eb__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--copper-light);
+  }
+  .eb__label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #8fa4b1;
+  }
+  .eb__contact a,
+  .eb__contact span span:last-child {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .eb__contact a:hover {
+    text-decoration: underline;
+  }
+  .eb__email {
+    white-space: nowrap;
+    font-size: clamp(0.85rem, 0.6rem + 1.4vw, 1.0625rem);
+  }
+  .eb__card {
+    padding: clamp(1.25rem, 0.8rem + 2vw, 2.5rem);
+    border-radius: var(--radius-media);
+    background: #fff;
+  }
+</style>

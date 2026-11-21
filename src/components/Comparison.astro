@@ -1,0 +1,182 @@
+---
+// "Managing it yourself" versus "with Brits oversight", after the parent site's comparison table.
+// Every row is a service we actually provide (see content.ts oversight list).
+import Icon from './Icon.astro';
+
+interface Props {
+  photo?: string;
+  alt?: string;
+  quote?: boolean;
+}
+const { photo = '/photos/build-progress-10.webp', alt = 'Site manager in hi-vis at a house extension under construction', quote = true } = Astro.props;
+
+const rows = [
+  { feature: 'Work checked against the drawings and engineer’s design', them: 'Up to you' },
+  { feature: 'Progress reviewed before each stage payment', them: 'Up to you' },
+  { feature: 'Planning conditions monitored', them: 'Up to you' },
+  { feature: 'Party wall requirements monitored', them: 'Up to you' },
+  { feature: 'Costs and proposed variations reviewed', them: 'Up to you' },
+  { feature: 'Architect, engineer and surveyors coordinated', them: 'Up to you' },
+  { feature: 'Technical questions raised with your builder', them: 'Up to you' },
+  { feature: 'Clear updates on progress and decisions', them: 'Varies' },
+];
+---
+
+<section class="section section--stone" aria-labelledby="cmp-heading">
+  <div class="container cmp">
+    <div class="cmp__media">
+      <img src={photo} alt={alt} loading="lazy" decoding="async" />
+      {quote && (<p class="cmp__quote">
+        “You deserve to understand how the work is progressing, whether the structure follows the design and whether each payment reflects
+        the work completed.”
+      </p>)}
+    </div>
+    <div>
+      <p class="eyebrow">Why have oversight</p>
+      <h2 id="cmp-heading" class="h2">Your builder builds. We look after your interests.</h2>
+      <p class="lead">
+        Most homeowners have no one on their side who can read the drawings, check the steel or question a variation. That is the gap our
+        project management fills.
+      </p>
+      <table class="cmp__table">
+        <caption class="sr-only">Managing a builder yourself compared with Brits oversight</caption>
+        <thead>
+          <tr>
+            <th scope="col"><span class="sr-only">What is covered</span></th>
+            <th scope="col" class="cmp__us">With Brits</th>
+            <th scope="col" class="cmp__them">On your own</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            rows.map((r, i) => (
+              <tr>
+                <th scope="row">{r.feature}</th>
+                <td class:list={['cmp__us', i === rows.length - 1 && 'cmp__us--last']}>
+                  <Icon name="check" size={22} />
+                  <span class="sr-only">Yes</span>
+                </td>
+                <td class="cmp__them">{r.them}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+      <div class="btn-row cmp__cta">
+        <a class="btn btn--primary" href="/contact?topic=project-review">
+          Book a project review
+          <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+        </a>
+        <a class="btn btn--outline" href="/project-management">How our oversight works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cmp {
+    display: grid;
+    gap: 3rem;
+  }
+  .cmp > * {
+    min-width: 0;
+  }
+  @media (min-width: 1000px) {
+    .cmp {
+      grid-template-columns: 5fr 7fr;
+      gap: 4.5rem;
+    }
+    .cmp__media {
+      position: sticky;
+      top: 7rem;
+      align-self: start;
+    }
+  }
+  .cmp__media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-media);
+  }
+  @media (max-width: 999px) {
+    .cmp__media img {
+      aspect-ratio: 16 / 10;
+    }
+  }
+  .cmp__quote {
+    margin-top: 1.25rem;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--copper);
+    color: var(--ink);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .cmp h2 {
+    margin-top: 1rem;
+  }
+  .cmp .lead {
+    margin-top: 1.25rem;
+    max-width: 40rem;
+  }
+  .cmp__table {
+    width: 100%;
+    margin-top: 2.5rem;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  .cmp__table thead tr {
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .cmp__table tbody tr {
+    border-bottom: 1px solid var(--line);
+  }
+  .cmp__table th[scope='row'] {
+    padding: 1rem 1rem 1rem 0;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 0.975rem;
+    line-height: 1.4;
+  }
+  .cmp__table thead th {
+    padding: 0.85rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  .cmp__us {
+    width: 6.5rem;
+    text-align: center;
+    background: #fff;
+    color: var(--copper);
+  }
+  thead .cmp__us {
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    color: var(--ink);
+    font-weight: 800;
+  }
+  .cmp__us--last {
+    border-radius: 0 0 var(--radius-card) var(--radius-card);
+  }
+  td.cmp__us :global(svg) {
+    margin: 0 auto;
+  }
+  .cmp__them {
+    width: 6.5rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+  thead .cmp__them {
+    font-weight: 600;
+  }
+  @media (max-width: 520px) {
+    .cmp__us,
+    .cmp__them {
+      width: 4.75rem;
+    }
+    .cmp__table th[scope='row'] {
+      font-size: 0.925rem;
+    }
+  }
+  .cmp__cta {
+    margin-top: 2.5rem;
+  }
+</style>

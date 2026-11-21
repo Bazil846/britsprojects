@@ -1,0 +1,249 @@
+---
+// Navy "on site" band: the structure in the order it is built, as a sideways photo strip
+// (after the parent site's build sequence).
+import Icon from './Icon.astro';
+import { structuralTrades } from '../content';
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+}
+const {
+  eyebrow = 'On site',
+  title = 'How a structure comes together',
+  lead = 'Every stage of the structural package in the order it is built, from clearing the ground to closing in the roof. Photographed on Brits group sites.',
+} = Astro.props;
+---
+
+<section class="bs" aria-labelledby="bs-heading">
+  <div class="container bs__head">
+    <div>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 id="bs-heading" class="h2">{title}</h2>
+      <p class="lead">{lead}</p>
+    </div>
+    <div class="bs__controls">
+      <a class="bs__link" href="/structural-works#trades-heading">All structural works <Icon name="arrow" size={18} /></a>
+      <button type="button" class="bs__btn" data-step="-1" aria-label="Previous stage" disabled>
+        <Icon name="arrow" size={20} class="bs__back" />
+      </button>
+      <button type="button" class="bs__btn" data-step="1" aria-label="Next stage">
+        <Icon name="arrow" size={20} />
+      </button>
+    </div>
+  </div>
+
+  <ol class="bs__strip" tabindex="0" aria-label="Structural stages, scroll sideways for more" data-strip>
+    {
+      structuralTrades.map((t, i) => (
+        <li>
+          <div class="bs__rail" aria-hidden="true">
+            <span class="bs__dot" />
+            <span class="bs__stage tabular">Stage {String(i + 1).padStart(2, '0')}</span>
+          </div>
+          <div class="bs__photo">
+            <img src={t.photo} alt={t.alt} loading="lazy" decoding="async" />
+          </div>
+          <div class="bs__text">
+            <Icon name={t.icon} size={24} class="bs__icon" />
+            <div>
+              <h3>{t.title}</h3>
+              <p>{t.text}</p>
+            </div>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.bs').forEach((band) => {
+    const strip = band.querySelector<HTMLElement>('[data-strip]');
+    const [prev, next] = band.querySelectorAll<HTMLButtonElement>('[data-step]');
+    if (!strip || !prev || !next) return;
+    const measure = () => {
+      prev.disabled = strip.scrollLeft < 8;
+      next.disabled = strip.scrollLeft + strip.clientWidth > strip.scrollWidth - 8;
+    };
+    const step = (dir: number) => {
+      const card = strip.querySelector('li');
+      if (!card) return;
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      strip.scrollBy({ left: dir * (card.getBoundingClientRect().width + 20), behavior: reduce ? 'auto' : 'smooth' });
+    };
+    prev.addEventListener('click', () => step(-1));
+    next.addEventListener('click', () => step(1));
+    strip.addEventListener('scroll', measure, { passive: true });
+    addEventListener('resize', measure);
+    measure();
+  });
+</script>
+
+<style>
+  .bs {
+    padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+    background: var(--navy-deep);
+    color: #c9d5dc;
+    overflow: hidden;
+  }
+  .bs__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .bs__head > div:first-child {
+    max-width: 44rem;
+  }
+  .bs .eyebrow {
+    color: var(--copper-light);
+  }
+  .bs h2 {
+    margin-top: 1rem;
+    color: #fff;
+  }
+  .bs .lead {
+    margin-top: 1.25rem;
+    color: #c9d5dc;
+  }
+  .bs__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .bs__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-right: 0.5rem;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .bs__link:hover {
+    color: var(--copper-light);
+  }
+  .bs__btn {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+  }
+  .bs__btn:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .bs__btn:disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .bs__btn :global(.bs__back) {
+    transform: rotate(180deg);
+  }
+  .bs__strip {
+    --edge: max(var(--gutter), calc((100vw - var(--container)) / 2));
+    list-style: none;
+    margin: 3rem 0 0;
+    padding: 0 var(--edge) 0.5rem;
+    scroll-padding-inline: var(--edge);
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .bs__strip::-webkit-scrollbar {
+    display: none;
+  }
+  .bs__strip:focus-visible {
+    outline-offset: -3px;
+  }
+  .bs__strip li {
+    flex: none;
+    width: min(78vw, 21rem);
+    scroll-snap-align: start;
+  }
+  .bs__rail {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .bs__rail::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: -1.25rem;
+    top: 50%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .bs__strip li:last-child .bs__rail::before {
+    right: 0;
+  }
+  .bs__dot {
+    position: relative;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: var(--copper-light);
+    flex: none;
+  }
+  .bs__stage {
+    position: relative;
+    margin-left: 0.75rem;
+    padding-right: 0.75rem;
+    background: var(--navy-deep);
+    color: var(--copper-light);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bs__photo {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .bs__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bs__text {
+    display: flex;
+    gap: 0.9rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .bs__text :global(.bs__icon) {
+    flex: none;
+    color: var(--copper-light);
+    margin-top: 0.1rem;
+  }
+  .bs h3 {
+    color: #fff;
+    font-size: 1.125rem;
+    line-height: 1.3;
+  }
+  .bs__text p {
+    margin-top: 0.4rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #b7c6cf;
+  }
+</style>

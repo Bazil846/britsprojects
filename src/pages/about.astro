@@ -1,8 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
+import PhotoHero from '../components/PhotoHero.astro';
 import Icon from '../components/Icon.astro';
-import CtaBand from '../components/CtaBand.astro';
+import EnquiryBand from '../components/EnquiryBand.astro';
 import Accreditations from '../components/Accreditations.astro';
 import { whyChoose, focus, documents } from '../content';
 import { SITE_URL, company } from '../site';
@@ -24,12 +24,25 @@ const schema = [
   description="Structural construction expertise, two ways to support your build, a coordinated professional team and careful cost oversight for the home you are investing in."
   schema={schema}
 >
-  <PageHero
-    crumb="Why choose us"
-    eyebrow="Why us"
-    title="Why Choose Brits Construction Projects Ltd?"
+  <PhotoHero
+    crumbs={[{ href: '/', label: 'Home' }, { label: 'Why choose us' }]}
+    image="/photos/brits-site-team.webp"
+    alt="Two Brits bricklayers in hi-vis building a blockwork wall"
+    position="50% 25%"
+    pill="Why choose us"
+    title="Why Choose Brits"
+    accent="Construction Projects?"
     lead="Practical construction expertise and professional project oversight, focused on the elements that give your home its strength."
-  />
+    caption="Brits team on site"
+  >
+    <div slot="actions" class="btn-row">
+      <a class="btn btn--primary" href="/structural-works">
+        Structural works
+        <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+      </a>
+      <a class="btn btn--outline" href="/project-management">Project management</a>
+    </div>
+  </PhotoHero>
 
   <section class="section" aria-labelledby="why-heading">
     <div class="container">
@@ -132,7 +145,11 @@ const schema = [
     </div>
   </section>
 
-  <CtaBand />
+  <EnquiryBand
+    title="Talk to us about your project"
+    text="Structural works, project management, or both. Send us a few details and, if you have them, your drawings."
+    formId="about-enquiry"
+  />
 </Base>
 
 <style>

@@ -5,7 +5,7 @@ export const structuralCore = [
     id: 'extensions', photo: '/photos/build-progress-14.webp', alt: 'Extension under construction with new brick and blockwork walls and scaffolding',
     icon: 'extension',
     title: 'Extensions',
-    text: 'Structural construction for single and double-storey extensions, including demolition, groundworks, foundations, drainage, walls, floors, steelwork and roofing.',
+    text: 'Structural construction for single and double storey extensions, including demolition, groundworks, foundations, drainage, walls, floors, steelwork and roofing.',
   },
   {
     id: 'loft-conversions', photo: '/photos/loft-construction-4.webp', alt: 'Loft conversion structure with new steel beams and timber framing',
@@ -51,7 +51,7 @@ export const structuralTrades = [
     id: 'masonry', photo: '/photos/build-progress-9.webp', alt: 'New brickwork and blockwork walls rising on an extension',
     icon: 'brick',
     title: 'Brickwork & Blockwork',
-    text: 'Construction of external walls, internal load-bearing walls and supporting masonry for extensions, alterations and new homes.',
+    text: 'Construction of external walls, internal load bearing walls and supporting masonry for extensions, alterations and new homes.',
   },
   {
     id: 'steelwork', photo: '/photos/loft-construction-2.webp', alt: 'Red-painted structural steel frame inside a roof under construction',
@@ -240,3 +240,200 @@ export const accreditations = [
   { name: 'CIAT', src: '/logos/ciat-logo.png' },
   { name: 'NIG insurance', src: '/logos/nig-logo.png' },
 ];
+
+/** Detail for each structural project type page (/structural-works/<id>). */
+export const projectTypes = [
+  {
+    id: 'extensions',
+    nav: 'Extensions',
+    title: 'Structural Work for Extensions',
+    pill: 'Single and double storey extensions',
+    lead: 'Rear, side and wraparound extensions built from the ground up to a watertight shell, to your architect’s drawings and your engineer’s design.',
+    hero: '/photos/ext-construction-3.webp',
+    heroAlt: 'Rear extension shell with new blockwork walls, a steel beam and timber roof joists',
+    heroPosition: '50% 55%',
+    caption: 'Extension shell with steel and roof joists',
+    intro:
+      'An extension is only as good as the structure beneath it. We take your project from breaking ground to a watertight shell: foundations, drainage, floors, walls, steelwork and the roof structure, ready for your finishing trades or your main contractor.',
+    includes: ['demolition', 'foundations', 'drainage', 'masonry', 'steelwork', 'concrete-floors', 'beam-block', 'roofing'],
+    stages: [
+      { title: 'Site set up and demolition', text: 'Protection for the house and neighbours, then any existing structure taken down and the ground cleared.' },
+      { title: 'Excavation and foundations', text: 'Trenches dug to the engineer’s depth, inspected by Building Control, then concreted.' },
+      { title: 'Drainage', text: 'Existing drains diverted around the footprint and new runs laid for the new layout.' },
+      { title: 'Ground floor', text: 'A solid concrete slab or a beam and block floor, to the specified build up.' },
+      { title: 'Walls', text: 'Brick and block walls built up from the damp proof course, with openings formed.' },
+      { title: 'Steelwork', text: 'Steel beams and columns installed to the engineer’s design, ready for inspection.' },
+      { title: 'Roof structure', text: 'Roof joists or rafters in and the shell made watertight.' },
+    ],
+    notes: [
+      'Building Control inspects the foundations, drainage and steelwork before they are covered.',
+      'Building on or near the boundary may need a party wall notice and agreement.',
+      'Public sewers under the footprint can need a build over agreement from the water company.',
+      'Steel beams need your structural engineer’s calculations before they can be ordered.',
+    ],
+    gallery: [
+      { src: '/photos/groundworks-3.webp', alt: 'Foundation trenches with reinforcement cages and formwork', caption: 'Foundations' },
+      { src: '/photos/build-progress-1.webp', alt: 'New concrete floor slab on a damp proof membrane inside new brickwork', caption: 'Floor slab' },
+      { src: '/photos/build-progress-9.webp', alt: 'New brickwork and blockwork walls rising on an extension', caption: 'Walls' },
+      { src: '/photos/build-progress-17.webp', alt: 'Steel beams and new timber joists spanning brickwork walls', caption: 'Steels and roof' },
+    ],
+    faqs: [
+      {
+        q: 'Do you build the whole extension or only the structure?',
+        a: 'Our focus is the structural package: everything from the foundations to a watertight shell. If you would like one team to finish the extension too, our sister company Brits Construction Services builds complete projects.',
+      },
+      {
+        q: 'What do you need from me to quote?',
+        a: 'The architectural drawings, the structural engineer’s design and calculations, and the specification if you have one. From these we prepare a clear scope and quotation for the structural package.',
+      },
+      {
+        q: 'Who arranges the Building Control inspections?',
+        a: 'We plan the work around the inspections and coordinate with the inspector, so the foundations, drainage and steel are ready to be seen before anything is covered up.',
+      },
+    ],
+  },
+  {
+    id: 'loft-conversions',
+    nav: 'Loft conversions',
+    title: 'Structural Work for Loft Conversions',
+    pill: 'Dormer, hip to gable and mansard lofts',
+    lead: 'Floor strengthening, steel installation, dormer construction and roof alterations: the framework your new loft room is built on.',
+    hero: '/photos/loft-construction-4.webp',
+    heroAlt: 'Loft conversion structure with new steel beams and timber framing',
+    heroPosition: '50% 45%',
+    caption: 'Loft structure with new steels and framing',
+    intro:
+      'Converting a loft changes how your roof carries its load. New floor joists, steel beams, dormer framing and altered roof timbers all have to follow the engineer’s design exactly. We build that structure, ready for insulation, boarding and finishes.',
+    includes: ['steelwork', 'roofing', 'masonry', 'demolition'],
+    stages: [
+      { title: 'Scaffold and roof opened', text: 'Scaffold and protection up, then the roof opened where the dormer or new structure goes.' },
+      { title: 'New floor', text: 'New floor joists installed alongside or above the existing ceiling joists, to carry the new room.' },
+      { title: 'Steel beams', text: 'Steels lifted in and seated on padstones or new supports, to the engineer’s design.' },
+      { title: 'Dormer framing', text: 'Dormer walls, cheeks and roof framed in timber.' },
+      { title: 'Masonry', text: 'Gable or party walls built up where the design calls for it.' },
+      { title: 'Roof closed in', text: 'Roof structure completed and the loft made watertight.' },
+    ],
+    notes: [
+      'Steel bearing into a party wall usually needs a party wall agreement with your neighbour.',
+      'Building Control checks the new floor, steelwork and roof structure as the work goes on.',
+      'Most lofts need a structural engineer’s design for the floor, steels and any altered rafters.',
+      'Headroom and the stair position should be settled in the drawings before work starts.',
+    ],
+    gallery: [
+      { src: '/photos/large-loft-1.webp', alt: 'Loft conversion structure with new steel beams, rafters and floor joists', caption: 'Steels and rafters' },
+      { src: '/photos/loft-construction-2.webp', alt: 'Red painted structural steel frame inside a roof under construction', caption: 'Steel frame' },
+      { src: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed', caption: 'Roof structure' },
+      { src: '/photos/build-progress-11.webp', alt: 'New roof trusses and timber joists over a structure under scaffolding', caption: 'Roof timbers' },
+    ],
+    faqs: [
+      {
+        q: 'Can my existing ceiling joists carry a loft room?',
+        a: 'Usually not. Ceiling joists are sized for a ceiling, not a floor. Your engineer will specify new floor joists and any steel beams, and we install them to that design.',
+      },
+      {
+        q: 'Will you need to go into my neighbour’s side?',
+        a: 'Steels often bear into the party wall. Where that is the case a party wall agreement or award is normally needed before work starts, and we work to its requirements.',
+      },
+      {
+        q: 'Do you fit the stairs, insulation and finishes?',
+        a: 'Our package covers the structure. Finishing trades can follow on, or our sister company Brits Construction Services can complete the whole loft conversion.',
+      },
+    ],
+  },
+  {
+    id: 'internal-alterations',
+    nav: 'Internal alterations',
+    title: 'Internal Structural Alterations',
+    pill: 'Wall removal and new openings',
+    lead: 'Load bearing walls removed, new openings formed and steel beams installed safely, with temporary support at every step.',
+    hero: '/photos/build-progress-4.webp',
+    heroAlt: 'Steel beam installed over a new opening in blockwork',
+    heroPosition: '50% 50%',
+    caption: 'New steel over a structural opening',
+    intro:
+      'Opening up a kitchen, forming a wide opening to a garden room or removing a chimney breast all change the load paths through your home. We carry out the work in a controlled sequence, with the house supported throughout, and install the beams, columns and frames your engineer specifies.',
+    includes: ['demolition', 'steelwork', 'masonry'],
+    stages: [
+      { title: 'Design checked', text: 'We review the engineer’s design and plan the sequence and temporary support.' },
+      { title: 'Temporary support', text: 'Props and needles installed so the walls and floors above are carried safely.' },
+      { title: 'Wall removed', text: 'The wall or chimney breast taken out in controlled stages.' },
+      { title: 'Padstones and beam', text: 'Bearings built, then the specified steel or beam lifted into place.' },
+      { title: 'Packed and checked', text: 'The beam packed tight to the structure above and the props removed only when it is carrying the load.' },
+      { title: 'Inspection', text: 'Building Control inspects the steel before it is boxed in and made good.' },
+    ],
+    notes: [
+      'Never remove a load bearing wall without a structural engineer’s design.',
+      'A beam bearing onto a party wall may need a party wall notice.',
+      'Steel in some locations needs fire protection, set out in the design.',
+      'Building Control needs to see the beam and its bearings before they are covered.',
+    ],
+    gallery: [
+      { src: '/photos/build-progress-8.webp', alt: 'View through a wide new opening into an extension shell with timber roof joists', caption: 'Opening formed' },
+      { src: '/photos/build-progress-17.webp', alt: 'Steel beams and new timber joists spanning brickwork walls', caption: 'Steels in place' },
+      { src: '/photos/build-progress-9.webp', alt: 'New brickwork and blockwork walls with openings formed', caption: 'Supporting masonry' },
+    ],
+    faqs: [
+      {
+        q: 'How do I know if a wall is load bearing?',
+        a: 'You cannot tell reliably by looking. A structural engineer should inspect it and, if it is load bearing, design the beam and supports. Our professional team includes structural engineers if you need one.',
+      },
+      {
+        q: 'Is the house safe while the wall is out?',
+        a: 'Yes. The structure above is carried on temporary props and needles before anything is removed, and they stay until the new beam is installed and carrying the load.',
+      },
+      {
+        q: 'Do I need Building Control approval?',
+        a: 'Yes, removing a load bearing wall is building work under the Building Regulations. Building Control will want the engineer’s calculations and will inspect the steel.',
+      },
+    ],
+  },
+  {
+    id: 'new-builds',
+    nav: 'New build structures',
+    title: 'New Build Structures',
+    pill: 'Houses and residential buildings',
+    lead: 'Coordinated structural packages for new homes: groundworks, foundations, drainage, walls, floors, steelwork and the roof structure.',
+    hero: '/photos/scaffolded-build-1.webp',
+    heroAlt: 'Residential new build wrapped in scaffolding and sheeting',
+    heroPosition: '50% 50%',
+    caption: 'Residential new build under scaffold',
+    intro:
+      'A new home brings every structural trade together, often with piling or specialist foundations. We coordinate the full structural package in the right order, working to the engineer’s design and any warranty provider’s inspections, so the building is sound before the finishing work begins.',
+    includes: ['demolition', 'foundations', 'drainage', 'masonry', 'steelwork', 'concrete-floors', 'beam-block', 'screeding', 'roofing'],
+    stages: [
+      { title: 'Groundworks', text: 'Site cleared, levels set and services located before excavation.' },
+      { title: 'Foundations', text: 'Strip, trench fill or piled foundations to the engineer’s design, inspected before concrete.' },
+      { title: 'Drainage', text: 'Foul and surface water drainage laid and connected.' },
+      { title: 'Ground floor', text: 'Slab or beam and block floor to the specified build up.' },
+      { title: 'Superstructure', text: 'External and internal load bearing walls built up, floor by floor.' },
+      { title: 'Steel and upper floors', text: 'Steel frames, beams and upper floor structures installed.' },
+      { title: 'Roof', text: 'Roof structure completed and the building made watertight.' },
+    ],
+    notes: [
+      'Piling or special foundations may be needed, depending on the ground and the engineer’s design.',
+      'Building Control, and any structural warranty provider, inspect at key stages.',
+      'Drainage connections to the public sewer need approval from the water company.',
+      'A clear programme and sequence keeps each trade ready for the next.',
+    ],
+    gallery: [
+      { src: '/photos/groundworks-1.webp', alt: 'Foundation trench with steel reinforcement and formwork', caption: 'Foundations' },
+      { src: '/photos/concrete-3.webp', alt: 'Concrete pump lorry delivering concrete on a residential site', caption: 'Concrete pour' },
+      { src: '/photos/build-progress-14.webp', alt: 'Building under construction with new brick and blockwork walls and scaffolding', caption: 'Superstructure' },
+      { src: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed', caption: 'Roof structure' },
+    ],
+    faqs: [
+      {
+        q: 'Can you take on the whole structural package?',
+        a: 'Yes. We coordinate groundworks, foundations, drainage, walls, floors, steel and the roof as one package, so each stage is ready for the next.',
+      },
+      {
+        q: 'Do you work with warranty providers?',
+        a: 'Where your new home has a structural warranty, we plan the work around the provider’s inspections alongside Building Control.',
+      },
+      {
+        q: 'Who finishes the house?',
+        a: 'Finishing trades or your main contractor follow on once the structure is complete. Our sister company Brits Construction Services can also complete the build.',
+      },
+    ],
+  },
+] as const;

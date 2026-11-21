@@ -1,11 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
+import PhotoHero from '../components/PhotoHero.astro';
+import EnquiryBand from '../components/EnquiryBand.astro';
 import Icon from '../components/Icon.astro';
-import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
-import { structuralCore, structuralTrades, structuralFaqs } from '../content';
+import { structuralCore, structuralTrades, structuralFaqs, projectTypes } from '../content';
 import { SITE_URL, company } from '../site';
+
+const designers = [
+  { icon: 'drawing', title: 'Your architect’s drawings', text: 'We build to the approved drawings and raise anything unclear or inconsistent before work starts.' },
+  { icon: 'steel', title: 'Your engineer’s design', text: 'Foundations, beams, columns and connections follow the structural engineer’s design and calculations.' },
+  { icon: 'shield', title: 'Building Control', text: 'We plan around inspections so each stage is ready to be seen before it is covered up.' },
+] as const;
 
 const schema = [
   {
@@ -41,31 +47,36 @@ const schema = [
   description="Structural packages for extensions, lofts, alterations and new builds: foundations, drainage, masonry, steelwork, floors and roof structures."
   schema={schema}
 >
-  <PageHero
-    crumb="Structural works"
-    eyebrow="Structural Work Specialists"
-    title="Strong Foundations for Your Dream Home"
+  <PhotoHero
+    crumbs={[{ href: '/', label: 'Home' }, { label: 'Structural works' }]}
+    image="/photos/build-progress-11.webp"
+    alt="New roof timbers and joists being framed over a house extension under scaffolding"
+    position="50% 45%"
+    pill="Structural work specialists"
+    title="Strong Foundations"
+    accent="for Your Dream Home"
     lead="The strength of your home depends on the work beneath the surface. Foundations, steel connections, supporting walls and roof structures all deserve careful attention."
+    caption="Roof structure going on"
   >
     <div slot="actions" class="btn-row">
-      <a class="btn btn--primary" href="/contact?topic=structural">
-        Request a Structural Works Quotation
+      <a class="btn btn--primary" href="#enquire">
+        Request a structural quotation
         <span class="btn__chip"><Icon name="arrow" size={18} /></span>
       </a>
       <a class="btn btn--outline" href="/contact#drawings"><Icon name="drawing" size={20} /> Send your drawings</a>
     </div>
-    <div slot="aside" class="aside-card">
-      <p>
-        We undertake structural building packages for residential extensions, loft conversions, internal alterations and new builds, working
-        to the architectural drawings, structural engineer’s design and agreed specifications.
-      </p>
-      <ul class="checklist">
-        <li>Architectural drawings</li>
-        <li>Structural engineer’s design</li>
-        <li>Agreed specifications</li>
+  </PhotoHero>
+
+  <nav class="subnav" aria-label="On this page">
+    <div class="container">
+      <ul>
+        <li><a href="#projects-heading">Project types</a></li>
+        <li><a href="#trades-heading">What we build</a></li>
+        <li><a href="#design-heading">Working to your design</a></li>
+        <li><a href="#sw-faq-heading">Questions</a></li>
       </ul>
     </div>
-  </PageHero>
+  </nav>
 
   <section class="section" aria-labelledby="projects-heading">
     <div class="container">
@@ -73,24 +84,32 @@ const schema = [
         <div class="section-head__text">
           <p class="eyebrow">Project types</p>
           <h2 id="projects-heading" class="h2">Structural packages for every kind of home project</h2>
+          <p class="lead">
+            We undertake structural building packages for residential extensions, loft conversions, internal alterations and new builds,
+            working to the architectural drawings, structural engineer’s design and agreed specifications.
+          </p>
         </div>
       </div>
-      <div class="grid grid--2">
+      <div class="ptypes">
         {
-          structuralCore.map((s) => (
-            <article class="ptype" id={s.id}>
-              <img class="ptype__img" src={s.photo} alt={s.alt} loading="lazy" decoding="async" />
-              <div class="ptype__body">
-                <span class="ptype__icon">
-                  <Icon name={s.icon} size={26} />
+          structuralCore.map((s) => {
+            const p = projectTypes.find((t) => t.id === s.id)!;
+            return (
+              <a class="ptype" id={s.id} href={`/structural-works/${s.id}`}>
+                <span class="ptype__media">
+                  <img src={p.hero} alt={p.heroAlt} loading="lazy" decoding="async" style={`object-position:${p.heroPosition}`} />
                 </span>
-                <div>
-                  <h3 class="h3">{s.title}</h3>
-                  <p>{s.text}</p>
-                </div>
-              </div>
-            </article>
-          ))
+                <span class="ptype__body">
+                  <span class="ptype__pill">{p.pill}</span>
+                  <span class="ptype__title">{s.title}</span>
+                  <span class="ptype__text">{s.text}</span>
+                  <span class="ptype__more">
+                    Explore {p.nav.toLowerCase()} <Icon name="arrow" size={18} />
+                  </span>
+                </span>
+              </a>
+            );
+          })
         }
       </div>
     </div>
@@ -109,13 +128,7 @@ const schema = [
         {
           structuralTrades.map((t, i) => (
             <li id={t.id}>
-              {'photo' in t ? (
-                <img class="trades__img" src={t.photo} alt={t.alt} loading="lazy" decoding="async" style={'position' in t ? `object-position:${t.position}` : undefined} />
-              ) : (
-                <span class="trades__img trades__img--icon">
-                  <Icon name={t.icon} size={48} />
-                </span>
-              )}
+              <img class="trades__img" src={t.photo} alt={t.alt} loading="lazy" decoding="async" />
               <span class="trades__n tabular">{String(i + 1).padStart(2, '0')}</span>
               <Icon name={t.icon} size={26} class="trades__icon" />
               <h3 class="h3">{t.title}</h3>
@@ -132,71 +145,165 @@ const schema = [
     </div>
   </section>
 
-  <section class="section" aria-labelledby="pm-link-heading">
-    <div class="container pm-link">
-      <div>
-        <p class="eyebrow">Already have a builder?</p>
-        <h2 id="pm-link-heading" class="h2">We can oversee their work instead</h2>
-        <p class="lead">
-          If another builder is carrying out your project, {company.shortName} can manage and monitor it on your behalf, checking the work against
-          the drawings and reviewing progress before you pay.
-        </p>
+  <section class="section" aria-labelledby="design-heading">
+    <div class="container design">
+      <div class="design__media">
+        <img src="/photos/brits-site-team.webp" alt="Two Brits bricklayers in hi-vis building a blockwork wall" loading="lazy" decoding="async" />
       </div>
-      <a class="btn btn--outline" href="/project-management">Project management</a>
+      <div>
+        <p class="eyebrow">Working to your design</p>
+        <h2 id="design-heading" class="h2">Built exactly as your designers intended</h2>
+        <p class="lead">
+          The structure is where shortcuts cost the most. We follow the design, plan around inspections and speak up early if something on
+          site does not match.
+        </p>
+        <ul class="design__list">
+          {
+            designers.map((d) => (
+              <li>
+                <span class="design__icon">
+                  <Icon name={d.icon} size={24} />
+                </span>
+                <div>
+                  <h3 class="h3">{d.title}</h3>
+                  <p>{d.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="pm-link">
+          <div>
+            <p class="pm-link__k">Already have a builder?</p>
+            <p>
+              {company.shortName} can oversee their work instead, checking it against the drawings and reviewing progress before you pay.
+            </p>
+          </div>
+          <a class="btn btn--outline" href="/project-management">Project management</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <Faq id="sw-faq-heading" title="Structural works questions" items={structuralFaqs} tone="stone" />
 
-  <CtaBand
-    title="Request a Structural Works Quotation"
+  <EnquiryBand
+    title="Request a structural works quotation"
     text="Send us your architectural drawings and structural engineer’s design, and we will prepare a clear scope and quotation for the structural package."
-    primary={{ href: '/contact?topic=structural', label: 'Request a Quotation' }}
-    secondary={{ href: '/contact#drawings', label: 'Send Us Your Drawings' }}
+    topic="Structural works"
+    formId="sw-enquiry"
   />
 </Base>
 
 <style>
-  .aside-card {
-    padding: 1.75rem;
-    background: var(--canvas);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-card);
-    display: grid;
-    gap: 1.25rem;
+  .subnav {
+    position: sticky;
+    top: 4.75rem;
+    z-index: 30;
+    margin-top: 1.25rem;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
   }
-  .aside-card .checklist li {
+  .subnav ul {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.6rem 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .subnav a {
+    display: block;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
     color: var(--ink);
     font-weight: 600;
+    font-size: 0.925rem;
+    text-decoration: none;
+  }
+  .subnav a:hover {
+    background: var(--stone);
+  }
+  .ptypes {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 800px) {
+    .ptypes {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   .ptype {
-    border: 1px solid var(--line);
-    border-radius: var(--radius-card);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    scroll-margin-top: 6rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-media);
+    text-decoration: none;
+    color: var(--body);
+    scroll-margin-top: 9rem;
+    transition:
+      box-shadow 0.2s,
+      border-color 0.2s;
   }
-  .ptype__img {
-    width: 100%;
+  .ptype:hover {
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-overlay);
+  }
+  .ptype__media {
+    display: block;
     aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .ptype__media img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .ptype:hover .ptype__media img {
+    transform: scale(1.03);
   }
   .ptype__body {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1.25rem;
-    padding: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+    padding: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
   }
-  .ptype p {
-    margin-top: 0.5rem;
+  .ptype__pill {
+    align-self: flex-start;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    background: var(--steel-tint);
+    color: var(--steel);
+    font-size: 0.8125rem;
+    font-weight: 700;
   }
-  .ptype__icon {
-    display: grid;
-    place-items: center;
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 12px;
-    background: var(--navy);
-    color: #fff;
+  .ptype__title {
+    color: var(--ink);
+    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.85rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+  .ptype__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    color: var(--copper);
+    font-weight: 700;
+  }
+  .ptype__more :global(svg) {
+    transition: transform 0.2s;
+  }
+  .ptype:hover .ptype__more :global(svg) {
+    transform: translateX(3px);
   }
   .trades {
     list-style: none;
@@ -215,6 +322,15 @@ const schema = [
       grid-template-columns: repeat(3, 1fr);
     }
   }
+  .trades li {
+    overflow: hidden;
+    position: relative;
+    padding: 1.75rem;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    scroll-margin-top: 9rem;
+  }
   .trades__img {
     display: block;
     width: calc(100% + 3.5rem);
@@ -223,33 +339,9 @@ const schema = [
     aspect-ratio: 4 / 3;
     object-fit: cover;
   }
-  .trades__img--icon {
-    display: grid;
-    place-items: center;
-    background: var(--steel-tint);
-    color: var(--steel);
-  }
-  .trades__n {
-    z-index: 1;
-  }
-  .trades__credit {
-    margin-top: 0.75rem;
-    font-size: 0.75rem;
-  }
-  .trades__credit a {
-    color: var(--muted);
-  }
-  .trades li {
-    overflow: hidden;
-    position: relative;
-    padding: 1.75rem;
-    background: var(--canvas);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-card);
-    scroll-margin-top: 6rem;
-  }
   .trades__n {
     position: absolute;
+    z-index: 1;
     top: 1rem;
     right: 1rem;
     padding: 0.2rem 0.55rem;
@@ -268,24 +360,85 @@ const schema = [
   .trades p {
     margin-top: 0.5rem;
   }
+  .trades__credit {
+    font-size: 0.75rem;
+  }
+  .trades__credit a {
+    color: var(--muted);
+  }
+  .design {
+    display: grid;
+    gap: 3rem;
+  }
+  .design > * {
+    min-width: 0;
+  }
+  @media (min-width: 1000px) {
+    .design {
+      grid-template-columns: 5fr 7fr;
+      gap: 4.5rem;
+      align-items: start;
+    }
+  }
+  .design__media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-media);
+  }
+  @media (max-width: 999px) {
+    .design__media img {
+      aspect-ratio: 4 / 3;
+      object-position: 50% 30%;
+    }
+  }
+  .design h2 {
+    margin-top: 1rem;
+  }
+  .design .lead {
+    margin-top: 1.25rem;
+  }
+  .design__list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .design__list li {
+    display: flex;
+    gap: 1.1rem;
+  }
+  .design__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    background: var(--navy);
+    color: #fff;
+  }
+  .design__list p {
+    margin-top: 0.35rem;
+  }
   .pm-link {
     display: grid;
-    gap: 2rem;
-    align-items: end;
-    padding: clamp(2rem, 1.5rem + 2vw, 3rem);
-    border-radius: var(--radius-media);
+    gap: 1.25rem;
+    align-items: center;
+    margin-top: 2.5rem;
+    padding: 1.5rem 1.75rem;
+    border-radius: var(--radius-card);
     background: var(--steel-tint);
   }
-  @media (min-width: 900px) {
+  @media (min-width: 700px) {
     .pm-link {
       grid-template-columns: 1fr auto;
     }
   }
-  .pm-link h2 {
-    margin-top: 1rem;
-  }
-  .pm-link .lead {
-    margin-top: 1rem;
-    max-width: 44rem;
+  .pm-link__k {
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 1.1rem;
   }
 </style>

@@ -67,6 +67,9 @@ body {
   font-feature-settings: 'tnum' 0;
   -webkit-font-smoothing: antialiased;
 }
+[hidden] {
+  display: none !important;
+}
 img,
 svg {
   display: block;

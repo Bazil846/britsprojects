@@ -1,0 +1,465 @@
+---
+import Base from '../../layouts/Base.astro';
+import PhotoHero from '../../components/PhotoHero.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import EnquiryBand from '../../components/EnquiryBand.astro';
+import { projectTypes, structuralTrades } from '../../content';
+import { SITE_URL } from '../../site';
+
+export function getStaticPaths() {
+  return projectTypes.map((p) => ({ params: { slug: p.id } }));
+}
+
+const { slug } = Astro.params;
+const p = projectTypes.find((t) => t.id === slug)!;
+const included = p.includes.map((id) => structuralTrades.find((t) => t.id === id)!);
+const others = projectTypes.filter((t) => t.id !== p.id);
+const intro: Record<string, string> = {
+  extensions: 'Everything beneath your new extension',
+  'loft-conversions': 'The framework for your new loft room',
+  'internal-alterations': 'Opening up your home, safely',
+  'new-builds': 'A sound structure for your new home',
+};
+const enquiryTitle: Record<string, string> = {
+  extensions: 'Planning an extension?',
+  'loft-conversions': 'Planning a loft conversion?',
+  'internal-alterations': 'Planning a structural alteration?',
+  'new-builds': 'Planning a new build?',
+};
+const url = `${SITE_URL}/structural-works/${p.id}`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: p.title,
+    serviceType: 'Structural building work',
+    description: p.lead,
+    provider: { '@id': `${SITE_URL}/#business` },
+    areaServed: 'London and the Home Counties',
+    url,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Structural works', item: `${SITE_URL}/structural-works` },
+      { '@type': 'ListItem', position: 3, name: p.nav, item: url },
+    ],
+  },
+];
+---
+
+<Base title={`${p.title} | Brits Construction Projects`} description={p.lead} schema={schema}>
+  <PhotoHero
+    crumbs={[{ href: '/', label: 'Home' }, { href: '/structural-works', label: 'Structural works' }, { label: p.nav }]}
+    image={p.hero}
+    alt={p.heroAlt}
+    position={p.heroPosition}
+    pill={p.pill}
+    title={p.title}
+    lead={p.lead}
+    caption={p.caption}
+  >
+    <div slot="actions" class="btn-row">
+      <a class="btn btn--primary" href="#enquire">
+        Request a quotation
+        <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+      </a>
+      <a class="btn btn--outline" href="/contact#drawings"><Icon name="drawing" size={20} /> Send your drawings</a>
+    </div>
+  </PhotoHero>
+
+  <section class="section" aria-labelledby="intro-heading">
+    <div class="container intro">
+      <div>
+        <p class="eyebrow">The structural package</p>
+        <h2 id="intro-heading" class="h2">{intro[p.id]}</h2>
+        <p class="lead">{p.intro}</p>
+      </div>
+      <aside class="included">
+        <p class="included__title">Typically included</p>
+        <ul>
+          {
+            included.map((t) => (
+              <li>
+                <a href={`/structural-works#${t.id}`}>
+                  <Icon name={t.icon} size={22} />
+                  {t.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="included__note">Your quotation lists exactly what is included for your project.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--stone" aria-labelledby="stages-heading">
+    <div class="container stages">
+      <div>
+        <p class="eyebrow">Step by step</p>
+        <h2 id="stages-heading" class="h2">How the structure goes up</h2>
+        <ol class="stages__list">
+          {
+            p.stages.map((s, i) => (
+              <li>
+                <span class="stages__n tabular" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3 class="h3">{s.title}</h3>
+                  <p>{s.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+      <div class="gallery">
+        {
+          p.gallery.map((g) => (
+            <figure>
+              <img src={g.src} alt={g.alt} loading="lazy" decoding="async" />
+              <figcaption>{g.caption}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="notes-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Good to know</p>
+          <h2 id="notes-heading" class="h2">Before work starts</h2>
+        </div>
+      </div>
+      <ul class="notes">
+        {
+          p.notes.map((n) => (
+            <li>
+              <Icon name="shield" size={24} />
+              <p>{n}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="pm-band">
+        <div>
+          <p class="eyebrow">Using another builder?</p>
+          <p class="pm-band__title">We can oversee their structural work on your behalf.</p>
+          <p>We check the work against the drawings and engineer’s design at agreed stages and review progress before you pay.</p>
+        </div>
+        <a class="btn btn--primary" href="/project-management">
+          Project management
+          <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Faq id="type-faq-heading" title={`${p.nav} questions`} items={[...p.faqs]} tone="stone" />
+
+  <section class="section" aria-labelledby="others-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">More structural work</p>
+          <h2 id="others-heading" class="h2">Other project types</h2>
+        </div>
+        <a class="link-arrow" href="/structural-works">All structural works <Icon name="arrow" size={18} /></a>
+      </div>
+      <ul class="others">
+        {
+          others.map((o) => (
+            <li>
+              <a href={`/structural-works/${o.id}`}>
+                <img src={o.hero} alt="" loading="lazy" decoding="async" style={`object-position:${o.heroPosition}`} />
+                <span class="others__body">
+                  <strong>{o.nav}</strong>
+                  <small>{o.pill}</small>
+                </span>
+                <Icon name="arrow" size={20} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <EnquiryBand
+    title={enquiryTitle[p.id]}
+    text="Send us your architectural drawings and structural engineer’s design, and we will prepare a clear scope and quotation for the structural package."
+    topic="Structural works"
+    formId="type-enquiry"
+  />
+</Base>
+
+<style>
+  .intro {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .intro > * {
+    min-width: 0;
+  }
+  @media (min-width: 1000px) {
+    .intro {
+      grid-template-columns: 7fr 5fr;
+      gap: 4.5rem;
+      align-items: start;
+    }
+  }
+  .intro h2 {
+    margin-top: 1rem;
+  }
+  .intro .lead {
+    margin-top: 1.25rem;
+  }
+  .included {
+    padding: 1.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-media);
+    background: var(--paper);
+  }
+  .included__title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .included ul {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .included a {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-height: 3.1rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .included a:hover {
+    color: var(--copper);
+  }
+  .included :global(svg) {
+    flex: none;
+    color: var(--copper);
+  }
+  .included__note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .stages {
+    display: grid;
+    gap: 3rem;
+  }
+  .stages > * {
+    min-width: 0;
+  }
+  @media (min-width: 1000px) {
+    .stages {
+      grid-template-columns: 1fr 1fr;
+      gap: 4.5rem;
+    }
+    .gallery {
+      position: sticky;
+      top: 7rem;
+      align-self: start;
+    }
+  }
+  .stages h2 {
+    margin-top: 1rem;
+  }
+  .stages__list {
+    list-style: none;
+    margin: 2.25rem 0 0;
+    padding: 0;
+  }
+  .stages__list li {
+    position: relative;
+    display: flex;
+    gap: 1.25rem;
+    padding-bottom: 1.75rem;
+  }
+  .stages__list li:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 1.375rem;
+    top: 2.75rem;
+    bottom: 0.25rem;
+    width: 2px;
+    background: var(--line-strong);
+  }
+  .stages__n {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .stages__list h3 {
+    margin-top: 0.45rem;
+  }
+  .stages__list p {
+    margin-top: 0.35rem;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .gallery figure {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+  }
+  .gallery figure:first-child:nth-last-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .gallery img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+  .gallery figure:first-child:nth-last-child(odd) img {
+    aspect-ratio: 16 / 9;
+  }
+  .gallery figcaption {
+    position: absolute;
+    left: 0.6rem;
+    bottom: 0.6rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(8, 32, 47, 0.78);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+  .notes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .notes {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1100px) {
+    .notes {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .notes li {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    color: var(--ink);
+  }
+  .notes :global(svg) {
+    color: var(--steel);
+  }
+  .pm-band {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    margin-top: 2.5rem;
+    padding: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
+    border-radius: var(--radius-media);
+    background: var(--navy);
+    color: #d5dfe5;
+  }
+  @media (min-width: 860px) {
+    .pm-band {
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+    }
+  }
+  .pm-band .eyebrow {
+    color: var(--copper-light);
+  }
+  .pm-band__title {
+    margin: 0.75rem 0 0.5rem;
+    color: #fff;
+    font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .others {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 860px) {
+    .others {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .others a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.1rem 0.75rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    text-decoration: none;
+    transition:
+      box-shadow 0.2s,
+      border-color 0.2s;
+  }
+  .others a:hover {
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-overlay);
+  }
+  .others img {
+    width: 5.5rem;
+    height: 4.5rem;
+    flex: none;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .others__body {
+    display: grid;
+    flex: 1;
+    line-height: 1.35;
+  }
+  .others strong {
+    color: var(--ink);
+    font-size: 1.05rem;
+  }
+  .others small {
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+  .others :global(svg) {
+    flex: none;
+    color: var(--copper);
+  }
+</style>

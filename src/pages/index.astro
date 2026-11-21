@@ -1,26 +1,39 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import SectionDrawing from '../components/SectionDrawing.astro';
-import CtaBand from '../components/CtaBand.astro';
-import Accreditations from '../components/Accreditations.astro';
-import { structuralCore, oversight, whyChoose, focus, sitePhotos } from '../content';
+import PhotoHero from '../components/PhotoHero.astro';
+import BuildStrip from '../components/BuildStrip.astro';
+import Comparison from '../components/Comparison.astro';
+import EnquiryBand from '../components/EnquiryBand.astro';
+import Faq from '../components/Faq.astro';
+import Logo from '../components/Logo.astro';
+import { projectTypes, structuralTrades, oversight, accreditations, structuralFaqs, oversightFaqs } from '../content';
 import { SITE_URL, company } from '../site';
+
+const promises = [
+  { icon: 'shield', title: 'Sound construction', text: 'Built to the engineer’s design' },
+  { icon: 'cost', title: 'Controlled costs', text: 'Payments matched to progress' },
+  { icon: 'programme', title: 'Reliable progress', text: 'Programme monitored stage by stage' },
+  { icon: 'check', title: 'Quality workmanship', text: 'Checked before it is covered up' },
+] as const;
 
 const steps = [
   { title: 'Send your drawings', text: 'Share your architectural drawings, structural engineer’s design and specification, or tell us where your project is up to.' },
-  { title: 'We review and discuss', text: 'We look at the design and talk through what you need: structural works, project management, or both.' },
-  { title: 'Clear scope and quotation', text: 'You receive a written scope that sets out what is included, so you know exactly what you are agreeing to.' },
-  { title: 'Build and oversight begin', text: 'From the first excavation to the final structural inspection, with clear updates at every stage.' },
+  { title: 'We review and advise', text: 'We study the design and talk through what you need: structural works, project management, or both.' },
+  { title: 'Clear written scope', text: 'You receive a quotation that sets out exactly what is included, or a plan of the stages we will review.' },
+  { title: 'Build and oversight', text: 'From the first excavation to the final structural inspection, with clear updates at every stage.' },
 ];
-const schema = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: company.name,
-    url: SITE_URL,
-  },
-];
+
+const assurances = [
+  { icon: 'drawingsCheck', title: 'Built to the design', text: 'We work to your architect’s drawings and structural engineer’s design, and raise anything that does not match before work goes further.' },
+  { icon: 'shield', title: 'Inspections planned in', text: 'Foundations, drainage and steelwork are ready for Building Control before anything is covered up.' },
+  { icon: 'team', title: 'A professional team', text: 'Architects, structural engineers and party wall surveyors on hand when your project needs them.' },
+  { icon: 'home', title: 'Part of the Brits group', text: 'The sister company of Brits Construction Services, accredited and insured.' },
+] as const;
+
+const faqs = [structuralFaqs[0], structuralFaqs[1], oversightFaqs[0], oversightFaqs[1], oversightFaqs[2], structuralFaqs[4]];
+
+const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: company.name, url: SITE_URL }];
 ---
 
 <Base
@@ -28,39 +41,130 @@ const schema = [
   description="Structural building work and independent project management for extensions, loft conversions, alterations and new homes in London and the Home Counties."
   schema={schema}
 >
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero__grid">
-      <div class="hero__text">
-        <p class="eyebrow">Residential structural work &amp; project management</p>
-        <h1 class="display">A Stronger Home. <span class="hero__accent">A Better Managed Build.</span></h1>
-        <p class="lead hero__lead">Residential structural work and project management: expertise you can build on.</p>
-        <p class="hero__intro">
-          Planning an extension, loft conversion, internal alteration or new home? Brits Construction Projects Ltd brings together practical
-          construction expertise and professional project oversight to help turn your plans into a solid, carefully built home.
-        </p>
-        <div class="btn-row hero__ctas">
-          <a class="btn btn--primary" href="/contact">
-            Discuss Your Project
-            <span class="btn__chip"><Icon name="arrow" size={18} /></span>
-          </a>
-          <a class="btn btn--outline" href="/contact#drawings">
-            <Icon name="drawing" size={20} /> Send Us Your Drawings
-          </a>
-        </div>
-      </div>
-      <SectionDrawing class="hero__drawing" />
+  <PhotoHero
+    size="home"
+    image="/photos/large-loft-1.webp"
+    alt="New steel beams, rafters and floor joists forming the structure of a loft conversion"
+    position="50% 40%"
+    pill="London and the Home Counties"
+    title="A Stronger Home."
+    accent="A Better Managed Build."
+    lead="We build the structure your home depends on, or oversee your builder on your behalf. Structural works and project management for extensions, loft conversions, alterations and new homes."
+    caption="On site: new steels, rafters and floor joists"
+  >
+    <div slot="actions" class="btn-row">
+      <a class="btn btn--primary" href="#offerings">
+        Explore our two services
+        <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+      </a>
+      <a class="btn btn--outline" href={`tel:${company.phoneHref}`}><Icon name="phone" size={20} /> {company.phone}</a>
     </div>
+  </PhotoHero>
 
+  <!-- The two offerings: the heart of the site -->
+  <section class="offers" id="offerings" aria-labelledby="offers-heading">
     <div class="container">
-      <div class="focus">
-        <p class="focus__intro">From the first excavation to the final structural inspection, our focus is clear:</p>
-        <ul class="focus__list">
+      <div class="offers__head">
+        <p class="eyebrow">Two ways we help</p>
+        <h2 id="offers-heading" class="h2">Structural works. Project management. <span>Or both.</span></h2>
+      </div>
+      <div class="offers__grid">
+        <article class="offer">
+          <a class="offer__media" href="/structural-works" tabindex="-1" aria-hidden="true">
+            <img src="/photos/groundworks-3.webp" alt="" loading="lazy" decoding="async" />
+            <span class="offer__num">01</span>
+          </a>
+          <div class="offer__body">
+            <p class="offer__kicker"><Icon name="steel" size={20} /> Structural Works</p>
+            <h3 class="offer__title">We build the structure</h3>
+            <p>
+              Foundations, drainage, walls, floors, steelwork and roof structures for extensions, loft conversions, internal alterations and
+              new builds, built to your engineer’s design.
+            </p>
+            <p class="offer__for"><strong>Best for:</strong> you have drawings and need a builder for the structural package.</p>
+            <ul class="offer__links">
+              {
+                projectTypes.map((p) => (
+                  <li>
+                    <a href={`/structural-works/${p.id}`}>
+                      {p.nav}
+                      <Icon name="arrow" size={18} />
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+            <div class="btn-row">
+              <a class="btn btn--primary" href="/structural-works">
+                Structural works
+                <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+              </a>
+              <a class="btn btn--outline" href="/contact?topic=structural">Request a quotation</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="offer offer--pm">
+          <a class="offer__media" href="/project-management" tabindex="-1" aria-hidden="true">
+            <img src="/photos/build-progress-10.webp" alt="" loading="lazy" decoding="async" />
+            <span class="offer__num">02</span>
+          </a>
+          <div class="offer__body">
+            <p class="offer__kicker"><Icon name="drawingsCheck" size={20} /> Project Management</p>
+            <h3 class="offer__title">We oversee your builder</h3>
+            <p>
+              Already appointed a builder? We check the work against the drawings, review progress before you pay and coordinate your
+              professional team, so someone experienced is on your side.
+            </p>
+            <p class="offer__for"><strong>Best for:</strong> you have a builder and want independent eyes on the work.</p>
+            <ul class="offer__links">
+              {
+                oversight.slice(0, 4).map((o) => (
+                  <li>
+                    <a href={`/project-management#${o.id}`}>
+                      {o.title.replace(/^We /, '')}
+                      <Icon name="arrow" size={18} />
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+            <div class="btn-row">
+              <a class="btn btn--primary" href="/project-management">
+                Project management
+                <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+              </a>
+              <a class="btn btn--outline" href="/contact?topic=project-review">Book a project review</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof band -->
+  <section class="proof" aria-label="Our promises and accreditations">
+    <div class="container">
+      <ul class="proof__promises">
+        {
+          promises.map((p) => (
+            <li>
+              <Icon name={p.icon} size={26} />
+              <div>
+                <strong>{p.title}</strong>
+                <span>{p.text}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="proof__acc">
+        <p class="eyebrow">Accredited &amp; insured</p>
+        <ul>
           {
-            focus.map((f) => (
+            accreditations.map((a) => (
               <li>
-                <Icon name="check" size={18} />
-                {f}
+                <img src={a.src} alt={`${a.name} logo`} loading="lazy" decoding="async" />
               </li>
             ))
           }
@@ -69,189 +173,119 @@ const schema = [
     </div>
   </section>
 
-  <Accreditations />
-
-  <!-- Site photos -->
-  <section class="section photos" aria-labelledby="photos-heading">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-head__text">
-          <p class="eyebrow">On site</p>
-          <h2 id="photos-heading" class="h2">The work beneath the surface</h2>
-          <p class="lead">Foundations, steel connections, supporting walls and roof structures all deserve careful attention.</p>
-        </div>
+  <!-- Offering 1 in depth -->
+  <section class="section section--stone deep" aria-labelledby="sw-heading">
+    <div class="container deep__grid">
+      <div class="deep__media">
+        <img class="deep__main" src="/photos/build-progress-17.webp" alt="Steel beams and new timber joists spanning brickwork walls" loading="lazy" decoding="async" />
+        <img class="deep__inset" src="/photos/groundworks-1.webp" alt="Foundation trench with steel reinforcement and formwork" loading="lazy" decoding="async" />
       </div>
-      <ul class="photos__grid">
-        {
-          sitePhotos.map((p) => (
-            <li>
-              <figure>
-                <img src={p.src} alt={p.alt} loading="lazy" decoding="async" />
-                <figcaption>{p.caption}</figcaption>
-              </figure>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <!-- Two services -->
-  <section class="section section--stone" aria-labelledby="services-heading">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-head__text">
-          <p class="eyebrow">Two ways to support your build</p>
-          <h2 id="services-heading" class="h2">Two core services</h2>
-          <p class="lead">
-            Carrying out your structural building work, and managing your project on your behalf when you appoint another builder.
-          </p>
-        </div>
-      </div>
-      <div class="duo">
-        <article class="duo__card duo__card--navy">
-          <span class="duo__num tabular">01</span>
-          <p class="duo__kicker">Structural Work Specialists</p>
-          <h3 class="h2">We build your structure</h3>
-          <p>
-            Structural building packages for residential extensions, loft conversions, internal alterations and new builds, working to the
-            architectural drawings, structural engineer’s design and agreed specifications.
-          </p>
-          <ul class="checklist">
-            <li>Demolition, groundworks and foundations</li>
-            <li>Drainage, masonry and structural steelwork</li>
-            <li>Floors, screeding and roof structures</li>
-          </ul>
-          <a class="link-arrow" href="/structural-works">Structural works <Icon name="arrow" size={18} /></a>
-        </article>
-        <article class="duo__card">
-          <span class="duo__num tabular">02</span>
-          <p class="duo__kicker">Project Management &amp; Independent Site Oversight</p>
-          <h3 class="h2">We oversee your builder</h3>
-          <p>
-            Already appointed a builder? Have an experienced construction team looking after your interests: we ask the technical questions,
-            review key stages and raise concerns with your builder.
-          </p>
-          <ul class="checklist">
-            <li>Work checked against the drawings</li>
-            <li>Progress reviewed before you pay</li>
-            <li>Programme, budget and quality managed</li>
-          </ul>
-          <a class="link-arrow" href="/project-management">Project management <Icon name="arrow" size={18} /></a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Structural -->
-  <section class="section" aria-labelledby="structural-heading">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-head__text">
-          <p class="eyebrow">Structural Work Specialists</p>
-          <h2 id="structural-heading" class="h2">Strong Foundations for Your Dream Home</h2>
-          <p class="lead">
-            The strength of your home depends on the work beneath the surface. Foundations, steel connections, supporting walls and roof
-            structures all deserve careful attention.
-          </p>
-        </div>
-        <a class="link-arrow" href="/structural-works">All structural works <Icon name="arrow" size={18} /></a>
-      </div>
-      <div class="grid grid--2 core">
-        {
-          structuralCore.map((s) => (
-            <a class="core__card" href={`/structural-works#${s.id}`}>
-              <img class="core__img" src={s.photo} alt={s.alt} loading="lazy" decoding="async" />
-              <span class="core__icon">
-                <Icon name={s.icon} size={28} />
-              </span>
-              <h3 class="h3">{s.title}</h3>
-              <p>{s.text}</p>
-              <span class="link-arrow">
-                Read more <Icon name="arrow" size={18} />
-              </span>
-            </a>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Oversight -->
-  <section class="section section--paper oversight" aria-labelledby="oversight-heading">
-    <div class="container oversight__grid">
-      <div class="oversight__intro">
-        <p class="eyebrow">Project Management &amp; Independent Site Oversight</p>
-        <h2 id="oversight-heading" class="h2">Your Builder. Our Oversight. Your Peace of Mind.</h2>
+      <div class="deep__text">
+        <p class="eyebrow">01 · Structural works</p>
+        <h2 id="sw-heading" class="h2">Strong foundations for your dream home</h2>
         <p class="lead">
-          Building your dream home is a major investment. You deserve to understand how the work is progressing, whether the structure follows
-          the design and whether each payment reflects the work completed.
+          The strength of your home depends on the work beneath the surface. We undertake structural packages for residential projects,
+          working to the architectural drawings, structural engineer’s design and agreed specification.
         </p>
-        <div class="btn-row">
-          <a class="btn btn--primary" href="/contact?topic=project-review">
-            Book a Project Review
-            <span class="btn__chip"><Icon name="arrow" size={18} /></span>
-          </a>
-          <a class="btn btn--outline" href="/project-management">How it works</a>
-        </div>
-      </div>
-      <div>
-        <p class="oversight__kicker">At Brits Construction Projects Ltd, we can manage and monitor your project on your behalf:</p>
-        <ul class="oversight__list">
+        <ul class="types">
           {
-            oversight.map((h) => (
+            projectTypes.map((p) => (
               <li>
-                <a href={`/project-management#${h.id}`}>
-                  <Icon name={h.icon} size={22} class="oversight__icon" />
-                  <span>{h.title}</span>
-                  <Icon name="arrow" size={18} class="oversight__arrow" />
+                <a href={`/structural-works/${p.id}`}>
+                  <img src={p.hero} alt="" loading="lazy" decoding="async" />
+                  <span>
+                    <strong>{p.nav}</strong>
+                    <small>{p.pill}</small>
+                  </span>
+                  <Icon name="arrow" size={20} />
                 </a>
               </li>
             ))
           }
         </ul>
+        <p class="deep__label">One team for every structural trade</p>
+        <ul class="chips">
+          {
+            structuralTrades.map((t) => (
+              <li>
+                <a href={`/structural-works#${t.id}`}>
+                  <Icon name={t.icon} size={18} />
+                  {t.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="btn-row deep__cta">
+          <a class="btn btn--primary" href="/contact?topic=structural">
+            Request a structural quotation
+            <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+          </a>
+          <a class="btn btn--outline" href="/contact#drawings"><Icon name="drawing" size={20} /> Send your drawings</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Why choose -->
-  <section class="section" aria-labelledby="why-heading">
+  <BuildStrip />
+
+  <!-- Offering 2 in depth -->
+  <section class="section deep deep--pm" aria-labelledby="pm-heading">
     <div class="container">
-      <div class="section-head">
-        <div class="section-head__text">
-          <p class="eyebrow">Why us</p>
-          <h2 id="why-heading" class="h2">Why Choose Brits Construction Projects Ltd?</h2>
+      <div class="pm__head">
+        <div>
+          <p class="eyebrow">02 · Project management</p>
+          <h2 id="pm-heading" class="h2">Your builder. Our oversight. Your peace of mind.</h2>
         </div>
+        <p class="lead">
+          Building your home is a major investment. We ask the technical questions, review key stages and raise concerns with your builder,
+          so you can make informed decisions throughout the build.
+        </p>
       </div>
-      <ul class="why">
+      <ol class="pm__list">
         {
-          whyChoose.map((w) => (
+          oversight.map((o, i) => (
             <li>
-              <Icon name={w.icon} size={26} class="why__icon" />
-              <h3 class="h3">{w.title}</h3>
-              <p>{w.text}</p>
+              <a class="pm__card" href={`/project-management#${o.id}`}>
+                <span class="pm__n tabular">{String(i + 1).padStart(2, '0')}</span>
+                <span class="pm__icon">
+                  <Icon name={o.icon} size={24} />
+                </span>
+                <span class="pm__title">{o.title}</span>
+                <span class="pm__text">{o.text[0]}</span>
+              </a>
             </li>
           ))
         }
-      </ul>
+        <li class="pm__cta">
+          <p>Already appointed a builder, or work already under way?</p>
+          <a class="btn btn--primary" href="/contact?topic=project-review">
+            Book a project review
+            <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+          </a>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- How it starts -->
-  <section class="section section--stone" aria-labelledby="steps-heading">
+  <Comparison />
+
+  <!-- Process -->
+  <section class="section" aria-labelledby="process-heading">
     <div class="container">
       <div class="section-head">
         <div class="section-head__text">
-          <p class="eyebrow">Getting started</p>
-          <h2 id="steps-heading" class="h2">How a project starts with us</h2>
+          <p class="eyebrow">How it works</p>
+          <h2 id="process-heading" class="h2">A clear process from the first drawing</h2>
+          <p class="lead">Whether we are building the structure or overseeing your builder, here is what to expect.</p>
         </div>
-        <a class="link-arrow" href="/contact#drawings">Send your drawings <Icon name="arrow" size={18} /></a>
+        <a class="link-arrow" href="/about">Why choose us <Icon name="arrow" size={18} /></a>
       </div>
       <ol class="steps">
         {
           steps.map((s, i) => (
-            <li>
-              <span class="steps__n tabular">{String(i + 1).padStart(2, '0')}</span>
+            <li class:list={[i === 0 && 'is-first']}>
+              <span class="steps__n tabular" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
               <h3 class="h3">{s.title}</h3>
               <p>{s.text}</p>
             </li>
@@ -261,338 +295,517 @@ const schema = [
     </div>
   </section>
 
-  <CtaBand />
+  <!-- Assurance panel -->
+  <section class="assure-wrap" aria-labelledby="assure-heading">
+    <div class="container">
+      <div class="assure">
+        <div class="assure__mark" aria-hidden="true"><Logo markOnly tone="onDark" /></div>
+        <div class="assure__head">
+          <div>
+            <p class="eyebrow">Our commitment</p>
+            <h2 id="assure-heading" class="h2">Built on the right foundations</h2>
+          </div>
+          <p class="lead">Sound construction, controlled costs, reliable progress and quality workmanship, at every stage.</p>
+        </div>
+        <ul class="assure__list">
+          {
+            assurances.map((a) => (
+              <li>
+                <span class="assure__icon">
+                  <Icon name={a.icon} size={24} />
+                </span>
+                <h3>{a.title}</h3>
+                <p>{a.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Faq id="home-faq-heading" title="Common questions" items={faqs} tone="stone" />
+
+  <EnquiryBand
+    title="Tell us about your project"
+    text="Send us a few details and, if you have them, your drawings. We will come back to you to talk through structural works, project management, or both."
+    formId="home-enquiry"
+  />
 </Base>
 
 <style>
-  .hero {
-    padding: clamp(2.5rem, 2rem + 3vw, 5rem) 0 clamp(3rem, 2rem + 3vw, 5rem);
-    background:
-      radial-gradient(circle at 85% 20%, rgba(47, 93, 122, 0.08), transparent 45%),
-      linear-gradient(var(--canvas), var(--stone));
+  /* Offerings */
+  .offers {
+    padding: clamp(4rem, 3rem + 4vw, 6.5rem) 0;
   }
-  .hero__grid {
-    display: grid;
-    gap: clamp(2.5rem, 2rem + 2vw, 4rem);
-    align-items: center;
+  .offers__head {
+    max-width: 52rem;
+    margin-bottom: clamp(2.5rem, 2rem + 2vw, 3.5rem);
   }
-  @media (min-width: 1000px) {
-    .hero__grid {
-      grid-template-columns: 1.05fr 1fr;
-    }
-  }
-  .hero h1 {
-    margin-top: 1.25rem;
-  }
-  .hero__accent {
-    color: var(--steel);
-  }
-  .hero__lead {
-    margin-top: 1.5rem;
-    color: var(--ink);
-    font-weight: 500;
-  }
-  .hero__intro {
+  .offers__head h2 {
     margin-top: 1rem;
-    max-width: 38rem;
   }
-  .hero__ctas {
-    margin-top: 2rem;
-  }
-  .focus {
-    margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
-    display: grid;
-    gap: 1rem;
-    padding: 1.25rem 1.5rem;
-    background: var(--canvas);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-card);
-  }
-  .focus__intro {
-    color: var(--ink);
-    font-weight: 600;
-  }
-  .focus__list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem 1.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  @media (min-width: 540px) {
-    .focus__list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  @media (min-width: 900px) {
-    .focus__list {
-      grid-template-columns: repeat(4, auto);
-      justify-content: start;
-      column-gap: 2rem;
-    }
-  }
-  .focus__list li {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-weight: 600;
-    color: var(--ink);
-    white-space: nowrap;
-  }
-  .focus__list :global(svg) {
-    flex: none;
+  .offers__head h2 span {
     color: var(--copper);
   }
-
-  .duo {
+  .offers__grid {
     display: grid;
     gap: 1.5rem;
   }
-  @media (min-width: 900px) {
-    .duo {
+  @media (min-width: 960px) {
+    .offers__grid {
       grid-template-columns: 1fr 1fr;
     }
   }
-  .duo__card {
-    position: relative;
+  .offer {
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
-    padding: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
-    border-radius: var(--radius-media);
-    background: var(--canvas);
+    overflow: hidden;
     border: 1px solid var(--line);
+    border-radius: var(--radius-media);
+    background: #fff;
   }
-  .duo__card--navy {
-    background: var(--navy);
-    border-color: var(--navy);
-    color: #c9d5dc;
+  .offer__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
   }
-  .duo__card--navy h3 {
-    color: #fff;
+  .offer__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
   }
-  .duo__card--navy .link-arrow {
-    color: var(--copper-light);
+  .offer:hover .offer__media img {
+    transform: scale(1.03);
   }
-  .duo__card--navy .checklist li::before {
-    border-color: var(--copper-light);
-  }
-  .duo__card--navy .checklist li {
-    color: #e3ebef;
-  }
-  .duo__num {
+  .offer__num {
     position: absolute;
-    top: 1.5rem;
-    right: 1.75rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--muted);
+    left: 1.25rem;
+    bottom: 1rem;
+    color: #fff;
+    font-size: clamp(3rem, 2rem + 3vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-shadow: 0 2px 18px rgba(8, 32, 47, 0.5);
   }
-  .duo__card--navy .duo__num {
-    color: rgba(255, 255, 255, 0.5);
+  .offer__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
   }
-  .duo__kicker {
-    font-size: 0.8125rem;
+  .offer__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--copper);
     font-weight: 700;
+    font-size: 0.875rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--copper);
-    padding-right: 2.5rem;
   }
-  .duo__card--navy .duo__kicker {
-    color: var(--copper-light);
+  .offer__title {
+    font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
-  .duo__card .link-arrow {
-    margin-top: auto;
+  .offer__for {
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-input);
+    background: var(--stone);
+    font-size: 0.95rem;
   }
-  .duo__card:not(.duo__card--navy) .checklist li {
+  .offer__for strong {
     color: var(--ink);
   }
+  .offer__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .offer__links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .offer__links a::first-letter {
+    text-transform: uppercase;
+  }
+  .offer__links :global(svg) {
+    flex: none;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+  .offer__links a:hover {
+    color: var(--copper);
+  }
+  .offer__links a:hover :global(svg) {
+    transform: translateX(3px);
+    color: var(--copper);
+  }
+  .offer .btn-row {
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
 
-  .photos__grid {
+  /* Proof band */
+  .proof {
+    padding: 0 0 clamp(3.5rem, 3rem + 2vw, 5rem);
+  }
+  .proof__promises {
+    list-style: none;
+    margin: 0;
+    padding: 2rem 0;
+    display: grid;
+    gap: 1.5rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 600px) {
+    .proof__promises {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1000px) {
+    .proof__promises {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .proof__promises li + li {
+      border-left: 1px solid var(--line);
+      padding-left: 1.5rem;
+    }
+  }
+  .proof__promises li {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+  }
+  .proof__promises :global(svg) {
+    flex: none;
+    color: var(--copper);
+  }
+  .proof__promises div {
+    display: grid;
+    line-height: 1.4;
+  }
+  .proof__promises strong {
+    color: var(--ink);
+    font-size: 1.1rem;
+  }
+  .proof__promises span {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .proof__acc {
+    display: grid;
+    gap: 1.25rem;
+    align-items: center;
+    padding-top: 2rem;
+  }
+  @media (min-width: 960px) {
+    .proof__acc {
+      grid-template-columns: 13rem 1fr;
+      gap: 2rem;
+    }
+  }
+  .proof__acc ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
   }
-  @media (min-width: 900px) {
-    .photos__grid {
-      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  @media (min-width: 700px) {
+    .proof__acc ul {
+      grid-template-columns: repeat(6, 1fr);
     }
   }
-  .photos__grid figure {
-    position: relative;
-    margin: 0;
-    height: 100%;
-    border-radius: var(--radius-card);
+  .proof__acc li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4.75rem;
     overflow: hidden;
-    background: var(--stone);
+    padding: 0.6rem 0.9rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-input);
   }
-  .photos__grid img {
+  .proof__acc img {
     width: 100%;
     height: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-  }
-  .photos__grid figcaption {
-    position: absolute;
-    left: 0.75rem;
-    bottom: 0.75rem;
-    padding: 0.35rem 0.75rem;
-    border-radius: 999px;
-    background: rgba(8, 32, 47, 0.82);
-    color: #fff;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-  .core__img {
-    width: calc(100% + 2 * clamp(1.5rem, 1.2rem + 1vw, 2rem));
-    max-width: none;
-    margin: calc(-1 * clamp(1.5rem, 1.2rem + 1vw, 2rem)) calc(-1 * clamp(1.5rem, 1.2rem + 1vw, 2rem)) 0.5rem;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-  }
-  .core__card {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    padding: clamp(1.5rem, 1.2rem + 1vw, 2rem);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-card);
-    color: var(--body);
-    text-decoration: none;
-    transition:
-      border-color 0.2s,
-      box-shadow 0.2s;
-  }
-  .core__card:hover {
-    border-color: var(--steel);
-    box-shadow: 0 10px 30px -22px rgba(8, 32, 47, 0.5);
-    color: var(--body);
-  }
-  .core__icon {
-    display: inline-grid;
-    place-items: center;
-    width: 3.25rem;
-    height: 3.25rem;
-    border-radius: 12px;
-    background: var(--steel-tint);
-    color: var(--navy);
-  }
-  .core__card .link-arrow {
-    margin-top: auto;
+    min-width: 0;
+    object-fit: contain;
   }
 
-  .oversight__grid {
+  /* Structural works in depth */
+  .deep__grid {
     display: grid;
     gap: 3rem;
   }
+  .deep__grid > * {
+    min-width: 0;
+  }
   @media (min-width: 1000px) {
-    .oversight__grid {
-      grid-template-columns: 1fr 1.1fr;
-      gap: 5rem;
+    .deep__grid {
+      grid-template-columns: 5fr 7fr;
+      gap: 4.5rem;
     }
-    .oversight__intro {
+    .deep__media {
       position: sticky;
       top: 7rem;
       align-self: start;
     }
   }
-  .oversight__intro h2 {
+  .deep__media {
+    position: relative;
+    padding-bottom: 3rem;
+  }
+  .deep__main {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-media);
+  }
+  @media (max-width: 999px) {
+    .deep__main {
+      aspect-ratio: 4 / 3;
+    }
+  }
+  .deep__inset {
+    position: absolute;
+    right: -0.5rem;
+    bottom: 0;
+    width: 45%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+    border: 6px solid var(--stone);
+  }
+  .deep__text h2 {
     margin-top: 1rem;
   }
-  .oversight__intro .lead {
+  .deep__text .lead {
     margin-top: 1.25rem;
   }
-  .oversight__intro .btn-row {
-    margin-top: 2rem;
-  }
-  .oversight__kicker {
-    color: var(--ink);
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-  .oversight__list {
+  .types {
     list-style: none;
-    margin: 0;
+    margin: 2rem 0 0;
     padding: 0;
-    border-top: 1px solid var(--line-strong);
-  }
-  .oversight__list li {
-    border-bottom: 1px solid var(--line-strong);
-  }
-  .oversight__list a {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+  }
+  @media (min-width: 640px) {
+    .types {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .types a {
+    display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.15rem 0.25rem;
+    height: 100%;
+    padding: 0.65rem 1rem 0.65rem 0.65rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: #fff;
+    text-decoration: none;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+  .types a:hover {
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-overlay);
+  }
+  .types img {
+    width: 4.5rem;
+    height: 4.5rem;
+    flex: none;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .types span {
+    display: grid;
+    flex: 1;
+    line-height: 1.35;
+  }
+  .types strong {
     color: var(--ink);
+    font-size: 1.05rem;
+  }
+  .types small {
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+  .types :global(svg) {
+    flex: none;
+    color: var(--copper);
+  }
+  .deep__label {
+    margin-top: 2.25rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .chips {
+    list-style: none;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .chips a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.5rem;
+    padding: 0 0.95rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink);
+    font-size: 0.9rem;
     font-weight: 600;
-    font-size: 1.1rem;
     text-decoration: none;
   }
-  .oversight__list a:hover {
+  .chips a:hover {
+    border-color: var(--ink);
+  }
+  .chips :global(svg) {
     color: var(--copper);
   }
-  .oversight__list :global(.oversight__icon) {
-    color: var(--copper);
-  }
-  .oversight__list :global(.oversight__arrow) {
-    color: var(--muted);
-    transition: transform 0.2s;
-  }
-  .oversight__list a:hover :global(.oversight__arrow) {
-    transform: translateX(3px);
-    color: var(--copper);
+  .deep__cta {
+    margin-top: 2.25rem;
   }
 
-  .why {
+  /* Project management in depth */
+  .pm__head {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  }
+  @media (min-width: 1000px) {
+    .pm__head {
+      grid-template-columns: 1fr 1fr;
+      gap: 4.5rem;
+      align-items: end;
+    }
+  }
+  .pm__head h2 {
+    margin-top: 1rem;
+  }
+  .pm__list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 0;
-    border-top: 1px solid var(--line);
+    gap: 1rem;
   }
   @media (min-width: 700px) {
-    .why {
-      grid-template-columns: repeat(2, 1fr);
+    .pm__list {
+      grid-template-columns: 1fr 1fr;
     }
   }
-  @media (min-width: 1000px) {
-    .why {
-      grid-template-columns: repeat(3, 1fr);
+  @media (min-width: 1100px) {
+    .pm__list {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
-  .why li {
-    padding: 2rem 1.75rem 2rem 0;
-    border-bottom: 1px solid var(--line);
+  .pm__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    text-decoration: none;
+    color: var(--body);
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
   }
-  .why h3 {
-    margin-top: 1rem;
+  .pm__card:hover {
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-overlay);
   }
-  .why p {
-    margin-top: 0.5rem;
+  .pm__n {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-weight: 700;
+    color: var(--line-strong);
   }
-  .why :global(.why__icon) {
-    color: var(--copper);
+  .pm__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    background: var(--copper-tint);
+    color: var(--copper-dark);
+  }
+  .pm__title {
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+  .pm__text {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .pm__cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-card);
+    background: var(--navy);
+    color: #fff;
+  }
+  .pm__cta p {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .pm__cta .btn {
+    align-self: flex-start;
   }
 
+  /* Process */
   .steps {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 1.5rem;
+    gap: 2.5rem 2rem;
   }
-  @media (min-width: 700px) {
+  @media (min-width: 640px) {
     .steps {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
     }
   }
   @media (min-width: 1000px) {
@@ -601,21 +814,115 @@ const schema = [
     }
   }
   .steps li {
-    border-top: 2px solid var(--navy);
-    padding-top: 1.25rem;
+    position: relative;
+    padding-top: 2rem;
+    border-top: 2px solid var(--line);
+  }
+  .steps li::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 2.5rem;
+    height: 2px;
+    background: var(--copper);
+  }
+  .steps li.is-first::before {
+    width: 100%;
   }
   .steps__n {
     display: block;
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 800;
     line-height: 1;
+    letter-spacing: -0.04em;
     color: var(--line-strong);
-    letter-spacing: -0.03em;
   }
   .steps h3 {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
   }
   .steps p {
+    margin-top: 0.6rem;
+  }
+
+  /* Assurance */
+  .assure-wrap {
+    padding-bottom: clamp(4rem, 3rem + 4vw, 7rem);
+  }
+  .assure {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(2.5rem, 2rem + 3vw, 4rem) clamp(1.5rem, 1rem + 3vw, 3.5rem);
+    border-radius: var(--radius-media);
+    background: var(--navy);
+    color: #d5dfe5;
+  }
+  .assure__mark {
+    position: absolute;
+    right: -4rem;
+    top: -3rem;
+    z-index: -1;
+    opacity: 0.08;
+  }
+  .assure__mark :global(.logo__mark) {
+    width: clamp(22rem, 40vw, 36rem) !important;
+    height: auto;
+  }
+  .assure__head {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 1000px) {
+    .assure__head {
+      grid-template-columns: 7fr 5fr;
+      align-items: end;
+      gap: 3rem;
+    }
+  }
+  .assure .eyebrow {
+    color: var(--copper-light);
+  }
+  .assure h2 {
+    margin-top: 1rem;
+    color: #fff;
+  }
+  .assure .lead {
+    color: #d5dfe5;
+  }
+  .assure__list {
+    list-style: none;
+    margin: 3rem 0 0;
+    padding: 2.5rem 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: grid;
+    gap: 2.25rem 2.5rem;
+  }
+  @media (min-width: 640px) {
+    .assure__list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1100px) {
+    .assure__list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .assure__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--copper-light);
+  }
+  .assure h3 {
+    margin-top: 1.25rem;
+    color: #fff;
+    font-size: 1.15rem;
+  }
+  .assure__list p {
     margin-top: 0.5rem;
   }
 </style>
