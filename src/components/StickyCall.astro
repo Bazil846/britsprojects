@@ -14,15 +14,23 @@ import { company } from '../site';
 </div>
 
 <script>
+  // Shown after the hero, hidden while the menu is open or an enquiry form or the footer is on screen.
   const bar = document.querySelector<HTMLElement>('[data-sticky-call]');
   if (bar) {
     const links = bar.querySelectorAll('a');
+    const covering = new Set<Element>();
     const update = () => {
-      const show = scrollY > 520 && !document.querySelector('[data-header] [aria-expanded="true"]');
+      const show =
+        scrollY > 520 && covering.size === 0 && !document.querySelector('[data-header] [aria-expanded="true"]');
       bar.classList.toggle('is-on', show);
       bar.setAttribute('aria-hidden', String(!show));
       links.forEach((a) => (show ? a.removeAttribute('tabindex') : a.setAttribute('tabindex', '-1')));
     };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? covering.add(e.target) : covering.delete(e.target)));
+      update();
+    });
+    document.querySelectorAll('form[data-enquiry], .ftr').forEach((el) => io.observe(el));
     update();
     addEventListener('scroll', update, { passive: true });
   }

@@ -17,7 +17,7 @@ export const structuralCore = [
     id: 'internal-alterations', photo: '/photos/build-progress-4.webp', alt: 'Steel beam installed over a new opening in blockwork',
     icon: 'wall',
     title: 'Internal Structural Alterations',
-    text: 'Load-bearing wall removal, new structural openings, temporary support and installation of specified beams, columns and frames.',
+    text: 'Load bearing wall removal, new structural openings, temporary support and installation of specified beams, columns and frames.',
   },
   {
     id: 'new-builds', photo: '/photos/scaffolded-build-2.webp', alt: 'Multi-storey residential build under scaffolding',
@@ -33,7 +33,7 @@ export const structuralTrades = [
     id: 'demolition', photo: '/photos/groundworks-4.webp', alt: 'Excavated ground being prepared beside a house before building work',
     icon: 'demolition',
     title: 'Demolition & Site Preparation',
-    text: 'Demolition, strip-out, site clearance and excavation to prepare your property for the planned works.',
+    text: 'Demolition, strip out, site clearance and excavation to prepare your property for the planned works.',
   },
   {
     id: 'foundations', photo: '/photos/groundworks-1.webp', alt: 'Foundation trench with steel reinforcement and formwork',
@@ -54,7 +54,7 @@ export const structuralTrades = [
     text: 'Construction of external walls, internal load bearing walls and supporting masonry for extensions, alterations and new homes.',
   },
   {
-    id: 'steelwork', photo: '/photos/loft-construction-2.webp', alt: 'Red-painted structural steel frame inside a roof under construction',
+    id: 'steelwork', photo: '/photos/loft-construction-2.webp', alt: 'Red painted structural steel frame inside a roof under construction',
     icon: 'steel',
     title: 'Structural Steelwork',
     text: 'Installation of specified steel beams, columns and frames to support new openings, additional floors and changes to your home’s layout.',
@@ -63,7 +63,7 @@ export const structuralTrades = [
     id: 'concrete-floors', photo: '/photos/concrete-1.webp', alt: 'Concrete being poured over insulation for a ground floor slab',
     icon: 'slab',
     title: 'Solid Concrete Ground Floors',
-    text: 'Ground floor construction, including sub-base preparation, compacted hardcore, damp-proof membranes, insulation and concrete slabs to the specified floor build-up.',
+    text: 'Ground floor construction, including sub base preparation, compacted hardcore, damp proof membranes, insulation and concrete slabs to the specified floor build-up.',
   },
   {
     id: 'beam-block', photo: '/photos/beam-block-floor.jpg', alt: 'Precast concrete floor beams laid across new masonry walls for a beam and block floor', credit: { text: 'Photo: Oast House Archive, CC BY-SA 2.0', url: 'https://www.geograph.org.uk/photo/4523943' },
@@ -170,7 +170,7 @@ export const structuralFaqs = [
   },
   {
     q: 'Do I need a structural engineer?',
-    a: 'Most structural work, such as removing a load-bearing wall, forming a new opening, installing steel beams, building extension foundations or strengthening a loft floor, needs an engineer’s design and calculations, and Building Control will ask to see them. If you do not have an engineer yet, our professional team includes structural engineers.',
+    a: 'Most structural work, such as removing a load bearing wall, forming a new opening, installing steel beams, building extension foundations or strengthening a loft floor, needs an engineer’s design and calculations, and Building Control will ask to see them. If you do not have an engineer yet, our professional team includes structural engineers.',
   },
   {
     q: 'What is included in a structural package?',
@@ -226,7 +226,7 @@ export const documents = [
 /** Real site photos for the homepage strip (from Brits group sites). */
 export const sitePhotos = [
   { src: '/photos/groundworks-3.webp', alt: 'Foundation trenches with reinforcement cages and formwork on a residential site', caption: 'Foundations' },
-  { src: '/photos/loft-construction-2.webp', alt: 'Red-painted structural steel frame inside a roof under construction', caption: 'Structural steelwork' },
+  { src: '/photos/loft-construction-2.webp', alt: 'Red painted structural steel frame inside a roof under construction', caption: 'Structural steelwork' },
   { src: '/photos/concrete-1.webp', alt: 'Concrete being poured over insulation for a ground floor slab', caption: 'Concrete ground floor' },
   { src: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed', caption: 'Roof structure' },
 ];
@@ -346,10 +346,10 @@ export const projectTypes = [
     title: 'Internal Structural Alterations',
     pill: 'Wall removal and new openings',
     lead: 'Load bearing walls removed, new openings formed and steel beams installed safely, with temporary support at every step.',
-    hero: '/photos/build-progress-4.webp',
-    heroAlt: 'Steel beam installed over a new opening in blockwork',
+    hero: '/photos/build-progress-8.webp',
+    heroAlt: 'View through a wide new structural opening into an extension with timber roof joists',
     heroPosition: '50% 50%',
-    caption: 'New steel over a structural opening',
+    caption: 'A wide new opening, supported by steel',
     intro:
       'Opening up a kitchen, forming a wide opening to a garden room or removing a chimney breast all change the load paths through your home. We carry out the work in a controlled sequence, with the house supported throughout, and install the beams, columns and frames your engineer specifies.',
     includes: ['demolition', 'steelwork', 'masonry'],
@@ -368,7 +368,7 @@ export const projectTypes = [
       'Building Control needs to see the beam and its bearings before they are covered.',
     ],
     gallery: [
-      { src: '/photos/build-progress-8.webp', alt: 'View through a wide new opening into an extension shell with timber roof joists', caption: 'Opening formed' },
+      { src: '/photos/build-progress-4.webp', alt: 'Steel beam installed over a new opening in blockwork', caption: 'Steel over the opening' },
       { src: '/photos/build-progress-17.webp', alt: 'Steel beams and new timber joists spanning brickwork walls', caption: 'Steels in place' },
       { src: '/photos/build-progress-9.webp', alt: 'New brickwork and blockwork walls with openings formed', caption: 'Supporting masonry' },
     ],
@@ -435,5 +435,92 @@ export const projectTypes = [
         a: 'Finishing trades or your main contractor follow on once the structure is complete. Our sister company Brits Construction Services can also complete the build.',
       },
     ],
+  },
+] as const;
+
+/**
+ * Real reviews of our sister company, Brits Construction Services (same group, same site teams),
+ * copied word for word from MyBuilder, Trustpilot and Google. Where a review is long, a continuous
+ * passage is quoted and the cut is marked with "…". Platform usernames are shown as "MyBuilder customer".
+ * Never invent or edit a review, and never add these to rating structured data for this company.
+ */
+export const reviewProfiles = [
+  { name: 'Trustpilot', url: 'https://uk.trustpilot.com/review/britsconstructionservices.co.uk' },
+  { name: 'MyBuilder', url: 'https://www.mybuilder.com/profile/brits_contruction_services_ltd' },
+  { name: 'Google', url: 'https://share.google/pRdjXkcGLSGnh1Jaj' },
+];
+
+export const groupReviews = [
+  {
+    id: 'piling',
+    source: 'MyBuilder',
+    name: 'MyBuilder customer',
+    job: 'Double storey wrap around extension with piling · Borehamwood',
+    date: 'Jul 2020',
+    text: 'We hired Brits Construction for a large, double storey, wrap-around extension with piling, extensive structural work in the existing part of the property, a 70m2 patio and 50m2 driveway. … Payment was due once each section was completed. Costs within the contract was adhered to and did not inflate during the project. The extension is solidly built, with a high level of craftsmanship and I am happy with the work done.',
+  },
+  {
+    id: 'shell',
+    source: 'MyBuilder',
+    name: 'MyBuilder customer',
+    job: 'Ground floor and loft extension · West Hendon',
+    date: 'Nov 2022',
+    text: '…Syed’s team put the shell of the new house up very quickly, and provided lots of advice on placement of internal walls, etc. to resolve issues our architect had not taken account of. Syed was very flexible in dealing with changing plans and absorbed unforeseen additional costs.',
+  },
+  {
+    id: 'lamiaa',
+    source: 'Trustpilot',
+    name: 'Lamiaa',
+    job: 'Kitchen extension & ground floor refurbishment',
+    date: 'Jan 2026',
+    text: 'Brits Construction has built our kitchen extension and refurbished the ground floor. Syed and his team had been really efficient in building the extension. Syed’s experience helped us to overcome challenges that we did not expect and managed them really well (Thames Water, Gas etc..) … Finally, great communication and attention to details. These are not easy to have with builders. Highly recommend.',
+  },
+  {
+    id: 'milestones',
+    source: 'MyBuilder',
+    name: 'MyBuilder customer',
+    job: 'One room extension on first floor',
+    date: 'Jul 2016',
+    text: '…the planning, budgeting, execution and completion was excellent and well run. A detailed contract was provided with milestones, and payment was made only after these milestones were met. … No hidden charges or surprises and the job was completed on time.',
+  },
+  {
+    id: 'newbuild',
+    source: 'MyBuilder',
+    name: 'MyBuilder customer',
+    job: 'New build 4 bed detached house · Hounslow',
+    date: 'Dec 2019',
+    text: 'Syed and his team completed a new build project for me - which involved the building of a new 4 bed detached house. Syed is very knowledgeable and his team were excellent. The work was of a very good standard and Syed was a very trust worthy contractor to work with - I would definitely work with him on any future builds.',
+  },
+  {
+    id: 'loft',
+    source: 'Trustpilot',
+    name: 'Edward Fyle',
+    job: 'Loft conversion',
+    date: 'Jan 2026',
+    text: 'Thank you Brit Construction for the amazing loft conversion. We are extremely pleased with it. You worked according to timescale and was professional at all times.',
+  },
+  {
+    id: 'pm-onsite',
+    source: 'MyBuilder',
+    name: 'MyBuilder customer',
+    job: 'Double side and rear extension · Ruislip',
+    date: 'Jan 2022',
+    text: '…I will 100% recommend these guys who were always honest, kept to the job at hand and was managed excellently. The PM was on site 2-3 times daily and was always at hand to discuss.',
+  },
+  {
+    id: 'pm-planning',
+    source: 'Google',
+    name: 'Abdul Rahman',
+    job: 'Google review',
+    date: 'Nov 2023',
+    text: '…He explained each step in detail of the build to us. We are satisfied that he is a very good project manager and sorted out everything from the planning to the build.',
+  },
+  {
+    id: 'pm-schedule',
+    source: 'MyBuilder',
+    name: 'MyBuilder customer',
+    job: 'Extension · High Wycombe',
+    date: 'Jul 2023',
+    text: '…A detailed quote was provided with a breakdown of the costs and payment schedule. Everything was made clear and in writing. No extras were charged (other than the additional underfloor heating we requested). All work was done in a timely and efficient manner, work was completed on time and to a high standard of finish.',
   },
 ] as const;

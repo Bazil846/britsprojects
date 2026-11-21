@@ -1,4 +1,5 @@
 ---
+import { photo } from '../lib/photo';
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import { company } from '../site';
@@ -31,7 +32,7 @@ const isIn = (base: string) => here === base || here.startsWith(base + '/');
                   {projectTypes.map((p) => (
                     <li>
                       <a href={`/structural-works/${p.id}`}>
-                        <img src={p.hero} alt="" loading="lazy" decoding="async" />
+                        <img {...photo(p.hero, '68px')} alt="" loading="lazy" decoding="async" />
                         <span>
                           <strong>{p.nav}</strong>
                           <small>{p.pill}</small>
@@ -55,7 +56,7 @@ const isIn = (base: string) => here === base || here.startsWith(base + '/');
                 </ul>
               </div>
               <a class="mega__card" href="/contact?topic=structural">
-                <img src="/photos/build-progress-17.webp" alt="" loading="lazy" decoding="async" />
+                <img {...photo('/photos/build-progress-17.webp', '320px')} alt="" loading="lazy" decoding="async" />
                 <span class="mega__card-text">
                   <strong>Send us your drawings</strong>
                   <span>Request a structural works quotation</span>
@@ -86,7 +87,7 @@ const isIn = (base: string) => here === base || here.startsWith(base + '/');
                 </ul>
               </div>
               <a class="mega__card" href="/contact?topic=project-review">
-                <img src="/photos/build-progress-10.webp" alt="" loading="lazy" decoding="async" />
+                <img {...photo('/photos/build-progress-10.webp', '320px')} alt="" loading="lazy" decoding="async" />
                 <span class="mega__card-text">
                   <strong>Already have a builder?</strong>
                   <span>Book a project review</span>
@@ -537,10 +538,11 @@ const isIn = (base: string) => here === base || here.startsWith(base + '/');
     display: grid;
     gap: 0.2rem;
     padding: 3rem 1.25rem 1.25rem;
-    background: linear-gradient(to top, rgba(8, 32, 47, 0.95), transparent);
+    background: linear-gradient(to top, rgba(8, 32, 47, 0.96) 35%, rgba(8, 32, 47, 0.6) 70%, transparent);
     line-height: 1.35;
   }
   .mega__card-text strong {
+    color: #fff;
     font-size: 1.1rem;
   }
   .mega__card-text span {

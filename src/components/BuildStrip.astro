@@ -1,4 +1,5 @@
 ---
+import { photo } from '../lib/photo';
 // Navy "on site" band: the structure in the order it is built, as a sideways photo strip
 // (after the parent site's build sequence).
 import Icon from './Icon.astro';
@@ -43,7 +44,7 @@ const {
             <span class="bs__stage tabular">Stage {String(i + 1).padStart(2, '0')}</span>
           </div>
           <div class="bs__photo">
-            <img src={t.photo} alt={t.alt} loading="lazy" decoding="async" />
+            <img {...photo(t.photo, '336px')} alt={t.alt} loading="lazy" decoding="async" />
           </div>
           <div class="bs__text">
             <Icon name={t.icon} size={24} class="bs__icon" />

@@ -1,9 +1,11 @@
 ---
+import { photo } from '../../lib/photo';
 import Base from '../../layouts/Base.astro';
 import PhotoHero from '../../components/PhotoHero.astro';
 import Icon from '../../components/Icon.astro';
 import Faq from '../../components/Faq.astro';
 import EnquiryBand from '../../components/EnquiryBand.astro';
+import Reviews from '../../components/Reviews.astro';
 import { projectTypes, structuralTrades } from '../../content';
 import { SITE_URL } from '../../site';
 
@@ -27,6 +29,12 @@ const enquiryTitle: Record<string, string> = {
   'internal-alterations': 'Planning a structural alteration?',
   'new-builds': 'Planning a new build?',
 };
+const reviewIds = {
+  extensions: ['piling', 'lamiaa', 'shell'],
+  'loft-conversions': ['loft', 'shell', 'milestones'],
+  'internal-alterations': ['shell', 'piling', 'milestones'],
+  'new-builds': ['newbuild', 'piling', 'pm-onsite'],
+} as const;
 const url = `${SITE_URL}/structural-works/${p.id}`;
 
 const schema = [
@@ -79,7 +87,7 @@ const schema = [
         <h2 id="intro-heading" class="h2">{intro[p.id]}</h2>
         <p class="lead">{p.intro}</p>
       </div>
-      <aside class="included">
+      <div class="included">
         <p class="included__title">Typically included</p>
         <ul>
           {
@@ -94,7 +102,7 @@ const schema = [
           }
         </ul>
         <p class="included__note">Your quotation lists exactly what is included for your project.</p>
-      </aside>
+      </div>
     </div>
   </section>
 
@@ -121,7 +129,7 @@ const schema = [
         {
           p.gallery.map((g) => (
             <figure>
-              <img src={g.src} alt={g.alt} loading="lazy" decoding="async" />
+              <img {...photo(g.src, '(min-width: 1000px) 300px, 50vw')} alt={g.alt} loading="lazy" decoding="async" />
               <figcaption>{g.caption}</figcaption>
             </figure>
           ))
@@ -164,7 +172,9 @@ const schema = [
 
   <Faq id="type-faq-heading" title={`${p.nav} questions`} items={[...p.faqs]} tone="stone" />
 
-  <section class="section" aria-labelledby="others-heading">
+  <Reviews ids={[...reviewIds[p.id]]} />
+
+  <section class="section section--stone" aria-labelledby="others-heading">
     <div class="container">
       <div class="section-head">
         <div class="section-head__text">
@@ -178,7 +188,7 @@ const schema = [
           others.map((o) => (
             <li>
               <a href={`/structural-works/${o.id}`}>
-                <img src={o.hero} alt="" loading="lazy" decoding="async" style={`object-position:${o.heroPosition}`} />
+                <img {...photo(o.hero, '88px')} alt="" loading="lazy" decoding="async" style={`object-position:${o.heroPosition}`} />
                 <span class="others__body">
                   <strong>{o.nav}</strong>
                   <small>{o.pill}</small>
@@ -430,6 +440,7 @@ const schema = [
     border: 1px solid var(--line);
     border-radius: var(--radius-card);
     text-decoration: none;
+    background: #fff;
     transition:
       box-shadow 0.2s,
       border-color 0.2s;

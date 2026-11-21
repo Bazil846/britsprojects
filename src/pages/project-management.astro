@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import PhotoHero from '../components/PhotoHero.astro';
 import EnquiryBand from '../components/EnquiryBand.astro';
 import Comparison from '../components/Comparison.astro';
+import Reviews from '../components/Reviews.astro';
 import Icon from '../components/Icon.astro';
 import Faq from '../components/Faq.astro';
 import { oversight, oversightNote, oversightFaqs } from '../content';
@@ -150,7 +151,7 @@ const schema = [
         {
           timing.map((t, i) => (
             <li>
-              <span class="when__n tabular">{String(i + 1).padStart(2, '0')}</span>
+              <span class="when__n tabular" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
               <p class="when__k">{t.when}</p>
               <h3 class="h3">{t.title}</h3>
               <p>{t.text}</p>
@@ -163,7 +164,9 @@ const schema = [
 
   <Comparison quote={false} photo="/photos/build-progress-15.webp" alt="House under scaffolding with site hoarding during a build" />
 
-  <Faq id="pm-faq-heading" title="Project management questions" items={oversightFaqs} />
+  <Reviews ids={['pm-onsite', 'pm-planning', 'pm-schedule']} title="Well managed, start to finish" />
+
+  <Faq id="pm-faq-heading" tone="stone" title="Project management questions" items={oversightFaqs} />
 
   <EnquiryBand
     title="Book a project review"
@@ -239,7 +242,7 @@ const schema = [
     position: absolute;
     top: 1.5rem;
     right: 1.75rem;
-    color: rgba(255, 255, 255, 0.25);
+    color: var(--copper-light);
     font-size: 2.5rem;
     font-weight: 800;
     line-height: 1;
@@ -326,7 +329,7 @@ const schema = [
   }
   .ov__n {
     font-weight: 700;
-    color: var(--line-strong);
+    color: var(--copper);
   }
   .note {
     display: flex;

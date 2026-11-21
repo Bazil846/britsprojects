@@ -1,7 +1,9 @@
 ---
+import { photo } from '../lib/photo';
 import Base from '../layouts/Base.astro';
 import PhotoHero from '../components/PhotoHero.astro';
 import EnquiryBand from '../components/EnquiryBand.astro';
+import Reviews from '../components/Reviews.astro';
 import Icon from '../components/Icon.astro';
 import Faq from '../components/Faq.astro';
 import { structuralCore, structuralTrades, structuralFaqs, projectTypes } from '../content';
@@ -49,14 +51,14 @@ const schema = [
 >
   <PhotoHero
     crumbs={[{ href: '/', label: 'Home' }, { label: 'Structural works' }]}
-    image="/photos/build-progress-11.webp"
-    alt="New roof timbers and joists being framed over a house extension under scaffolding"
-    position="50% 45%"
+    image="/photos/groundworks-3.webp"
+    alt="Brits team fixing steel reinforcement in shuttered foundation trenches for an extension"
+    position="50% 60%"
     pill="Structural work specialists"
     title="Strong Foundations"
     accent="for Your Dream Home"
     lead="The strength of your home depends on the work beneath the surface. Foundations, steel connections, supporting walls and roof structures all deserve careful attention."
-    caption="Roof structure going on"
+    caption="Foundations being reinforced"
   >
     <div slot="actions" class="btn-row">
       <a class="btn btn--primary" href="#enquire">
@@ -97,7 +99,7 @@ const schema = [
             return (
               <a class="ptype" id={s.id} href={`/structural-works/${s.id}`}>
                 <span class="ptype__media">
-                  <img src={p.hero} alt={p.heroAlt} loading="lazy" decoding="async" style={`object-position:${p.heroPosition}`} />
+                  <img {...photo(p.hero, '(min-width: 800px) 620px, 100vw')} alt={p.heroAlt} loading="lazy" decoding="async" style={`object-position:${p.heroPosition}`} />
                 </span>
                 <span class="ptype__body">
                   <span class="ptype__pill">{p.pill}</span>
@@ -128,7 +130,7 @@ const schema = [
         {
           structuralTrades.map((t, i) => (
             <li id={t.id}>
-              <img class="trades__img" src={t.photo} alt={t.alt} loading="lazy" decoding="async" />
+              <img class="trades__img" {...photo(t.photo, '(min-width: 1050px) 410px, (min-width: 700px) 50vw, 100vw')} alt={t.alt} loading="lazy" decoding="async" />
               <span class="trades__n tabular">{String(i + 1).padStart(2, '0')}</span>
               <Icon name={t.icon} size={26} class="trades__icon" />
               <h3 class="h3">{t.title}</h3>
@@ -148,7 +150,7 @@ const schema = [
   <section class="section" aria-labelledby="design-heading">
     <div class="container design">
       <div class="design__media">
-        <img src="/photos/brits-site-team.webp" alt="Two Brits bricklayers in hi-vis building a blockwork wall" loading="lazy" decoding="async" />
+        <img {...photo('/photos/brits-site-team.webp', '(min-width: 1000px) 480px, 100vw')} alt="Two Brits bricklayers in hi-vis building a blockwork wall" loading="lazy" decoding="async" />
       </div>
       <div>
         <p class="eyebrow">Working to your design</p>
@@ -185,7 +187,9 @@ const schema = [
     </div>
   </section>
 
-  <Faq id="sw-faq-heading" title="Structural works questions" items={structuralFaqs} tone="stone" />
+  <Reviews ids={['piling', 'shell', 'newbuild']} title="Solidly built, by the Brits team" tone="stone" />
+
+  <Faq id="sw-faq-heading" title="Structural works questions" items={structuralFaqs} />
 
   <EnquiryBand
     title="Request a structural works quotation"

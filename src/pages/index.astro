@@ -1,4 +1,5 @@
 ---
+import { photo } from '../lib/photo';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import PhotoHero from '../components/PhotoHero.astro';
@@ -7,6 +8,7 @@ import Comparison from '../components/Comparison.astro';
 import EnquiryBand from '../components/EnquiryBand.astro';
 import Faq from '../components/Faq.astro';
 import Logo from '../components/Logo.astro';
+import Reviews from '../components/Reviews.astro';
 import { projectTypes, structuralTrades, oversight, accreditations, structuralFaqs, oversightFaqs } from '../content';
 import { SITE_URL, company } from '../site';
 
@@ -71,7 +73,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
       <div class="offers__grid">
         <article class="offer">
           <a class="offer__media" href="/structural-works" tabindex="-1" aria-hidden="true">
-            <img src="/photos/groundworks-3.webp" alt="" loading="lazy" decoding="async" />
+            <img {...photo('/photos/ext-construction-3.webp', '(min-width: 960px) 620px, 100vw')} alt="" loading="lazy" decoding="async" />
             <span class="offer__num">01</span>
           </a>
           <div class="offer__body">
@@ -106,7 +108,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
 
         <article class="offer offer--pm">
           <a class="offer__media" href="/project-management" tabindex="-1" aria-hidden="true">
-            <img src="/photos/build-progress-10.webp" alt="" loading="lazy" decoding="async" />
+            <img {...photo('/photos/build-progress-10.webp', '(min-width: 960px) 620px, 100vw')} alt="" loading="lazy" decoding="async" />
             <span class="offer__num">02</span>
           </a>
           <div class="offer__body">
@@ -177,8 +179,8 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
   <section class="section section--stone deep" aria-labelledby="sw-heading">
     <div class="container deep__grid">
       <div class="deep__media">
-        <img class="deep__main" src="/photos/build-progress-17.webp" alt="Steel beams and new timber joists spanning brickwork walls" loading="lazy" decoding="async" />
-        <img class="deep__inset" src="/photos/groundworks-1.webp" alt="Foundation trench with steel reinforcement and formwork" loading="lazy" decoding="async" />
+        <img class="deep__main" {...photo('/photos/build-progress-17.webp', '(min-width: 1000px) 480px, 100vw')} alt="Steel beams and new timber joists spanning brickwork walls" loading="lazy" decoding="async" />
+        <img class="deep__inset" {...photo('/photos/groundworks-1.webp', '240px')} alt="Foundation trench with steel reinforcement and formwork" loading="lazy" decoding="async" />
       </div>
       <div class="deep__text">
         <p class="eyebrow">01 · Structural works</p>
@@ -192,7 +194,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
             projectTypes.map((p) => (
               <li>
                 <a href={`/structural-works/${p.id}`}>
-                  <img src={p.hero} alt="" loading="lazy" decoding="async" />
+                  <img {...photo(p.hero, '72px')} alt="" loading="lazy" decoding="async" />
                   <span>
                     <strong>{p.nav}</strong>
                     <small>{p.pill}</small>
@@ -294,6 +296,8 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
       </ol>
     </div>
   </section>
+
+  <Reviews tone="stone" />
 
   <!-- Assurance panel -->
   <section class="assure-wrap" aria-labelledby="assure-heading">
@@ -751,7 +755,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
     top: 1.5rem;
     right: 1.5rem;
     font-weight: 700;
-    color: var(--line-strong);
+    color: var(--copper);
   }
   .pm__icon {
     display: grid;
@@ -836,7 +840,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.04em;
-    color: var(--line-strong);
+    color: #8a949a;
   }
   .steps h3 {
     margin-top: 1.25rem;
@@ -847,6 +851,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
 
   /* Assurance */
   .assure-wrap {
+    padding-top: clamp(4rem, 3rem + 4vw, 7rem);
     padding-bottom: clamp(4rem, 3rem + 4vw, 7rem);
   }
   .assure {

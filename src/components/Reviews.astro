@@ -1,0 +1,197 @@
+---
+// Real reviews of the Brits group's site teams (left for our sister company, Brits Construction
+// Services). Labelled as such on the page; no rating schema is added for this company.
+import { groupReviews, reviewProfiles } from '../content';
+import { company } from '../site';
+
+type Id = (typeof groupReviews)[number]['id'];
+interface Props {
+  ids?: Id[];
+  title?: string;
+  tone?: 'canvas' | 'stone';
+}
+const {
+  ids = ['piling', 'shell', 'lamiaa', 'milestones', 'newbuild', 'loft'],
+  title = 'What homeowners say about the Brits team',
+  tone = 'canvas',
+} = Astro.props;
+const items = ids.map((id) => groupReviews.find((r) => r.id === id)!);
+---
+
+<section class:list={['section', tone === 'stone' && 'section--stone']} aria-labelledby="reviews-heading">
+  <div class="container">
+    <div class="rv__head">
+      <div>
+        <p class="eyebrow">Reviews</p>
+        <h2 id="reviews-heading" class="h2">{title}</h2>
+        <p class="lead">
+          Reviews left for our sister company, {company.sister.name}, whose site teams and managers work across the Brits group. Quoted word
+          for word.
+        </p>
+      </div>
+      <div class="rv__profiles">
+        <span>Read every review on</span>
+        <ul>
+          {
+            reviewProfiles.map((p) => (
+              <li>
+                <a href={p.url} rel="noopener" target="_blank">
+                  {p.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <ul class="rv__list">
+      {
+        items.map((r) => (
+          <li>
+            <figure>
+              <div class="rv__top">
+                <span class="rv__stars" role="img" aria-label="5 out of 5 stars">
+                  ★★★★★
+                </span>
+                <span class="rv__source">{r.source}</span>
+              </div>
+              <blockquote>
+                <p>“{r.text}”</p>
+              </blockquote>
+              <figcaption>
+                <strong>{r.name}</strong>
+                <span>
+                  {r.job} · {r.date}
+                </span>
+              </figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .rv__head {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  }
+  @media (min-width: 1000px) {
+    .rv__head {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 3rem;
+    }
+  }
+  .rv__head > div:first-child {
+    max-width: 46rem;
+  }
+  .rv__head h2 {
+    margin-top: 1rem;
+  }
+  .rv__head .lead {
+    margin-top: 1.25rem;
+  }
+  .rv__profiles {
+    display: grid;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .rv__profiles ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .rv__profiles a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0 1rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .rv__profiles a:hover {
+    border-color: var(--ink);
+  }
+  .rv__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 760px) {
+    .rv__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1100px) {
+    .rv__list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .rv__list figure {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    height: 100%;
+    margin: 0;
+    padding: 1.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: #fff;
+  }
+  .rv__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .rv__stars {
+    color: var(--amber);
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+  }
+  .rv__source {
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: var(--steel-tint);
+    color: var(--steel);
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+  blockquote {
+    margin: 0;
+    flex: 1;
+  }
+  blockquote p {
+    color: var(--ink);
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+  figcaption {
+    display: grid;
+    gap: 0.15rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    line-height: 1.4;
+  }
+  figcaption strong {
+    color: var(--ink);
+  }
+  figcaption span {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+</style>

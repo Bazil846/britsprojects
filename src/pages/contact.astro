@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
+import PhotoHero from '../components/PhotoHero.astro';
 import Icon from '../components/Icon.astro';
 import EnquiryForm from '../components/EnquiryForm.astro';
 import { SITE_URL, company } from '../site';
@@ -22,12 +22,25 @@ const schema = [
   description="Request a structural works quotation, book a project review or send us your drawings. Tell us about your extension, loft conversion, alteration or new home."
   schema={schema}
 >
-  <PageHero
-    crumb="Contact"
-    eyebrow="Contact"
-    title="Send us your drawings or arrange a discussion"
+  <PhotoHero
+    crumbs={[{ href: '/', label: 'Home' }, { label: 'Contact' }]}
+    image="/photos/loft-construction-2.webp"
+    alt="Red painted structural steel frame inside a roof under construction"
+    position="50% 45%"
+    pill="Contact"
+    title="Send us your drawings"
+    accent="or arrange a discussion"
     lead="Tell us about your project and how we can help: structural works, project management, or both. We will come back to you to talk it through."
-  />
+    caption="Structural steelwork in a loft"
+  >
+    <div slot="actions" class="btn-row">
+      <a class="btn btn--primary" href="#enquiry">
+        Start your enquiry
+        <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+      </a>
+      <a class="btn btn--outline" href={`tel:${tel}`}><Icon name="phone" size={20} /> {company.phone}</a>
+    </div>
+  </PhotoHero>
 
   <section class="section" aria-labelledby="form-heading">
     <div class="container contact">
@@ -36,7 +49,7 @@ const schema = [
         <EnquiryForm id="enquiry" />
       </div>
 
-      <aside class="contact__side">
+      <div class="contact__side">
         <div class="side-card" id="drawings">
           <Icon name="drawing" size={28} />
           <h2 class="h3">Send us your drawings</h2>
@@ -81,7 +94,7 @@ const schema = [
             </div>
           )
         }
-      </aside>
+      </div>
     </div>
   </section>
 </Base>

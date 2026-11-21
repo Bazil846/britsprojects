@@ -1,4 +1,5 @@
 ---
+import { photo } from '../lib/photo';
 // Full photo hero in the parent site's style: a rounded photo panel, navy gradient from the
 // bottom, a location pill, white display heading, actions and a caption naming what is shown.
 interface Props {
@@ -31,7 +32,7 @@ const { image, alt, position = '50% 50%', pill, title, accent, lead, caption, cr
       )
     }
     <div class="ph__panel">
-      <img class="ph__img" src={image} alt={alt} style={`object-position:${position}`} fetchpriority="high" decoding="async" />
+      <img class="ph__img" {...photo(image, '(min-width: 1340px) 1280px, 100vw')} alt={alt} style={`object-position:${position}`} fetchpriority="high" decoding="async" />
       <div class="ph__shade" aria-hidden="true"></div>
       {caption && <p class="ph__caption">{caption}</p>}
       <div class="ph__content">
