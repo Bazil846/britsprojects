@@ -42,7 +42,7 @@ export const structuralTrades = [
     text: 'Excavation and concrete foundation construction, with specialist piling arrangements where required by the structural design.',
   },
   {
-    id: 'drainage', photo: '/photos/drainage-1.webp', alt: 'Underground drainage pipe being laid beside new extension footings and blockwork', position: '100% 70%',
+    id: 'drainage', photo: '/photos/drainage-1.jpg', alt: 'Underground drainage pipe being laid beside new extension footings',
     icon: 'drainage',
     title: 'Drainage Works',
     text: 'Underground drainage installation and alterations, including pipework, inspection chambers, diversions and connections to suit your project.',
@@ -143,7 +143,7 @@ export const oversight = [
     icon: 'updates',
     title: 'We Keep You Informed',
     text: [
-      'Receive clear updates on progress, upcoming decisions, costs and concerns—so you can feel more confident about how your home is being built.',
+      'Receive clear updates on progress, upcoming decisions, costs and concerns, so you can feel more confident about how your home is being built.',
     ],
   },
 ] as const;
