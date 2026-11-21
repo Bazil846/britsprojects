@@ -179,18 +179,36 @@ const tel = company.phoneHref;
     display: none;
     width: 2.75rem;
     height: 2.75rem;
+    padding: 0;
     border: 1px solid var(--line-strong);
     border-radius: 999px;
     background: #fff;
     color: var(--ink);
-    place-items: center;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      color 0.2s;
   }
-  .hdr__toggle .i-close,
-  .hdr__toggle[aria-expanded='true'] .i-open {
+  .hdr__toggle:hover {
+    border-color: var(--ink);
+  }
+  .hdr__toggle[aria-expanded='true'] {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+  }
+  .hdr__toggle :global(svg) {
+    display: block;
+    flex: none;
+  }
+  .hdr__toggle :global(.i-close),
+  .hdr__toggle[aria-expanded='true'] :global(.i-open) {
     display: none;
   }
-  .hdr__toggle[aria-expanded='true'] .i-close {
+  .hdr__toggle[aria-expanded='true'] :global(.i-close) {
     display: block;
   }
   .mnav {
@@ -231,7 +249,7 @@ const tel = company.phoneHref;
       display: none;
     }
     .hdr__toggle {
-      display: grid;
+      display: inline-flex;
     }
   }
   @media (min-width: 961px) {
