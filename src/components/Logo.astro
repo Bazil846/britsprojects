@@ -33,15 +33,17 @@ const WORDMARK = 'M996.5 1096.7C976.4 1094.9 952.6 1087.6 931.6 1076.9C922.6 107
   </svg>
   {
     !markOnly && (
-      <svg class="logo__words" viewBox="236 839 871 362" role="img" aria-label="Brits Construction Projects">
-        <path fill={navy} d={WORDMARK} />
+      <svg class="logo__words" viewBox="236 830 871 276" role="img" aria-label="Brits Construction Projects">
+        <g transform="translate(74 251.7) scale(0.7)">
+          <path fill={navy} d={WORDMARK} />
+        </g>
         <text
           x="242"
-          y="1188"
+          y="1095"
           textLength="858"
           lengthAdjust="spacing"
           font-family="Manrope Variable, Manrope, sans-serif"
-          font-size="54"
+          font-size="52"
           font-weight="700"
           fill={sub}
         >
@@ -66,7 +68,7 @@ const WORDMARK = 'M996.5 1096.7C976.4 1094.9 952.6 1087.6 931.6 1076.9C922.6 107
   }
   .logo__words {
     display: block;
-    height: 2.75rem;
+    height: 2.55rem;
     width: auto;
     flex: none;
   }
@@ -75,7 +77,7 @@ const WORDMARK = 'M996.5 1096.7C976.4 1094.9 952.6 1087.6 931.6 1076.9C922.6 107
       width: 2.95rem;
     }
     .logo__words {
-      height: 2.4rem;
+      height: 2.2rem;
     }
   }
 </style>

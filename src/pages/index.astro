@@ -301,10 +301,8 @@ const schema = [
   }
   .focus {
     margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem 2rem;
+    display: grid;
+    gap: 1rem;
     padding: 1.25rem 1.5rem;
     background: var(--canvas);
     border: 1px solid var(--line);
@@ -315,12 +313,24 @@ const schema = [
     font-weight: 600;
   }
   .focus__list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 0.75rem 1.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+  @media (min-width: 540px) {
+    .focus__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 900px) {
+    .focus__list {
+      grid-template-columns: repeat(4, auto);
+      justify-content: start;
+      column-gap: 2rem;
+    }
   }
   .focus__list li {
     display: inline-flex;
@@ -328,8 +338,10 @@ const schema = [
     gap: 0.45rem;
     font-weight: 600;
     color: var(--ink);
+    white-space: nowrap;
   }
   .focus__list :global(svg) {
+    flex: none;
     color: var(--copper);
   }
 
