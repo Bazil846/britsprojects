@@ -23,6 +23,12 @@ const intro: Record<string, string> = {
   'internal-alterations': 'Opening up your home, safely',
   'new-builds': 'A sound structure for your new home',
 };
+const stagesTitle: Record<string, string> = {
+  extensions: 'How the structure goes up',
+  'loft-conversions': 'How the loft structure comes together',
+  'internal-alterations': 'How a wall comes out safely',
+  'new-builds': 'How the structure goes up',
+};
 const enquiryTitle: Record<string, string> = {
   extensions: 'Planning an extension?',
   'loft-conversions': 'Planning a loft conversion?',
@@ -110,7 +116,7 @@ const schema = [
     <div class="container stages">
       <div>
         <p class="eyebrow">Step by step</p>
-        <h2 id="stages-heading" class="h2">How the structure goes up</h2>
+        <h2 id="stages-heading" class="h2">{stagesTitle[p.id]}</h2>
         <ol class="stages__list">
           {
             p.stages.map((s, i) => (

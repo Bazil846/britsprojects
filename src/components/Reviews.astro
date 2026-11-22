@@ -60,9 +60,7 @@ const items = ids.map((id) => groupReviews.find((r) => r.id === id)!);
               </blockquote>
               <figcaption>
                 <strong>{r.name}</strong>
-                <span>
-                  {r.job} · {r.date}
-                </span>
+                <span>{[r.job, r.date].filter(Boolean).join(' · ')}</span>
               </figcaption>
             </figure>
           </li>

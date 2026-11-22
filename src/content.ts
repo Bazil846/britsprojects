@@ -63,7 +63,7 @@ export const structuralTrades = [
     id: 'concrete-floors', photo: '/photos/concrete-1.webp', alt: 'Concrete being poured over insulation for a ground floor slab',
     icon: 'slab',
     title: 'Solid Concrete Ground Floors',
-    text: 'Ground floor construction, including sub base preparation, compacted hardcore, damp proof membranes, insulation and concrete slabs to the specified floor build-up.',
+    text: 'Ground floor construction, including sub base preparation, compacted hardcore, damp proof membranes, insulation and concrete slabs to the specified floor build up.',
   },
   {
     id: 'beam-block', photo: '/photos/beam-block-floor.jpg', alt: 'Precast concrete floor beams laid across new masonry walls for a beam and block floor', credit: { text: 'Photo: Oast House Archive, CC BY-SA 2.0', url: 'https://www.geograph.org.uk/photo/4523943' },
@@ -275,7 +275,7 @@ export const projectTypes = [
       { src: '/photos/groundworks-3.webp', alt: 'Foundation trenches with reinforcement cages and formwork', caption: 'Foundations' },
       { src: '/photos/build-progress-1.webp', alt: 'New concrete floor slab on a damp proof membrane inside new brickwork', caption: 'Floor slab' },
       { src: '/photos/build-progress-9.webp', alt: 'New brickwork and blockwork walls rising on an extension', caption: 'Walls' },
-      { src: '/photos/build-progress-17.webp', alt: 'Steel beams and new timber joists spanning brickwork walls', caption: 'Steels and roof' },
+      { src: '/photos/build-progress-17.webp', alt: 'Steel beam and new timber joists spanning brickwork walls', caption: 'Steel and joists' },
     ],
     faqs: [
       {
@@ -349,7 +349,7 @@ export const projectTypes = [
     hero: '/photos/build-progress-8.webp',
     heroAlt: 'View through a wide new structural opening into an extension with timber roof joists',
     heroPosition: '50% 50%',
-    caption: 'A wide new opening, supported by steel',
+    caption: 'A wide new opening through the rear wall',
     intro:
       'Opening up a kitchen, forming a wide opening to a garden room or removing a chimney breast all change the load paths through your home. We carry out the work in a controlled sequence, with the house supported throughout, and install the beams, columns and frames your engineer specifies.',
     includes: ['demolition', 'steelwork', 'masonry'],
@@ -418,7 +418,7 @@ export const projectTypes = [
     gallery: [
       { src: '/photos/groundworks-1.webp', alt: 'Foundation trench with steel reinforcement and formwork', caption: 'Foundations' },
       { src: '/photos/concrete-3.webp', alt: 'Concrete pump lorry delivering concrete on a residential site', caption: 'Concrete pour' },
-      { src: '/photos/build-progress-14.webp', alt: 'Building under construction with new brick and blockwork walls and scaffolding', caption: 'Superstructure' },
+      { src: '/photos/build-progress-13.webp', alt: 'New brick walls rising under scaffolding, with window openings formed', caption: 'Walls going up' },
       { src: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed', caption: 'Roof structure' },
     ],
     faqs: [
@@ -511,7 +511,7 @@ export const groupReviews = [
     id: 'pm-planning',
     source: 'Google',
     name: 'Abdul Rahman',
-    job: 'Google review',
+    job: '',
     date: 'Nov 2023',
     text: '…He explained each step in detail of the build to us. We are satisfied that he is a very good project manager and sorted out everything from the planning to the build.',
   },

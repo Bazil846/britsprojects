@@ -13,7 +13,7 @@ interface Props {
 const {
   eyebrow = 'On site',
   title = 'How a structure comes together',
-  lead = 'Every stage of the structural package in the order it is built, from clearing the ground to closing in the roof. Photographed on Brits group sites.',
+  lead = 'Every part of the structural package, from clearing the ground to closing in the roof. Photographed on Brits group sites.',
 } = Astro.props;
 ---
 
@@ -26,22 +26,22 @@ const {
     </div>
     <div class="bs__controls">
       <a class="bs__link" href="/structural-works#trades-heading">All structural works <Icon name="arrow" size={18} /></a>
-      <button type="button" class="bs__btn" data-step="-1" aria-label="Previous stage" disabled>
+      <button type="button" class="bs__btn" data-step="-1" aria-label="Previous" disabled>
         <Icon name="arrow" size={20} class="bs__back" />
       </button>
-      <button type="button" class="bs__btn" data-step="1" aria-label="Next stage">
+      <button type="button" class="bs__btn" data-step="1" aria-label="Next">
         <Icon name="arrow" size={20} />
       </button>
     </div>
   </div>
 
-  <ol class="bs__strip" tabindex="0" aria-label="Structural stages, scroll sideways for more" data-strip>
+  <ol class="bs__strip" tabindex="0" aria-label="Structural works, scroll sideways for more" data-strip>
     {
       structuralTrades.map((t, i) => (
         <li>
           <div class="bs__rail" aria-hidden="true">
             <span class="bs__dot" />
-            <span class="bs__stage tabular">Stage {String(i + 1).padStart(2, '0')}</span>
+            <span class="bs__stage tabular">{String(i + 1).padStart(2, '0')}</span>
           </div>
           <div class="bs__photo">
             <img {...photo(t.photo, '336px')} alt={t.alt} loading="lazy" decoding="async" />
