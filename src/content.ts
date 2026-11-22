@@ -42,7 +42,7 @@ export const structuralTrades = [
     text: 'Excavation and concrete foundation construction, with specialist piling arrangements where required by the structural design.',
   },
   {
-    id: 'drainage', photo: '/photos/drainage-1.jpg', alt: 'Underground drainage pipe being laid beside new extension footings',
+    id: 'drainage', photo: '/photos/drainage-trench.webp', alt: 'Drainage pipe bedded in gravel at the bottom of a trench', credit: { text: 'Photo: D Goug, Pexels', url: 'https://www.pexels.com/photo/drainage-pipe-installation-in-elk-grove-trench-37627673/' },
     icon: 'drainage',
     title: 'Drainage Works',
     text: 'Underground drainage installation and alterations, including pipework, inspection chambers, diversions and connections to suit your project.',

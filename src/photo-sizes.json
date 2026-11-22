@@ -64,11 +64,6 @@
   747,
   640
  ],
- "/photos/drainage-1.jpg": [
-  900,
-  675,
-  640
- ],
  "/photos/ext-construction-3.webp": [
   1328,
   747,
@@ -137,6 +132,11 @@
  "/photos/build-progress-3.webp": [
   1400,
   1050,
+  640
+ ],
+ "/photos/drainage-trench.webp": [
+  1328,
+  745,
   640
  ]
 }
