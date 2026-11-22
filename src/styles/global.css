@@ -384,3 +384,61 @@ textarea.field {
 [id] {
   scroll-margin-top: 7rem;
 }
+
+/* In-page jump links under a hero. Scrolls sideways on phones, with a fade at the edge so a
+   cut-off label reads as "more", not as broken. */
+.subnav {
+  position: sticky;
+  top: 4.75rem;
+  z-index: 30;
+  margin-top: 1.25rem;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.subnav ul {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.subnav ul::-webkit-scrollbar {
+  display: none;
+}
+.subnav a {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  white-space: nowrap;
+  padding: 0 1rem;
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.925rem;
+  text-decoration: none;
+}
+.subnav a:hover {
+  background: var(--stone);
+}
+@media (max-width: 760px) {
+  .subnav .container {
+    padding-right: 0;
+  }
+  .subnav ul {
+    padding-right: 2.5rem;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent);
+  }
+  .subnav a {
+    padding: 0 0.85rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Comfortable tap targets (44px) for standalone links on touch screens. */
+.link-arrow {
+  min-height: 2.75rem;
+}
