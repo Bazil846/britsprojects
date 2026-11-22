@@ -13,7 +13,7 @@ interface Props {
 const {
   eyebrow = 'On site',
   title = 'How a structure comes together',
-  lead = 'Every part of the structural package, from clearing the ground to closing in the roof. Photographed on Brits group sites.',
+  lead = 'Every part of the structural package, from clearing the ground to closing in the roof. Photographed on Brits group sites unless credited.',
 } = Astro.props;
 ---
 
@@ -51,6 +51,11 @@ const {
             <div>
               <h3>{t.title}</h3>
               <p>{t.text}</p>
+              {'credit' in t && (
+                <p class="bs__credit">
+                  <a href={t.credit.url} rel="noopener">{t.credit.text}</a>
+                </p>
+              )}
             </div>
           </div>
         </li>
@@ -235,6 +240,10 @@ const {
     flex: none;
     color: var(--copper-light);
     margin-top: 0.1rem;
+  }
+  .bs__credit a {
+    font-size: 0.75rem;
+    color: #8fa4b1;
   }
   .bs h3 {
     color: #fff;
