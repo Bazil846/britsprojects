@@ -25,6 +25,12 @@ export const structuralCore = [
     title: 'New Build Structures',
     text: 'Coordinated structural packages covering groundworks, foundations, drainage, structural walls, floors, steelwork and roof construction.',
   },
+  {
+    id: 'commercial', photo: '/photos/commercial-hero.webp', alt: 'Structural steel frame of a commercial building under construction',
+    icon: 'commercial',
+    title: 'Commercial Projects',
+    text: 'Structural packages for offices, retail, mixed use and light industrial buildings: new openings, steel frames, floor structures, mezzanines, extensions and new units.',
+  },
 ] as const;
 
 /** The trades in a structural package, in build order. */
@@ -51,13 +57,13 @@ export const structuralTrades = [
     id: 'masonry', photo: '/photos/build-progress-9.webp', alt: 'New brickwork and blockwork walls rising on an extension',
     icon: 'brick',
     title: 'Brickwork & Blockwork',
-    text: 'Construction of external walls, internal load bearing walls and supporting masonry for extensions, alterations and new homes.',
+    text: 'Construction of external walls, internal load bearing walls and supporting masonry for extensions, alterations, new homes and commercial buildings.',
   },
   {
     id: 'steelwork', photo: '/photos/loft-construction-2.webp', alt: 'Red painted structural steel frame inside a roof under construction',
     icon: 'steel',
     title: 'Structural Steelwork',
-    text: 'Installation of specified steel beams, columns and frames to support new openings, additional floors and changes to your home’s layout.',
+    text: 'Installation of specified steel beams, columns and frames to support new openings, additional floors and changes to a building’s layout.',
   },
   {
     id: 'concrete-floors', photo: '/photos/concrete-1.webp', alt: 'Concrete being poured over insulation for a ground floor slab',
@@ -81,7 +87,7 @@ export const structuralTrades = [
     id: 'roofing', photo: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed',
     icon: 'roof',
     title: 'Roofing Structures',
-    text: 'Roof construction and structural roof alterations for extensions, loft conversions and new residential buildings.',
+    text: 'Roof construction and structural roof alterations for extensions, loft conversions, new homes and commercial buildings.',
   },
 ] as const;
 
@@ -143,7 +149,7 @@ export const oversight = [
     icon: 'updates',
     title: 'We Keep You Informed',
     text: [
-      'Receive clear updates on progress, upcoming decisions, costs and concerns, so you can feel more confident about how your home is being built.',
+      'Receive clear updates on progress, upcoming decisions, costs and concerns, so you can feel more confident about how your project is being built.',
     ],
   },
 ] as const;
@@ -152,12 +158,12 @@ export const oversightNote =
   'Site visits and reviews are agreed to suit your project. Our oversight supports the responsibilities of your builder, designers, appointed surveyors and Building Control; it does not replace their inspections or approvals.';
 
 export const whyChoose = [
-  { icon: 'shield', title: 'Structural construction expertise', text: 'Focused attention on the elements that give your home its strength.' },
+  { icon: 'shield', title: 'Structural construction expertise', text: 'Focused attention on the elements that give a building its strength, for homes and commercial premises alike.' },
   { icon: 'scope', title: 'Two ways to support your build', text: 'Appoint us for structural works or to manage a separate builder on your behalf.' },
   { icon: 'team', title: 'A coordinated professional team', text: 'Architects, structural engineers and party wall surveyors working alongside construction expertise.' },
   { icon: 'updates', title: 'Clear scope and communication', text: 'Understand what is included, how work is progressing and which decisions need your attention.' },
   { icon: 'cost', title: 'Careful cost oversight', text: 'Review progress, payments and variations with experienced support.' },
-  { icon: 'home', title: 'A focus on your family’s future', text: 'Quality construction and thoughtful management for the home you are investing in.' },
+  { icon: 'home', title: 'Homes and commercial buildings', text: 'Quality construction and thoughtful management, whether you are investing in a family home or a commercial property.' },
 ] as const;
 
 /** The four promises from the brief's introduction. */
@@ -225,7 +231,7 @@ export const documents = [
 
 /** Real site photos for the homepage strip (from Brits group sites). */
 export const sitePhotos = [
-  { src: '/photos/groundworks-3.webp', alt: 'Foundation trenches with reinforcement cages and formwork on a residential site', caption: 'Foundations' },
+  { src: '/photos/groundworks-3.webp', alt: 'Foundation trenches with reinforcement cages and formwork', caption: 'Foundations' },
   { src: '/photos/loft-construction-2.webp', alt: 'Red painted structural steel frame inside a roof under construction', caption: 'Structural steelwork' },
   { src: '/photos/concrete-1.webp', alt: 'Concrete being poured over insulation for a ground floor slab', caption: 'Concrete ground floor' },
   { src: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed', caption: 'Roof structure' },
@@ -417,7 +423,7 @@ export const projectTypes = [
     ],
     gallery: [
       { src: '/photos/groundworks-1.webp', alt: 'Foundation trench with steel reinforcement and formwork', caption: 'Foundations' },
-      { src: '/photos/concrete-3.webp', alt: 'Concrete pump lorry delivering concrete on a residential site', caption: 'Concrete pour' },
+      { src: '/photos/concrete-3.webp', alt: 'Concrete pump lorry delivering concrete to site', caption: 'Concrete pour' },
       { src: '/photos/build-progress-13.webp', alt: 'New brick walls rising under scaffolding, with window openings formed', caption: 'Walls going up' },
       { src: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed', caption: 'Roof structure' },
     ],
@@ -433,6 +439,53 @@ export const projectTypes = [
       {
         q: 'Who finishes the house?',
         a: 'Finishing trades or your main contractor follow on once the structure is complete. Our sister company Brits Construction Services can also complete the build.',
+      },
+    ],
+  },
+  {
+    id: 'commercial',
+    nav: 'Commercial projects',
+    title: 'Commercial Structural Work',
+    pill: 'Offices, retail, mixed use and commercial units',
+    lead: 'Structural packages for commercial buildings: new openings and steel frames, floor structures and mezzanines, extensions and new commercial units, built to the engineer’s design.',
+    hero: '/photos/commercial-hero.webp',
+    heroAlt: 'Structural steel frame of a commercial building under construction',
+    heroPosition: '50% 50%',
+    caption: 'Steel frame for a commercial building',
+    intro:
+      'Commercial projects bring their own pressures: tenants and staff to keep safe, programmes tied to lease dates, and structures designed for heavier loads. We deliver the structural package for offices, shops, restaurants, mixed use and light industrial buildings, and plan the work around how the building is used.',
+    includes: ['demolition', 'foundations', 'drainage', 'masonry', 'steelwork', 'concrete-floors', 'beam-block', 'screeding', 'roofing'],
+    stages: [
+      { title: 'Survey and design review', text: 'We review the structural engineer’s design, the existing building and how it will be used during the works.' },
+      { title: 'Phasing and temporary works', text: 'Access, protection and temporary support planned so occupied areas stay safe and working.' },
+      { title: 'Groundworks and foundations', text: 'Excavation, foundations or piling and drainage for extensions and new units.' },
+      { title: 'Steel frame and beams', text: 'Steel frames, transfer beams and columns installed to the engineer’s design.' },
+      { title: 'Floors and mezzanines', text: 'Ground bearing slabs, upper floors and mezzanine structures to the specified loads.' },
+      { title: 'Walls and roof structure', text: 'Masonry and roof structure completed so the building is ready for the envelope and fit out.' },
+    ],
+    notes: [
+      'Commercial clients have duties under the Construction (Design and Management) Regulations 2015, and we work within them.',
+      'Steelwork in commercial buildings often needs fire protection, set out in the design.',
+      'Works to a leased building usually need the landlord’s consent before they start.',
+      'Phasing and working hours can be agreed to keep your premises trading where possible.',
+    ],
+    gallery: [
+      { src: '/photos/commercial-steel.webp', alt: 'Steel columns and beams of a commercial frame against the sky', caption: 'Steel frame' },
+      { src: '/photos/commercial-concrete.webp', alt: 'Concrete being placed for a commercial floor slab', caption: 'Floor slab' },
+      { src: '/photos/commercial-site.webp', alt: 'Commercial building site with the structure rising', caption: 'Structure rising' },
+    ],
+    faqs: [
+      {
+        q: 'Can you work while our premises stay open?',
+        a: 'Often, yes. We plan phasing, access routes, protection and working hours with you so staff, tenants and customers are kept safe and the business can keep running where possible.',
+      },
+      {
+        q: 'Do you work for developers, landlords and businesses?',
+        a: 'Yes. We take on structural packages for commercial clients as well as homeowners, working to your design team’s drawings and the structural engineer’s design.',
+      },
+      {
+        q: 'Can you oversee another contractor on a commercial project?',
+        a: 'Yes. Our project management service checks the work against the drawings, reviews progress before stage payments and coordinates the professional team on commercial projects too.',
       },
     ],
   },

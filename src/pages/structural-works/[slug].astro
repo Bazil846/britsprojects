@@ -22,24 +22,28 @@ const intro: Record<string, string> = {
   'loft-conversions': 'The framework for your new loft room',
   'internal-alterations': 'Opening up your home, safely',
   'new-builds': 'A sound structure for your new home',
+  commercial: 'Structure built around your business',
 };
 const stagesTitle: Record<string, string> = {
   extensions: 'How the structure goes up',
   'loft-conversions': 'How the loft structure comes together',
   'internal-alterations': 'How a wall comes out safely',
   'new-builds': 'How the structure goes up',
+  commercial: 'How a commercial structure is delivered',
 };
 const enquiryTitle: Record<string, string> = {
   extensions: 'Planning an extension?',
   'loft-conversions': 'Planning a loft conversion?',
   'internal-alterations': 'Planning a structural alteration?',
   'new-builds': 'Planning a new build?',
+  commercial: 'Planning a commercial project?',
 };
 const reviewIds = {
   extensions: ['piling', 'lamiaa', 'shell'],
   'loft-conversions': ['loft', 'shell', 'milestones'],
   'internal-alterations': ['shell', 'piling', 'milestones'],
   'new-builds': ['newbuild', 'piling', 'pm-onsite'],
+  commercial: ['piling', 'pm-onsite', 'pm-schedule'],
 } as const;
 const url = `${SITE_URL}/structural-works/${p.id}`;
 
@@ -433,9 +437,9 @@ const schema = [
     display: grid;
     gap: 1rem;
   }
-  @media (min-width: 860px) {
+  @media (min-width: 760px) {
     .others {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
   }
   .others a {

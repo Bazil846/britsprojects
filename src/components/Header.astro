@@ -475,6 +475,9 @@ const isIn = (base: string) => here === base || here.startsWith(base + '/');
     align-items: center;
     padding: 0.5rem;
   }
+  .mega__types li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
   .mega__types img {
     width: 4.25rem;
     height: 3.5rem;

@@ -40,7 +40,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
 
 <Base
   title="Structural Work & Project Management | Brits Projects"
-  description="Structural building work and independent project management for extensions, loft conversions, alterations and new homes in London and the Home Counties."
+  description="Structural building work and independent project management for residential and commercial projects in London and the Home Counties."
   schema={schema}
 >
   <PhotoHero
@@ -48,10 +48,10 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
     image="/photos/large-loft-1.webp"
     alt="New steel beams, rafters and floor joists forming the structure of a loft conversion"
     position="50% 40%"
-    pill="London and the Home Counties"
+    pill="Residential & commercial · London and the Home Counties"
     title="A Stronger Home."
     accent="A Better Managed Build."
-    lead="We build the structure your home depends on, or oversee your builder on your behalf. Structural works and project management for extensions, loft conversions, alterations and new homes."
+    lead="We build the structure your building depends on, or oversee your builder on your behalf. Structural works and project management for homes and commercial premises: extensions, loft conversions, alterations, new builds and commercial projects."
     caption="On site: new steels, rafters and floor joists"
   >
     <div slot="actions" class="btn-row">
@@ -80,8 +80,8 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
             <p class="offer__kicker"><Icon name="steel" size={20} /> Structural Works</p>
             <h3 class="offer__title">We build the structure</h3>
             <p>
-              Foundations, drainage, walls, floors, steelwork and roof structures for extensions, loft conversions, internal alterations and
-              new builds, built to your engineer’s design.
+              Foundations, drainage, walls, floors, steelwork and roof structures for extensions, loft conversions, internal alterations, new
+              builds and commercial buildings, built to your engineer’s design.
             </p>
             <p class="offer__for"><strong>Best for:</strong> you have drawings and need a builder for the structural package.</p>
             <ul class="offer__links">
@@ -186,7 +186,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
         <p class="eyebrow">01 · Structural works</p>
         <h2 id="sw-heading" class="h2">Strong foundations for your dream home</h2>
         <p class="lead">
-          The strength of your home depends on the work beneath the surface. We undertake structural packages for residential projects,
+          The strength of your home depends on the work beneath the surface. We undertake structural packages for residential and commercial projects,
           working to the architectural drawings, structural engineer’s design and agreed specification.
         </p>
         <ul class="types">
@@ -240,7 +240,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
           <h2 id="pm-heading" class="h2">Your builder. Our oversight. Your peace of mind.</h2>
         </div>
         <p class="lead">
-          Building your home is a major investment. We ask the technical questions, review key stages and raise concerns with your builder,
+          Building or altering a property is a major investment. We ask the technical questions, review key stages and raise concerns with your builder,
           so you can make informed decisions throughout the build.
         </p>
       </div>
@@ -633,6 +633,11 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
   .types a:hover {
     border-color: var(--line-strong);
     box-shadow: var(--shadow-overlay);
+  }
+  @media (min-width: 640px) {
+    .types li:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
   }
   .types img {
     width: 4.5rem;

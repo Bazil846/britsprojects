@@ -19,7 +19,7 @@ const schema = [
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Residential structural building work',
+    name: 'Residential and commercial structural building work',
     serviceType: 'Structural building work',
     provider: { '@id': `${SITE_URL}/#business` },
     areaServed: 'London and the Home Counties',
@@ -46,7 +46,7 @@ const schema = [
 
 <Base
   title="Structural Building Work | Brits Construction Projects"
-  description="Structural packages for extensions, lofts, alterations and new builds: foundations, drainage, masonry, steelwork, floors and roof structures."
+  description="Structural packages for extensions, lofts, alterations, new builds and commercial buildings: foundations, drainage, masonry, steelwork, floors and roof structures."
   schema={schema}
 >
   <PhotoHero
@@ -57,7 +57,7 @@ const schema = [
     pill="Structural work specialists"
     title="Strong Foundations"
     accent="for Your Dream Home"
-    lead="The strength of your home depends on the work beneath the surface. Foundations, steel connections, supporting walls and roof structures all deserve careful attention."
+    lead="The strength of any building depends on the work beneath the surface. Foundations, steel connections, supporting walls and roof structures all deserve careful attention."
     caption="Foundations being reinforced"
   >
     <div slot="actions" class="btn-row">
@@ -85,9 +85,9 @@ const schema = [
       <div class="section-head">
         <div class="section-head__text">
           <p class="eyebrow">Project types</p>
-          <h2 id="projects-heading" class="h2">Structural packages for every kind of home project</h2>
+          <h2 id="projects-heading" class="h2">Structural packages for homes and commercial buildings</h2>
           <p class="lead">
-            We undertake structural building packages for residential extensions, loft conversions, internal alterations and new builds,
+            We undertake structural building packages for residential extensions, loft conversions, internal alterations and new builds, and for commercial projects,
             working to the architectural drawings, structural engineer’s design and agreed specifications.
           </p>
         </div>
@@ -256,6 +256,17 @@ const schema = [
   .ptype:hover {
     border-color: var(--line-strong);
     box-shadow: var(--shadow-overlay);
+  }
+  @media (min-width: 800px) {
+    .ptypes > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      flex-direction: row;
+    }
+    .ptypes > :last-child:nth-child(odd) .ptype__media {
+      flex: 0 0 50%;
+      aspect-ratio: auto;
+      min-height: 20rem;
+    }
   }
   .ptype__media {
     display: block;

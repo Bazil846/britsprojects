@@ -1,6 +1,6 @@
 # Brits Construction Projects Ltd
 
-> Residential structural building work and independent project management for extensions, loft conversions, internal alterations and new homes in London and the Home Counties. Sister company of Brits Construction Services (https://www.britsconstructionservices.co.uk).
+> Structural building work and independent project management for residential and commercial projects (extensions, loft conversions, internal alterations, new builds and commercial buildings) in London and the Home Counties. Sister company of Brits Construction Services (https://www.britsconstructionservices.co.uk).
 
 Two core services:
 1. Structural works: carrying out the structural building package (demolition, foundations and piling, drainage, brickwork and blockwork, structural steelwork, concrete and beam-and-block floors, screeding, roof structures) to the architect's drawings and structural engineer's design.
@@ -13,6 +13,7 @@ Two core services:
   - [Loft conversions](https://www.britsconstructionprojects.co.uk/structural-works/loft-conversions)
   - [Internal structural alterations](https://www.britsconstructionprojects.co.uk/structural-works/internal-alterations)
   - [New build structures](https://www.britsconstructionprojects.co.uk/structural-works/new-builds)
+  - [Commercial projects](https://www.britsconstructionprojects.co.uk/structural-works/commercial)
 - [Project management](https://www.britsconstructionprojects.co.uk/project-management)
 - [Why choose us](https://www.britsconstructionprojects.co.uk/about)
 - [Contact and send drawings](https://www.britsconstructionprojects.co.uk/contact)
