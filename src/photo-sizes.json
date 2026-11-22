@@ -9,34 +9,9 @@
   747,
   640
  ],
- "/photos/build-progress-10.webp": [
-  1328,
-  747,
-  640
- ],
  "/photos/build-progress-11.webp": [
   1328,
   747,
-  640
- ],
- "/photos/build-progress-14.webp": [
-  1024,
-  768,
-  640
- ],
- "/photos/build-progress-15.webp": [
-  747,
-  1328,
-  640
- ],
- "/photos/build-progress-16.webp": [
-  747,
-  1328,
-  640
- ],
- "/photos/build-progress-17.webp": [
-  1400,
-  1050,
   640
  ],
  "/photos/build-progress-4.webp": [
@@ -54,17 +29,7 @@
   747,
   640
  ],
- "/photos/concrete-1.webp": [
-  1400,
-  1049,
-  640
- ],
  "/photos/concrete-3.webp": [
-  1328,
-  747,
-  640
- ],
- "/photos/ext-construction-3.webp": [
   1328,
   747,
   640
@@ -89,39 +54,9 @@
   747,
   640
  ],
- "/photos/large-loft-3.webp": [
-  747,
-  1328,
-  640
- ],
- "/photos/loft-brits-banner-1.webp": [
-  1328,
-  747,
-  640
- ],
- "/photos/loft-construction-2.webp": [
-  747,
-  1328,
-  640
- ],
  "/photos/loft-construction-4.webp": [
   1328,
   747,
-  640
- ],
- "/photos/scaffolded-build-1.webp": [
-  1328,
-  747,
-  640
- ],
- "/photos/scaffolded-build-2.webp": [
-  747,
-  1328,
-  640
- ],
- "/photos/ufh-3.webp": [
-  747,
-  1328,
   640
  ],
  "/photos/build-progress-13.webp": [
@@ -129,14 +64,131 @@
   747,
   640
  ],
- "/photos/build-progress-3.webp": [
-  1400,
-  1050,
-  640
- ],
  "/photos/drainage-trench.webp": [
   1328,
   745,
   640
+ ],
+ "/photos/stock-roof-structure.webp": [
+  2400,
+  1600,
+  640,
+  1280
+ ],
+ "/photos/stock-rebar-pour.webp": [
+  2400,
+  1608,
+  640,
+  1280
+ ],
+ "/photos/stock-extension-uk.webp": [
+  2400,
+  1800,
+  640,
+  1280
+ ],
+ "/photos/stock-loft-roof.webp": [
+  2400,
+  1600,
+  640,
+  1280
+ ],
+ "/photos/stock-rear-opening.webp": [
+  2400,
+  1800,
+  640,
+  1280
+ ],
+ "/photos/stock-newbuild-scaffold.webp": [
+  2400,
+  1600,
+  640,
+  1280
+ ],
+ "/photos/commercial-hero.webp": [
+  2400,
+  1600,
+  640,
+  1280
+ ],
+ "/photos/stock-site-review.webp": [
+  2400,
+  1600,
+  640,
+  1280
+ ],
+ "/photos/stock-bricklayer.webp": [
+  2400,
+  1600,
+  640,
+  1280
+ ],
+ "/photos/stock-drawings.webp": [
+  2400,
+  1600,
+  640,
+  1280
+ ],
+ "/photos/stock-rebar-grid.webp": [
+  1600,
+  1200,
+  640,
+  1280
+ ],
+ "/photos/stock-plans-review.webp": [
+  1600,
+  1066,
+  640,
+  1280
+ ],
+ "/photos/stock-roof-framing.webp": [
+  1100,
+  1956,
+  640
+ ],
+ "/photos/stock-inspect-wall.webp": [
+  1100,
+  1650,
+  640
+ ],
+ "/photos/stock-plan-level.webp": [
+  1100,
+  1650,
+  640
+ ],
+ "/photos/commercial-steel.webp": [
+  1600,
+  1066,
+  640,
+  1280
+ ],
+ "/photos/commercial-concrete.webp": [
+  1600,
+  1280,
+  640,
+  1280
+ ],
+ "/photos/stock-screed.webp": [
+  1600,
+  1066,
+  640,
+  1280
+ ],
+ "/photos/stock-foundation-pour.webp": [
+  1100,
+  1466,
+  640
+ ],
+ "/photos/stock-roof-trusses.webp": [
+  1600,
+  1064,
+  640,
+  1280
+ ],
+ "/photos/commercial-site.webp": [
+  1600,
+  1066,
+  640,
+  1280
  ]
 }

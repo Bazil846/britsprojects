@@ -2,25 +2,25 @@
 
 export const structuralCore = [
   {
-    id: 'extensions', photo: '/photos/build-progress-14.webp', alt: 'Extension under construction with new brick and blockwork walls and scaffolding',
+    id: 'extensions', photo: '/photos/stock-extension-uk.webp', alt: 'Extension under construction with new brick and blockwork walls and scaffolding',
     icon: 'extension',
     title: 'Extensions',
     text: 'Structural construction for single and double storey extensions, including demolition, groundworks, foundations, drainage, walls, floors, steelwork and roofing.',
   },
   {
-    id: 'loft-conversions', photo: '/photos/loft-construction-4.webp', alt: 'Loft conversion structure with new steel beams and timber framing',
+    id: 'loft-conversions', photo: '/photos/stock-loft-roof.webp', alt: 'Loft conversion structure with new steel beams and timber framing',
     icon: 'loft',
     title: 'Loft Conversions',
     text: 'Structural alterations, floor strengthening, steel installation, dormer construction and roof modifications to create the framework for your new living space.',
   },
   {
-    id: 'internal-alterations', photo: '/photos/build-progress-4.webp', alt: 'Steel beam installed over a new opening in blockwork',
+    id: 'internal-alterations', photo: '/photos/stock-rear-opening.webp', alt: 'Steel beam installed over a new opening in blockwork',
     icon: 'wall',
     title: 'Internal Structural Alterations',
     text: 'Load bearing wall removal, new structural openings, temporary support and installation of specified beams, columns and frames.',
   },
   {
-    id: 'new-builds', photo: '/photos/scaffolded-build-2.webp', alt: 'Multi-storey residential build under scaffolding',
+    id: 'new-builds', photo: '/photos/stock-newbuild-scaffold.webp', alt: 'Multi-storey residential build under scaffolding',
     icon: 'newbuild',
     title: 'New Build Structures',
     text: 'Coordinated structural packages covering groundworks, foundations, drainage, structural walls, floors, steelwork and roof construction.',
@@ -42,13 +42,13 @@ export const structuralTrades = [
     text: 'Demolition, strip out, site clearance and excavation to prepare your property for the planned works.',
   },
   {
-    id: 'foundations', photo: '/photos/groundworks-1.webp', alt: 'Foundation trench with steel reinforcement and formwork',
+    id: 'foundations', photo: '/photos/stock-foundation-pour.webp', alt: 'Concrete being poured into a reinforced foundation',
     icon: 'foundation',
     title: 'Foundations & Piling',
     text: 'Excavation and concrete foundation construction, with specialist piling arrangements where required by the structural design.',
   },
   {
-    id: 'drainage', photo: '/photos/drainage-trench.webp', alt: 'Drainage pipe bedded in gravel at the bottom of a trench', credit: { text: 'Photo: D Goug, Pexels', url: 'https://www.pexels.com/photo/drainage-pipe-installation-in-elk-grove-trench-37627673/' },
+    id: 'drainage', photo: '/photos/drainage-trench.webp', alt: 'Drainage pipe bedded in gravel at the bottom of a trench',
     icon: 'drainage',
     title: 'Drainage Works',
     text: 'Underground drainage installation and alterations, including pipework, inspection chambers, diversions and connections to suit your project.',
@@ -60,13 +60,13 @@ export const structuralTrades = [
     text: 'Construction of external walls, internal load bearing walls and supporting masonry for extensions, alterations, new homes and commercial buildings.',
   },
   {
-    id: 'steelwork', photo: '/photos/loft-construction-2.webp', alt: 'Red painted structural steel frame inside a roof under construction',
+    id: 'steelwork', photo: '/photos/commercial-steel.webp', alt: 'Structural steel frame of columns and beams',
     icon: 'steel',
     title: 'Structural Steelwork',
     text: 'Installation of specified steel beams, columns and frames to support new openings, additional floors and changes to a building’s layout.',
   },
   {
-    id: 'concrete-floors', photo: '/photos/concrete-1.webp', alt: 'Concrete being poured over insulation for a ground floor slab',
+    id: 'concrete-floors', photo: '/photos/commercial-concrete.webp', alt: 'Concrete being placed over steel reinforcement for a ground floor slab',
     icon: 'slab',
     title: 'Solid Concrete Ground Floors',
     text: 'Ground floor construction, including sub base preparation, compacted hardcore, damp proof membranes, insulation and concrete slabs to the specified floor build up.',
@@ -78,13 +78,13 @@ export const structuralTrades = [
     text: 'Installation of suspended beam and block flooring, including supporting masonry, concrete beams, infill blocks, ventilation provisions and insulation.',
   },
   {
-    id: 'screeding', photo: '/photos/ufh-3.webp', alt: 'Floor screed being laid over underfloor heating pipes',
+    id: 'screeding', photo: '/photos/stock-screed.webp', alt: 'Freshly laid floor being levelled with a power screed',
     icon: 'screed',
     title: 'Floor Screeding',
     text: 'Screeding to provide a level surface ready for floor finishes, including installation over underfloor heating systems where specified.',
   },
   {
-    id: 'roofing', photo: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed',
+    id: 'roofing', photo: '/photos/stock-roof-trusses.webp', alt: 'Timber roof trusses being framed against a blue sky',
     icon: 'roof',
     title: 'Roofing Structures',
     text: 'Roof construction and structural roof alterations for extensions, loft conversions, new homes and commercial buildings.',
@@ -229,14 +229,6 @@ export const documents = [
   'Your builder’s programme and payment schedule (for project management)',
 ];
 
-/** Real site photos for the homepage strip (from Brits group sites). */
-export const sitePhotos = [
-  { src: '/photos/groundworks-3.webp', alt: 'Foundation trenches with reinforcement cages and formwork', caption: 'Foundations' },
-  { src: '/photos/loft-construction-2.webp', alt: 'Red painted structural steel frame inside a roof under construction', caption: 'Structural steelwork' },
-  { src: '/photos/concrete-1.webp', alt: 'Concrete being poured over insulation for a ground floor slab', caption: 'Concrete ground floor' },
-  { src: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed', caption: 'Roof structure' },
-];
-
 /** Accreditations and memberships shown on the site (logos in public/logos). */
 export const accreditations = [
   { name: 'CHAS', src: '/logos/chas-logo.svg' },
@@ -255,10 +247,10 @@ export const projectTypes = [
     title: 'Structural Work for Extensions',
     pill: 'Single and double storey extensions',
     lead: 'Rear, side and wraparound extensions built from the ground up to a watertight shell, to your architect’s drawings and your engineer’s design.',
-    hero: '/photos/ext-construction-3.webp',
-    heroAlt: 'Rear extension shell with new blockwork walls, a steel beam and timber roof joists',
-    heroPosition: '50% 55%',
-    caption: 'Extension shell with steel and roof joists',
+    hero: '/photos/stock-extension-uk.webp',
+    heroAlt: 'Rear extension under construction on a semi detached house, with new blockwork walls and scaffolding',
+    heroPosition: '50% 45%',
+    caption: 'A rear extension under way',
     intro:
       'An extension is only as good as the structure beneath it. We take your project from breaking ground to a watertight shell: foundations, drainage, floors, walls, steelwork and the roof structure, ready for your finishing trades or your main contractor.',
     includes: ['demolition', 'foundations', 'drainage', 'masonry', 'steelwork', 'concrete-floors', 'beam-block', 'roofing'],
@@ -281,7 +273,7 @@ export const projectTypes = [
       { src: '/photos/groundworks-3.webp', alt: 'Foundation trenches with reinforcement cages and formwork', caption: 'Foundations' },
       { src: '/photos/build-progress-1.webp', alt: 'New concrete floor slab on a damp proof membrane inside new brickwork', caption: 'Floor slab' },
       { src: '/photos/build-progress-9.webp', alt: 'New brickwork and blockwork walls rising on an extension', caption: 'Walls' },
-      { src: '/photos/build-progress-17.webp', alt: 'Steel beam and new timber joists spanning brickwork walls', caption: 'Steel and joists' },
+      { src: '/photos/stock-roof-trusses.webp', alt: 'Timber roof trusses being framed against a blue sky', caption: 'Roof structure' },
     ],
     faqs: [
       {
@@ -304,10 +296,10 @@ export const projectTypes = [
     title: 'Structural Work for Loft Conversions',
     pill: 'Dormer, hip to gable and mansard lofts',
     lead: 'Floor strengthening, steel installation, dormer construction and roof alterations: the framework your new loft room is built on.',
-    hero: '/photos/loft-construction-4.webp',
-    heroAlt: 'Loft conversion structure with new steel beams and timber framing',
-    heroPosition: '50% 45%',
-    caption: 'Loft structure with new steels and framing',
+    hero: '/photos/stock-loft-roof.webp',
+    heroAlt: 'New timber roof structure being framed on top of a building',
+    heroPosition: '50% 40%',
+    caption: 'A new roof structure being framed',
     intro:
       'Converting a loft changes how your roof carries its load. New floor joists, steel beams, dormer framing and altered roof timbers all have to follow the engineer’s design exactly. We build that structure, ready for insulation, boarding and finishes.',
     includes: ['steelwork', 'roofing', 'masonry', 'demolition'],
@@ -327,8 +319,8 @@ export const projectTypes = [
     ],
     gallery: [
       { src: '/photos/large-loft-1.webp', alt: 'Loft conversion structure with new steel beams, rafters and floor joists', caption: 'Steels and rafters' },
-      { src: '/photos/loft-construction-2.webp', alt: 'Red painted structural steel frame inside a roof under construction', caption: 'Steel frame' },
-      { src: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed', caption: 'Roof structure' },
+      { src: '/photos/loft-construction-4.webp', alt: 'Loft conversion structure with new steel beams and timber framing', caption: 'Steel and framing' },
+      { src: '/photos/stock-roof-trusses.webp', alt: 'Timber roof trusses being framed against a blue sky', caption: 'Roof structure' },
       { src: '/photos/build-progress-11.webp', alt: 'New roof trusses and timber joists over a structure under scaffolding', caption: 'Roof timbers' },
     ],
     faqs: [
@@ -352,10 +344,10 @@ export const projectTypes = [
     title: 'Internal Structural Alterations',
     pill: 'Wall removal and new openings',
     lead: 'Load bearing walls removed, new openings formed and steel beams installed safely, with temporary support at every step.',
-    hero: '/photos/build-progress-8.webp',
-    heroAlt: 'View through a wide new structural opening into an extension with timber roof joists',
-    heroPosition: '50% 50%',
-    caption: 'A wide new opening through the rear wall',
+    hero: '/photos/stock-rear-opening.webp',
+    heroAlt: 'Rear wall of a house opened up, with a new steel beam on temporary props',
+    heroPosition: '50% 45%',
+    caption: 'New steel over a wide opening',
     intro:
       'Opening up a kitchen, forming a wide opening to a garden room or removing a chimney breast all change the load paths through your home. We carry out the work in a controlled sequence, with the house supported throughout, and install the beams, columns and frames your engineer specifies.',
     includes: ['demolition', 'steelwork', 'masonry'],
@@ -375,7 +367,7 @@ export const projectTypes = [
     ],
     gallery: [
       { src: '/photos/build-progress-4.webp', alt: 'Steel beam installed over a new opening in blockwork', caption: 'Steel over the opening' },
-      { src: '/photos/build-progress-17.webp', alt: 'Steel beams and new timber joists spanning brickwork walls', caption: 'Steels in place' },
+      { src: '/photos/build-progress-8.webp', alt: 'View through a wide new structural opening into an extension with timber roof joists', caption: 'Opening formed' },
       { src: '/photos/build-progress-9.webp', alt: 'New brickwork and blockwork walls with openings formed', caption: 'Supporting masonry' },
     ],
     faqs: [
@@ -399,10 +391,10 @@ export const projectTypes = [
     title: 'New Build Structures',
     pill: 'Houses and residential buildings',
     lead: 'Coordinated structural packages for new homes: groundworks, foundations, drainage, walls, floors, steelwork and the roof structure.',
-    hero: '/photos/scaffolded-build-1.webp',
-    heroAlt: 'Residential new build wrapped in scaffolding and sheeting',
+    hero: '/photos/stock-newbuild-scaffold.webp',
+    heroAlt: 'Residential building under scaffolding during construction',
     heroPosition: '50% 50%',
-    caption: 'Residential new build under scaffold',
+    caption: 'New homes under scaffold',
     intro:
       'A new home brings every structural trade together, often with piling or specialist foundations. We coordinate the full structural package in the right order, working to the engineer’s design and any warranty provider’s inspections, so the building is sound before the finishing work begins.',
     includes: ['demolition', 'foundations', 'drainage', 'masonry', 'steelwork', 'concrete-floors', 'beam-block', 'screeding', 'roofing'],
@@ -422,10 +414,10 @@ export const projectTypes = [
       'A clear programme and sequence keeps each trade ready for the next.',
     ],
     gallery: [
-      { src: '/photos/groundworks-1.webp', alt: 'Foundation trench with steel reinforcement and formwork', caption: 'Foundations' },
+      { src: '/photos/stock-foundation-pour.webp', alt: 'Concrete being poured into a reinforced foundation', caption: 'Foundations' },
       { src: '/photos/concrete-3.webp', alt: 'Concrete pump lorry delivering concrete to site', caption: 'Concrete pour' },
       { src: '/photos/build-progress-13.webp', alt: 'New brick walls rising under scaffolding, with window openings formed', caption: 'Walls going up' },
-      { src: '/photos/large-loft-3.webp', alt: 'Timber roof structure being framed', caption: 'Roof structure' },
+      { src: '/photos/stock-roof-trusses.webp', alt: 'Timber roof trusses being framed against a blue sky', caption: 'Roof structure' },
     ],
     faqs: [
       {
