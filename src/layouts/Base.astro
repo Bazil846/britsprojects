@@ -28,7 +28,9 @@ const business = {
   logo: `${SITE_URL}/logo.svg`,
   ...(company.phoneHref && { telephone: company.phoneHref }),
   ...(company.email && { email: company.email }),
-  address: { '@type': 'PostalAddress', streetAddress: '66 Yeading Avenue', addressLocality: 'Harrow', postalCode: 'HA2 9RN', addressCountry: 'GB' },
+  legalName: company.legalName,
+  foundingDate: company.founded,
+  address: { '@type': 'PostalAddress', streetAddress: company.addressParts.street, addressLocality: company.addressParts.locality, postalCode: company.addressParts.postcode, addressCountry: 'GB' },
   areaServed: [{ '@type': 'City', name: 'London' }, { '@type': 'AdministrativeArea', name: 'Home Counties' }],
   knowsAbout: [
     'Structural building work',

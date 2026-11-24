@@ -149,8 +149,12 @@ const schema = [
   }
   .details a,
   .details span {
-    white-space: nowrap;
+    min-width: 0;
     font-size: clamp(0.85rem, 0.55rem + 1.6vw, 1rem);
+  }
+  /* Phone and email stay on one line; the address wraps. */
+  .details a {
+    white-space: nowrap;
   }
   @media (max-width: 480px) {
     .side-card {
@@ -166,6 +170,7 @@ const schema = [
     display: flex;
     gap: 0.75rem;
     align-items: center;
+    min-width: 0;
   }
   .details :global(svg) {
     color: var(--steel);
