@@ -75,12 +75,6 @@
   640,
   1280
  ],
- "/photos/stock-rebar-pour.webp": [
-  2400,
-  1608,
-  640,
-  1280
- ],
  "/photos/stock-extension-uk.webp": [
   2400,
   1800,
@@ -106,12 +100,6 @@
   1280
  ],
  "/photos/commercial-hero.webp": [
-  2400,
-  1600,
-  640,
-  1280
- ],
- "/photos/stock-site-review.webp": [
   2400,
   1600,
   640,
@@ -192,6 +180,18 @@
   1280
  ],
  "/photos/hero-roof.webp": [
+  1600,
+  900,
+  640,
+  1280
+ ],
+ "/photos/hero-steel.webp": [
+  1600,
+  900,
+  640,
+  1280
+ ],
+ "/photos/hero-review.webp": [
   1600,
   900,
   640,

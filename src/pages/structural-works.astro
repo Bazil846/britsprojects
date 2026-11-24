@@ -51,14 +51,20 @@ const schema = [
 >
   <PhotoHero
     crumbs={[{ href: '/', label: 'Home' }, { label: 'Structural works' }]}
-    image="/photos/stock-rebar-pour.webp"
-    alt="Concrete being pumped over steel reinforcement for a foundation slab"
+    image="/photos/hero-steel.webp"
+    alt="Steel erectors bolting together a structural steel frame"
     position="50% 50%"
+    video={{
+      webm: '/video/hero-steel.webm',
+      mp4: '/video/hero-steel.mp4',
+      smallWebm: '/video/hero-steel-sm.webm',
+      smallMp4: '/video/hero-steel-sm.mp4',
+    }}
     pill="Structural work specialists"
     title="Strong Foundations"
     accent="for Homes and Businesses"
     lead="The strength of any building depends on the work beneath the surface. Foundations, steel connections, supporting walls and roof structures all deserve careful attention."
-    caption="Concrete pour over reinforcement"
+    caption="Steel frame going up"
   >
     <div slot="actions" class="btn-row">
       <a class="btn btn--primary" href="#enquire">
