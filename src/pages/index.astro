@@ -45,14 +45,20 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
 >
   <PhotoHero
     size="home"
-    image="/photos/stock-roof-structure.webp"
-    alt="New timber roof structure being framed on top of a building"
-    position="50% 45%"
+    image="/photos/hero-roof.webp"
+    alt="Builders framing a new timber roof on a brick building"
+    position="50% 50%"
+    video={{
+      webm: '/video/hero-roof.webm',
+      mp4: '/video/hero-roof.mp4',
+      smallWebm: '/video/hero-roof-sm.webm',
+      smallMp4: '/video/hero-roof-sm.mp4',
+    }}
     pill="Residential & commercial · London and the Home Counties"
     title="A Stronger Home."
     accent="A Better Managed Build."
     lead="We build the structure your building depends on, or oversee your builder on your behalf. Structural works and project management for homes and commercial premises: extensions, loft conversions, alterations, new builds and commercial projects."
-    caption="A new roof structure going on"
+    caption="A new roof going on"
   >
     <div slot="actions" class="btn-row">
       <a class="btn btn--primary" href="#offerings">

@@ -14,8 +14,10 @@ interface Props {
   caption?: string;
   crumbs?: { href?: string; label: string }[];
   size?: 'home' | 'page';
+  /** Optional looping background video over the photo (muted, decorative). Phones get the small encode. */
+  video?: { webm: string; mp4: string; smallWebm?: string; smallMp4?: string };
 }
-const { image, alt, position = '50% 50%', pill, title, accent, lead, caption, crumbs, size = 'page' } = Astro.props;
+const { image, alt, position = '50% 50%', pill, title, accent, lead, caption, crumbs, size = 'page', video } = Astro.props;
 ---
 
 <section class:list={['ph', `ph--${size}`]}>
@@ -33,6 +35,22 @@ const { image, alt, position = '50% 50%', pill, title, accent, lead, caption, cr
     }
     <div class="ph__panel">
       <img class="ph__img" {...photo(image, '(min-width: 1340px) 1280px, 100vw')} alt={alt} style={`object-position:${position}`} fetchpriority="high" decoding="async" />
+      {
+        video && (
+          <video
+            class="ph__video"
+            data-hero-video
+            muted
+            loop
+            playsinline
+            preload="none"
+            aria-hidden="true"
+            tabindex="-1"
+            style={`object-position:${position}`}
+            data-sources={JSON.stringify(video)}
+          />
+        )
+      }
       <div class="ph__shade" aria-hidden="true"></div>
       {caption && <p class="ph__caption">{caption}</p>}
       <div class="ph__content">
@@ -52,7 +70,53 @@ const { image, alt, position = '50% 50%', pill, title, accent, lead, caption, cr
   </div>
 </section>
 
+<script>
+  // Starts the hero video only when it should, after the page has loaded: not for visitors who prefer reduced motion or have
+  // data saver on. Sources are added by script (so nothing downloads otherwise), phones get the
+  // smaller encode, and the video fades in over the matching still photo once it is playing.
+  const v = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+  if (v && !matchMedia('(prefers-reduced-motion: reduce)').matches && !conn?.saveData) {
+    const src = JSON.parse(v.dataset.sources || '{}');
+    const small = matchMedia('(max-width: 767px)').matches;
+    const add = (url: string | undefined, type: string) => {
+      if (!url) return;
+      const el = document.createElement('source');
+      el.src = url;
+      el.type = type;
+      v.appendChild(el);
+    };
+    const start = () => {
+      add(small ? src.smallWebm || src.webm : src.webm, 'video/webm');
+      add(small ? src.smallMp4 || src.mp4 : src.mp4, 'video/mp4');
+      v.addEventListener('playing', () => v.classList.add('is-playing'), { once: true });
+      v.load();
+      v.play().catch(() => {});
+    };
+    // Wait until the page has loaded and the browser is idle, so the video never competes with
+    // the page itself; the still photo shows until then.
+    const idle = () =>
+      'requestIdleCallback' in window ? requestIdleCallback(start, { timeout: 3000 }) : setTimeout(start, 1200);
+    if (document.readyState === 'complete') setTimeout(idle, 600);
+    else addEventListener('load', () => setTimeout(idle, 600), { once: true });
+  }
+</script>
+
 <style>
+  .ph__video {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  .ph__video.is-playing {
+    opacity: 1;
+  }
   .ph {
     padding: clamp(0.75rem, 0.5rem + 1vw, 1.25rem) 0 0;
   }
@@ -202,6 +266,12 @@ const { image, alt, position = '50% 50%', pill, title, accent, lead, caption, cr
     }
     .ph__img {
       position: relative;
+      z-index: 0;
+      height: auto;
+      aspect-ratio: 16 / 10;
+    }
+    .ph__video {
+      inset: 0 0 auto 0;
       z-index: 0;
       height: auto;
       aspect-ratio: 16 / 10;
