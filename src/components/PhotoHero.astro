@@ -93,13 +93,6 @@ const { image, alt, position = '50% 50%', pill, title, accent, lead, caption, cr
   .ph--home .ph__panel {
     min-height: min(46rem, calc(100svh - 6rem));
   }
-  @media (max-width: 700px) {
-    .ph__panel,
-    .ph--home .ph__panel {
-      min-height: 0;
-      padding-top: 15rem;
-    }
-  }
   .ph__img {
     position: absolute;
     inset: 0;
@@ -196,6 +189,51 @@ const { image, alt, position = '50% 50%', pill, title, accent, lead, caption, cr
     .ph__caption {
       top: 0.75rem;
       right: 0.75rem;
+    }
+  }
+
+  /* Phones: the photo sits on top at a natural shape, and the heading and buttons follow on
+     navy below it, instead of a full screen photo with the text laid over a darkened image. */
+  @media (max-width: 700px) {
+    .ph__panel,
+    .ph--home .ph__panel {
+      display: block;
+      min-height: 0;
+    }
+    .ph__img {
+      position: relative;
+      z-index: 0;
+      height: auto;
+      aspect-ratio: 16 / 10;
+    }
+    .ph__shade {
+      top: auto;
+      height: calc(min(100vw, 700px) * 0.625);
+      z-index: 0;
+      background: linear-gradient(to top, var(--navy-deep) 0%, rgba(8, 32, 47, 0) 22%);
+      position: absolute;
+      top: 0;
+    }
+    .ph__content {
+      position: relative;
+      z-index: 1;
+      padding: 1.25rem 1.25rem 1.75rem;
+    }
+    .ph__pill {
+      padding: 0.35rem 0.8rem;
+      font-size: 0.8125rem;
+    }
+    .ph__title,
+    .ph--page .ph__title {
+      margin-top: 1rem;
+      font-size: clamp(1.9rem, 1.2rem + 3.6vw, 2.5rem);
+    }
+    .ph__lead {
+      margin-top: 1rem;
+      font-size: 1.02rem;
+    }
+    .ph__actions:not(:empty) {
+      margin-top: 1.5rem;
     }
   }
 </style>
