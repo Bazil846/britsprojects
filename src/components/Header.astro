@@ -96,6 +96,7 @@ const isIn = (base: string) => here === base || here.startsWith(base + '/');
             </div>
           </div>
         </li>
+        <li><a href="/projects/new-build-home" aria-current={isIn('/projects') ? 'page' : undefined}>Our work</a></li>
         <li><a href="/about" aria-current={here === '/about' ? 'page' : undefined}>Why us</a></li>
         <li><a href="/contact" aria-current={here === '/contact' ? 'page' : undefined}>Contact</a></li>
       </ul>
@@ -139,6 +140,7 @@ const isIn = (base: string) => here === base || here.startsWith(base + '/');
             </ul>
           </details>
         </li>
+        <li><a class="mnav__top" href="/projects/new-build-home">Our work <Icon name="arrow" size={20} /></a></li>
         <li><a class="mnav__top" href="/about">Why us <Icon name="arrow" size={20} /></a></li>
         <li><a class="mnav__top" href="/contact">Contact <Icon name="arrow" size={20} /></a></li>
       </ul>
@@ -348,7 +350,7 @@ const isIn = (base: string) => here === base || here.startsWith(base + '/');
       display: none;
     }
   }
-  @media (max-width: 960px) {
+  @media (max-width: 1080px) {
     .hdr__nav,
     .hdr__cta {
       display: none;
@@ -357,7 +359,7 @@ const isIn = (base: string) => here === base || here.startsWith(base + '/');
       display: inline-flex;
     }
   }
-  @media (min-width: 961px) {
+  @media (min-width: 1081px) {
     .mnav {
       display: none !important;
     }

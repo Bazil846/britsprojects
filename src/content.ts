@@ -8,7 +8,7 @@ export const structuralCore = [
     text: 'Structural construction for single and double storey extensions, including demolition, groundworks, foundations, drainage, walls, floors, steelwork and roofing.',
   },
   {
-    id: 'loft-conversions', photo: '/photos/stock-loft-roof.webp', alt: 'Loft conversion structure with new steel beams and timber framing',
+    id: 'loft-conversions', photo: '/photos/real-dormer-framing.webp', alt: 'Dormer framing and steel beams in a new roof structure',
     icon: 'loft',
     title: 'Loft Conversions',
     text: 'Structural alterations, floor strengthening, steel installation, dormer construction and roof modifications to create the framework for your new living space.',
@@ -20,7 +20,7 @@ export const structuralCore = [
     text: 'Load bearing wall removal, new structural openings, temporary support and installation of specified beams, columns and frames.',
   },
   {
-    id: 'new-builds', photo: '/photos/stock-newbuild-scaffold.webp', alt: 'Multi-storey residential build under scaffolding',
+    id: 'new-builds', photo: '/photos/real-newbuild-scaffold.webp', alt: 'New build house under scaffolding',
     icon: 'newbuild',
     title: 'New Build Structures',
     text: 'Coordinated structural packages covering groundworks, foundations, drainage, structural walls, floors, steelwork and roof construction.',
@@ -36,13 +36,13 @@ export const structuralCore = [
 /** The trades in a structural package, in build order. */
 export const structuralTrades = [
   {
-    id: 'demolition', photo: '/photos/groundworks-4.webp', alt: 'Excavated ground being prepared beside a house before building work',
+    id: 'demolition', photo: '/photos/real-demolition.webp', alt: 'Excavator demolishing an existing house to clear the site for a new build',
     icon: 'demolition',
     title: 'Demolition & Site Preparation',
     text: 'Demolition, strip out, site clearance and excavation to prepare your property for the planned works.',
   },
   {
-    id: 'foundations', photo: '/photos/stock-foundation-pour.webp', alt: 'Concrete being poured into a reinforced foundation',
+    id: 'foundations', photo: '/photos/real-raft-rebar.webp', alt: 'Our team fixing steel reinforcement for a reinforced concrete foundation slab',
     icon: 'foundation',
     title: 'Foundations & Piling',
     text: 'Excavation and concrete foundation construction, with specialist piling arrangements where required by the structural design.',
@@ -54,19 +54,19 @@ export const structuralTrades = [
     text: 'Underground drainage installation and alterations, including pipework, inspection chambers, diversions and connections to suit your project.',
   },
   {
-    id: 'masonry', photo: '/photos/build-progress-9.webp', alt: 'New brickwork and blockwork walls rising on an extension',
+    id: 'masonry', photo: '/photos/real-walls-rising.webp', alt: 'New blockwork walls rising under scaffolding on a new build',
     icon: 'brick',
     title: 'Brickwork & Blockwork',
     text: 'Construction of external walls, internal load bearing walls and supporting masonry for extensions, alterations, new homes and commercial buildings.',
   },
   {
-    id: 'steelwork', photo: '/photos/commercial-steel.webp', alt: 'Structural steel frame of columns and beams',
+    id: 'steelwork', photo: '/photos/real-steel-portal.webp', alt: 'Red structural steel frames installed at roof level on a new build',
     icon: 'steel',
     title: 'Structural Steelwork',
     text: 'Installation of specified steel beams, columns and frames to support new openings, additional floors and changes to a building’s layout.',
   },
   {
-    id: 'concrete-floors', photo: '/photos/commercial-concrete.webp', alt: 'Concrete being placed over steel reinforcement for a ground floor slab',
+    id: 'concrete-floors', photo: '/photos/real-slab-mesh.webp', alt: 'Steel reinforcement mesh and starter bars laid ready for a concrete ground floor slab',
     icon: 'slab',
     title: 'Solid Concrete Ground Floors',
     text: 'Ground floor construction, including sub base preparation, compacted hardcore, damp proof membranes, insulation and concrete slabs to the specified floor build up.',
@@ -78,13 +78,13 @@ export const structuralTrades = [
     text: 'Installation of suspended beam and block flooring, including supporting masonry, concrete beams, infill blocks, ventilation provisions and insulation.',
   },
   {
-    id: 'screeding', photo: '/photos/stock-screed.webp', alt: 'Freshly laid floor being levelled with a power screed',
+    id: 'screeding', photo: '/photos/real-screed-ufh.webp', alt: 'Floor screed being pumped over underfloor heating pipes',
     icon: 'screed',
     title: 'Floor Screeding',
     text: 'Screeding to provide a level surface ready for floor finishes, including installation over underfloor heating systems where specified.',
   },
   {
-    id: 'roofing', photo: '/photos/stock-roof-trusses.webp', alt: 'Timber roof trusses being framed against a blue sky',
+    id: 'roofing', photo: '/photos/real-roof-trusses.webp', alt: 'New timber roof trusses beside a blockwork chimney under a temporary roof',
     icon: 'roof',
     title: 'Roofing Structures',
     text: 'Roof construction and structural roof alterations for extensions, loft conversions, new homes and commercial buildings.',
@@ -296,10 +296,10 @@ export const projectTypes = [
     title: 'Structural Work for Loft Conversions',
     pill: 'Dormer, hip to gable and mansard lofts',
     lead: 'Floor strengthening, steel installation, dormer construction and roof alterations: the framework your new loft room is built on.',
-    hero: '/photos/stock-loft-roof.webp',
-    heroAlt: 'New timber roof structure being framed on top of a building',
+    hero: '/photos/real-dormer-framing.webp',
+    heroAlt: 'Dormer framing and steel beams in a new roof structure',
     heroPosition: '50% 40%',
-    caption: 'A new roof structure being framed',
+    caption: 'Dormer framing and steels, on our site',
     intro:
       'Converting a loft changes how your roof carries its load. New floor joists, steel beams, dormer framing and altered roof timbers all have to follow the engineer’s design exactly. We build that structure, ready for insulation, boarding and finishes.',
     includes: ['steelwork', 'roofing', 'masonry', 'demolition'],
@@ -318,10 +318,10 @@ export const projectTypes = [
       'Headroom and the stair position should be settled in the drawings before work starts.',
     ],
     gallery: [
+      { src: '/photos/real-steel-frames.webp', alt: 'Steel frames and new floor joists at roof level', caption: 'Steels and floor' },
+      { src: '/photos/real-trusses-close.webp', alt: 'Timber roof trusses beside a blockwork chimney', caption: 'Roof timbers' },
+      { src: '/photos/real-rooflights.webp', alt: 'Finished roof structure with rooflights fitted between the rafters', caption: 'Rooflights in' },
       { src: '/photos/large-loft-1.webp', alt: 'Loft conversion structure with new steel beams, rafters and floor joists', caption: 'Steels and rafters' },
-      { src: '/photos/loft-construction-4.webp', alt: 'Loft conversion structure with new steel beams and timber framing', caption: 'Steel and framing' },
-      { src: '/photos/stock-roof-trusses.webp', alt: 'Timber roof trusses being framed against a blue sky', caption: 'Roof structure' },
-      { src: '/photos/build-progress-11.webp', alt: 'New roof trusses and timber joists over a structure under scaffolding', caption: 'Roof timbers' },
     ],
     faqs: [
       {
@@ -391,10 +391,10 @@ export const projectTypes = [
     title: 'New Build Structures',
     pill: 'Houses and residential buildings',
     lead: 'Coordinated structural packages for new homes: groundworks, foundations, drainage, walls, floors, steelwork and the roof structure.',
-    hero: '/photos/stock-newbuild-scaffold.webp',
-    heroAlt: 'Residential building under scaffolding during construction',
+    hero: '/photos/real-newbuild-scaffold.webp',
+    heroAlt: 'New build house under scaffolding at sunset',
     heroPosition: '50% 50%',
-    caption: 'New homes under scaffold',
+    caption: 'One of our new builds',
     intro:
       'A new home brings every structural trade together, often with piling or specialist foundations. We coordinate the full structural package in the right order, working to the engineer’s design and any warranty provider’s inspections, so the building is sound before the finishing work begins.',
     includes: ['demolition', 'foundations', 'drainage', 'masonry', 'steelwork', 'concrete-floors', 'beam-block', 'screeding', 'roofing'],
@@ -414,10 +414,10 @@ export const projectTypes = [
       'A clear programme and sequence keeps each trade ready for the next.',
     ],
     gallery: [
-      { src: '/photos/stock-foundation-pour.webp', alt: 'Concrete being poured into a reinforced foundation', caption: 'Foundations' },
-      { src: '/photos/concrete-3.webp', alt: 'Concrete pump lorry delivering concrete to site', caption: 'Concrete pour' },
-      { src: '/photos/build-progress-13.webp', alt: 'New brick walls rising under scaffolding, with window openings formed', caption: 'Walls going up' },
-      { src: '/photos/stock-roof-trusses.webp', alt: 'Timber roof trusses being framed against a blue sky', caption: 'Roof structure' },
+      { src: '/photos/real-raft-rebar.webp', alt: 'Our team fixing reinforcement for the foundation slab', caption: 'Foundation slab' },
+      { src: '/photos/real-walls-rising.webp', alt: 'New blockwork walls rising under scaffolding', caption: 'Walls going up' },
+      { src: '/photos/real-steel-portal.webp', alt: 'Red structural steel frames at roof level', caption: 'Steel frames' },
+      { src: '/photos/real-roof-trusses.webp', alt: 'New timber roof trusses beside a blockwork chimney', caption: 'Roof structure' },
     ],
     faqs: [
       {
@@ -569,3 +569,96 @@ export const groupReviews = [
     text: '…A detailed quote was provided with a breakdown of the costs and payment schedule. Everything was made clear and in writing. No extras were charged (other than the additional underfloor heating we requested). All work was done in a timely and efficient manner, work was completed on time and to a high standard of finish.',
   },
 ] as const;
+
+/**
+ * Case study built from the client's own site photos (WhatsApp, Nov 2026). Only what the photos
+ * show is described: no location, dates or sizes, since those were not supplied.
+ */
+export const newBuildProject = {
+  slug: 'new-build-home',
+  title: 'A New Home, from Demolition to Roof',
+  pill: 'Our work · New build',
+  lead: 'The full structural package for a new detached home: the old house demolished, piled and reinforced foundations, steelwork, blockwork, the roof structure and screed, photographed on site as the work went up.',
+  hero: '/photos/real-team-roof.webp',
+  heroAlt: 'Our team working at roof level among new steel frames and floor joists',
+  caption: 'Our team at roof level',
+  scope: [
+    { icon: 'demolition', text: 'Demolition and site clearance' },
+    { icon: 'foundation', text: 'Piled foundations and reinforced slab' },
+    { icon: 'brick', text: 'Blockwork and brickwork' },
+    { icon: 'steel', text: 'Structural steel columns, beams and frames' },
+    { icon: 'roof', text: 'Roof structure and dormers' },
+    { icon: 'screed', text: 'Screed over underfloor heating' },
+  ],
+  stages: [
+    {
+      title: 'Demolition',
+      text: 'The existing house was taken down and the materials cleared, leaving the plot ready for the new home.',
+      photos: [{ src: '/photos/real-demolition.webp', alt: 'Excavator demolishing the existing house' }],
+    },
+    {
+      title: 'Site cleared and set out',
+      text: 'The ground was cleared, levelled and set out to the drawings before the foundations went in.',
+      photos: [
+        { src: '/photos/real-site-cleared.webp', alt: 'Cleared plot after demolition' },
+        { src: '/photos/real-ground-prep.webp', alt: 'Plot levelled and set out with trenches dug' },
+      ],
+    },
+    {
+      title: 'Piles and reinforced foundations',
+      text: 'Piles were bored for the foundations, then the slab reinforcement and starter bars were fixed ready for the concrete.',
+      photos: [
+        { src: '/photos/real-raft-rebar.webp', alt: 'Our team fixing steel reinforcement for the foundation slab' },
+        { src: '/photos/real-slab-mesh.webp', alt: 'Reinforcement mesh and starter bars ready for the concrete' },
+      ],
+    },
+    {
+      title: 'Ground floor walls and steel',
+      text: 'Blockwork rose from the damp proof course, with steel columns and beams set to carry wide openings.',
+      photos: [
+        { src: '/photos/real-steel-column.webp', alt: 'Red steel column set on the new slab' },
+        { src: '/photos/real-steel-opening.webp', alt: 'Steel frame forming a wide opening between brick piers' },
+      ],
+    },
+    {
+      title: 'Walls rising',
+      text: 'The walls went up storey by storey under scaffolding.',
+      photos: [
+        { src: '/photos/real-walls-rising.webp', alt: 'Blockwork walls rising under scaffolding' },
+        { src: '/photos/real-blockwork-inside.webp', alt: 'Inside the new first floor rooms, with window openings formed' },
+      ],
+    },
+    {
+      title: 'Steel frames at roof level',
+      text: 'Structural steel frames were installed at the top of the building to carry the roof and create open space below it.',
+      photos: [
+        { src: '/photos/real-steel-portal.webp', alt: 'Red structural steel frames at roof level' },
+        { src: '/photos/real-steel-frames.webp', alt: 'Steel frames and new floor joists at roof level' },
+      ],
+    },
+    {
+      title: 'Roof structure and dormers',
+      text: 'The roof timbers and dormers were framed under a temporary roof, which kept the work dry.',
+      photos: [
+        { src: '/photos/real-roof-trusses.webp', alt: 'New timber roof trusses beside a blockwork chimney' },
+        { src: '/photos/real-dormer-framing.webp', alt: 'Dormer framing and steels inside the new roof' },
+      ],
+    },
+    {
+      title: 'Roof covered',
+      text: 'Membrane and battens went on, followed by the slate.',
+      photos: [
+        { src: '/photos/real-roof-battens.webp', alt: 'Roof membrane and battens fixed' },
+        { src: '/photos/real-slate-roof.webp', alt: 'Slate roof laid, with a dormer behind' },
+      ],
+    },
+    {
+      title: 'Screed over underfloor heating',
+      text: 'Inside, the floors were screeded over the underfloor heating, ready for the finishes.',
+      photos: [
+        { src: '/photos/real-screed-ufh.webp', alt: 'Screed being pumped over underfloor heating pipes' },
+        { src: '/photos/real-screed-finished.webp', alt: 'Finished screed through the ground floor rooms' },
+      ],
+    },
+  ],
+} as const;

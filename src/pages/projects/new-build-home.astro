@@ -1,0 +1,266 @@
+---
+import Base from '../../layouts/Base.astro';
+import PhotoHero from '../../components/PhotoHero.astro';
+import Icon from '../../components/Icon.astro';
+import EnquiryBand from '../../components/EnquiryBand.astro';
+import { newBuildProject as p } from '../../content';
+import { photo } from '../../lib/photo';
+import { SITE_URL } from '../../site';
+
+const url = `${SITE_URL}/projects/${p.slug}`;
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Our work', item: url },
+    ],
+  },
+];
+---
+
+<Base title="Our Work: New Build from Demolition to Roof | Brits Projects" description={p.lead} schema={schema}>
+  <PhotoHero
+    crumbs={[{ href: '/', label: 'Home' }, { label: 'Our work' }]}
+    image={p.hero}
+    alt={p.heroAlt}
+    position="50% 45%"
+    pill={p.pill}
+    title="A New Home,"
+    accent="from Demolition to Roof"
+    lead={p.lead}
+    caption={p.caption}
+  >
+    <div slot="actions" class="btn-row">
+      <a class="btn btn--primary" href="#enquire">
+        Discuss your project
+        <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+      </a>
+      <a class="btn btn--outline" href="/structural-works/new-builds">New build structures</a>
+    </div>
+  </PhotoHero>
+
+  <section class="section" aria-labelledby="scope-heading">
+    <div class="container scope">
+      <div>
+        <p class="eyebrow">The structural package</p>
+        <h2 id="scope-heading" class="h2">Every structural stage, by one team</h2>
+        <p class="lead">
+          From the day the old house came down to screeding the new floors, these photos were taken on site as the work went up. Not stock
+          images: this is the work itself.
+        </p>
+      </div>
+      <ul class="scope__list">
+        {
+          p.scope.map((s) => (
+            <li>
+              <span class="scope__icon">
+                <Icon name={s.icon} size={22} />
+              </span>
+              {s.text}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--stone" aria-labelledby="stages-heading">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Stage by stage</p>
+          <h2 id="stages-heading" class="h2">How the house went up</h2>
+        </div>
+      </div>
+      <ol class="stages">
+        {
+          p.stages.map((st, i) => (
+            <li class:list={['stage', st.photos.length === 1 && 'stage--single']}>
+              <div class="stage__text">
+                <span class="stage__n tabular" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <h3 class="h3">{st.title}</h3>
+                <p>{st.text}</p>
+              </div>
+              <div class="stage__photos">
+                {st.photos.map((ph) => (
+                  <img {...photo(ph.src, '(min-width: 1000px) 400px, 50vw')} alt={ph.alt} loading="lazy" decoding="async" />
+                ))}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="inspect-heading">
+    <div class="container inspect">
+      <img {...photo('/photos/real-site-inspection.webp', '(min-width: 900px) 420px, 100vw')} alt="Site inspection during the groundworks" loading="lazy" decoding="async" />
+      <div>
+        <p class="eyebrow">Built to be checked</p>
+        <h2 id="inspect-heading" class="h2">Inspected at the stages that matter</h2>
+        <p class="lead">
+          Foundations, steelwork and the roof structure are ready to be inspected before anything is covered up. If you have your own builder,
+          our project management brings the same eye to their work.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/structural-works">
+            Structural works
+            <span class="btn__chip"><Icon name="arrow" size={18} /></span>
+          </a>
+          <a class="btn btn--outline" href="/project-management">Project management</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <EnquiryBand
+    title="Planning a build like this?"
+    text="Send us your drawings and the structural engineer’s design, and we will prepare a clear scope and quotation for the structural package."
+    topic="Structural works"
+    formId="project-enquiry"
+  />
+</Base>
+
+<style>
+  .scope {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .scope > * {
+    min-width: 0;
+  }
+  @media (min-width: 1000px) {
+    .scope {
+      grid-template-columns: 7fr 5fr;
+      gap: 4.5rem;
+      align-items: center;
+    }
+  }
+  .scope h2 {
+    margin-top: 1rem;
+  }
+  .scope .lead {
+    margin-top: 1.25rem;
+  }
+  .scope__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .scope__list li {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .scope__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 10px;
+    background: var(--copper-tint);
+    color: var(--copper-dark);
+  }
+  .stages {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .stage {
+    display: grid;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-media);
+    background: #fff;
+    border: 1px solid var(--line);
+  }
+  @media (min-width: 900px) {
+    .stage {
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      padding: 1.5rem;
+      align-items: center;
+    }
+  }
+  .stage__n {
+    display: block;
+    color: var(--copper);
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .stage__text h3 {
+    margin-top: 0.75rem;
+  }
+  .stage__text p {
+    margin-top: 0.5rem;
+  }
+  .stage__photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .stage--single .stage__photos {
+    grid-template-columns: 1fr;
+  }
+  .stage__photos img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+  }
+  .stage--single .stage__photos img {
+    aspect-ratio: 16 / 9;
+    object-position: 50% 35%;
+  }
+  .inspect {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .inspect > * {
+    min-width: 0;
+  }
+  @media (min-width: 900px) {
+    .inspect {
+      grid-template-columns: 5fr 7fr;
+      gap: 4.5rem;
+    }
+  }
+  .inspect img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-media);
+  }
+  @media (max-width: 899px) {
+    .inspect img {
+      aspect-ratio: 4 / 3;
+      object-position: 50% 25%;
+    }
+  }
+  .inspect h2 {
+    margin-top: 1rem;
+  }
+  .inspect .lead {
+    margin-top: 1.25rem;
+  }
+  .inspect .btn-row {
+    margin-top: 2rem;
+  }
+</style>

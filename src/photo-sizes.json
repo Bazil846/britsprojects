@@ -196,5 +196,152 @@
   900,
   640,
   1280
+ ],
+ "/photos/real-demolition.webp": [
+  1536,
+  2048,
+  640,
+  1280
+ ],
+ "/photos/real-site-cleared.webp": [
+  2048,
+  1536,
+  640,
+  1280
+ ],
+ "/photos/real-ground-prep.webp": [
+  2048,
+  1536,
+  640,
+  1280
+ ],
+ "/photos/real-raft-rebar.webp": [
+  1600,
+  1200,
+  640,
+  1280
+ ],
+ "/photos/real-slab-mesh.webp": [
+  1600,
+  1200,
+  640,
+  1280
+ ],
+ "/photos/real-dpc-blocks.webp": [
+  1200,
+  1600,
+  640
+ ],
+ "/photos/real-steel-column.webp": [
+  1200,
+  1600,
+  640
+ ],
+ "/photos/real-ground-floor.webp": [
+  1600,
+  1200,
+  640,
+  1280
+ ],
+ "/photos/real-steel-opening.webp": [
+  1600,
+  1200,
+  640,
+  1280
+ ],
+ "/photos/real-walls-rising.webp": [
+  1600,
+  1200,
+  640,
+  1280
+ ],
+ "/photos/real-walls-scaffold.webp": [
+  1600,
+  1200,
+  640,
+  1280
+ ],
+ "/photos/real-team-roof.webp": [
+  2400,
+  1800,
+  640,
+  1280
+ ],
+ "/photos/real-steel-portal.webp": [
+  2400,
+  1800,
+  640,
+  1280
+ ],
+ "/photos/real-steel-frames.webp": [
+  2400,
+  1800,
+  640,
+  1280
+ ],
+ "/photos/real-dormer-framing.webp": [
+  2400,
+  1800,
+  640,
+  1280
+ ],
+ "/photos/real-rooflights.webp": [
+  2400,
+  1800,
+  640,
+  1280
+ ],
+ "/photos/real-roof-trusses.webp": [
+  1800,
+  2400,
+  640,
+  1280
+ ],
+ "/photos/real-trusses-close.webp": [
+  1800,
+  2400,
+  640,
+  1280
+ ],
+ "/photos/real-roof-battens.webp": [
+  1800,
+  2400,
+  640,
+  1280
+ ],
+ "/photos/real-slate-roof.webp": [
+  1800,
+  2400,
+  640,
+  1280
+ ],
+ "/photos/real-screed-ufh.webp": [
+  1800,
+  2400,
+  640,
+  1280
+ ],
+ "/photos/real-screed-finished.webp": [
+  1800,
+  2400,
+  640,
+  1280
+ ],
+ "/photos/real-newbuild-scaffold.webp": [
+  2400,
+  1800,
+  640,
+  1280
+ ],
+ "/photos/real-site-inspection.webp": [
+  1200,
+  1600,
+  640
+ ],
+ "/photos/real-blockwork-inside.webp": [
+  1800,
+  2400,
+  640,
+  1280
  ]
 }
