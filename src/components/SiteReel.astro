@@ -51,7 +51,7 @@ const {
                 aria-label={`${c.title}: ${c.text}`}
                 data-reel
               >
-                <source src={`/video/site/${c.id}.mp4`} type="video/mp4" />
+                <source src={`/video/site/${c.id}.mp4`} type='video/mp4; codecs="avc1.64001e"' />
               </video>
               <span class="reel__n tabular" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
             </div>
@@ -115,7 +115,12 @@ const {
       },
       { threshold: 0.6 },
     );
-    clips.forEach((v) => io.observe(v));
+    clips.forEach((v) => {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+      io.observe(v);
+    });
   }
 </script>
 
