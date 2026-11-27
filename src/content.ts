@@ -662,3 +662,15 @@ export const newBuildProject = {
     },
   ],
 } as const;
+
+/** Short clips cut from the client's own site videos (sound removed), in build order. */
+export const siteClips = [
+  { id: 'demolition', title: 'Demolition', text: 'The old house comes down' },
+  { id: 'setting-out', title: 'Setting out', text: 'Surveying before the piles' },
+  { id: 'piling', title: 'Piling', text: 'Boring piles for the foundations' },
+  { id: 'slab-rebar', title: 'Slab reinforcement', text: 'Steel fixed before the pour' },
+  { id: 'steel-column', title: 'Steelwork', text: 'Steel column set on the slab' },
+  { id: 'floor-joists', title: 'First floor', text: 'Joists in hangers on the blockwork' },
+  { id: 'roof-dormers', title: 'Roof and dormers', text: 'Framed under a temporary roof' },
+  { id: 'screed', title: 'Screed', text: 'Pumped over underfloor heating' },
+] as const;

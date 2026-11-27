@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import PhotoHero from '../../components/PhotoHero.astro';
 import Icon from '../../components/Icon.astro';
 import EnquiryBand from '../../components/EnquiryBand.astro';
+import SiteReel from '../../components/SiteReel.astro';
 import { newBuildProject as p } from '../../content';
 import { photo } from '../../lib/photo';
 import { SITE_URL } from '../../site';
@@ -94,6 +95,8 @@ const schema = [
       </ol>
     </div>
   </section>
+
+  <SiteReel />
 
   <section class="section" aria-labelledby="inspect-heading">
     <div class="container inspect">

@@ -9,6 +9,7 @@ import EnquiryBand from '../components/EnquiryBand.astro';
 import Faq from '../components/Faq.astro';
 import Logo from '../components/Logo.astro';
 import Reviews from '../components/Reviews.astro';
+import SiteReel from '../components/SiteReel.astro';
 import { newBuildProject } from '../content';
 import { projectTypes, structuralTrades, oversight, accreditations, structuralFaqs, oversightFaqs } from '../content';
 import { SITE_URL, company } from '../site';
@@ -249,7 +250,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
           photographed on our own site as it went up.
         </p>
         <a class="btn btn--primary" href={`/projects/${newBuildProject.slug}`}>
-          See the project
+          See the full project
           <span class="btn__chip"><Icon name="arrow" size={18} /></span>
         </a>
       </div>
@@ -262,6 +263,8 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: co
       </a>
     </div>
   </section>
+
+  <SiteReel tone="canvas" title="Filmed on our own site" lead="Short clips from one of our builds, from demolition to screed. Real footage from our team, not stock." />
 
   <!-- Offering 2 in depth -->
   <section class="section deep deep--pm" aria-labelledby="pm-heading">

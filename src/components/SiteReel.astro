@@ -1,0 +1,256 @@
+---
+// Vertical reel of short, silent clips from our own site videos. Each clip plays only while it is
+// on screen (and never for visitors who prefer reduced motion); until then the still frame shows.
+import Icon from './Icon.astro';
+import { siteClips } from '../content';
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  tone?: 'canvas' | 'stone' | 'navy';
+}
+const {
+  eyebrow = 'On site',
+  title = 'Filmed on our site',
+  lead = 'Short clips from the build, from demolition to screed. Real footage from our team, not stock.',
+  tone = 'navy',
+} = Astro.props;
+---
+
+<section class:list={['reel', `reel--${tone}`]} aria-labelledby="reel-heading">
+  <div class="container reel__head">
+    <div>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 id="reel-heading" class="h2">{title}</h2>
+      <p class="lead">{lead}</p>
+    </div>
+    <div class="reel__controls">
+      <button type="button" class="reel__btn" data-reel-step="-1" aria-label="Previous clips" disabled>
+        <Icon name="arrow" size={20} class="reel__back" />
+      </button>
+      <button type="button" class="reel__btn" data-reel-step="1" aria-label="Next clips">
+        <Icon name="arrow" size={20} />
+      </button>
+    </div>
+  </div>
+  <ol class="reel__strip" data-reel-strip tabindex="0" aria-label="Site clips, scroll sideways for more">
+    {
+      siteClips.map((c, i) => (
+        <li>
+          <figure>
+            <div class="reel__frame">
+              <video
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-poster={`/video/site/${c.id}.webp`}
+                width="480"
+                height="848"
+                aria-label={`${c.title}: ${c.text}`}
+                data-reel
+              >
+                <source src={`/video/site/${c.id}.mp4`} type="video/mp4" />
+              </video>
+              <span class="reel__n tabular" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <figcaption>
+              <strong>{c.title}</strong>
+              <span>{c.text}</span>
+            </figcaption>
+          </figure>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.reel').forEach((band) => {
+    const strip = band.querySelector<HTMLElement>('[data-reel-strip]');
+    const [prev, next] = band.querySelectorAll<HTMLButtonElement>('[data-reel-step]');
+    if (!strip || !prev || !next) return;
+    const measure = () => {
+      prev.disabled = strip.scrollLeft < 8;
+      next.disabled = strip.scrollLeft + strip.clientWidth > strip.scrollWidth - 8;
+    };
+    const step = (dir: number) => {
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      strip.scrollBy({ left: dir * strip.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' });
+    };
+    prev.addEventListener('click', () => step(-1));
+    next.addEventListener('click', () => step(1));
+    strip.addEventListener('scroll', measure, { passive: true });
+    addEventListener('resize', measure);
+    measure();
+  });
+
+  const clips = document.querySelectorAll<HTMLVideoElement>('[data-reel]');
+  // Still frames load only as the reel nears the screen, so they never compete with the page itself.
+  const setPoster = (v: HTMLVideoElement) => {
+    if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;
+  };
+  if ('IntersectionObserver' in window) {
+    const near = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setPoster(e.target as HTMLVideoElement);
+            near.unobserve(e.target);
+          }
+        }),
+      { rootMargin: '600px 600px' },
+    );
+    clips.forEach((v) => near.observe(v));
+  } else clips.forEach(setPoster);
+  if (clips.length && !matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          const v = e.target as HTMLVideoElement;
+          if (e.isIntersecting) v.play().catch(() => {});
+          else v.pause();
+        });
+      },
+      { threshold: 0.6 },
+    );
+    clips.forEach((v) => io.observe(v));
+  }
+</script>
+
+<style>
+  .reel {
+    padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+    overflow: hidden;
+  }
+  .reel--stone {
+    background: var(--stone);
+  }
+  .reel--navy {
+    background: var(--navy-deep);
+    color: #c9d5dc;
+  }
+  .reel--navy .eyebrow {
+    color: var(--copper-light);
+  }
+  .reel--navy h2,
+  .reel--navy figcaption strong {
+    color: #fff;
+  }
+  .reel--navy .lead,
+  .reel--navy figcaption span {
+    color: #b7c6cf;
+  }
+  .reel__head {
+    max-width: calc(var(--container) + 2 * var(--gutter));
+  }
+  .reel__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem 2rem;
+  }
+  .reel__controls {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .reel__btn {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .reel--navy .reel__btn {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+  .reel__btn:hover {
+    border-color: currentColor;
+  }
+  .reel__btn:disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .reel__btn :global(.reel__back) {
+    transform: rotate(180deg);
+  }
+  @media (max-width: 700px) {
+    .reel__controls {
+      display: none;
+    }
+  }
+  .reel__head h2 {
+    margin-top: 1rem;
+  }
+  .reel__head .lead {
+    margin-top: 1.25rem;
+    max-width: 42rem;
+  }
+  .reel__strip {
+    --edge: max(var(--gutter), calc((100vw - var(--container)) / 2));
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0 var(--edge) 0.5rem;
+    scroll-padding-inline: var(--edge);
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .reel__strip::-webkit-scrollbar {
+    display: none;
+  }
+  .reel__strip:focus-visible {
+    outline-offset: -3px;
+  }
+  .reel__strip li {
+    flex: none;
+    width: min(56vw, 14.5rem);
+    scroll-snap-align: start;
+  }
+  .reel figure {
+    margin: 0;
+  }
+  .reel__frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: #1a2a35;
+    aspect-ratio: 9 / 16;
+  }
+  .reel video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .reel__n {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(8, 32, 47, 0.75);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  figcaption {
+    display: grid;
+    gap: 0.15rem;
+    margin-top: 0.75rem;
+    line-height: 1.35;
+  }
+  figcaption span {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+</style>
